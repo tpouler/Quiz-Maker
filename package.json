@@ -1,12 +1,22 @@
 {
-  "name": "project-starter",
+  "name": "project-Potoo",
   "version": "0.1.0",
   "private": true,
-  "author": "Your name here",
+  "author": [
+    "Toby Pouler <tpouler@middlebury.edu",
+    "Sam Ehrsam <sehrsam@middlebury.edu>",
+    "Ethan Coomber <ecoomber@middlebury.edu>",
+    "Julia Joy <jjoy@middlebury.edu>",
+    "Lucas Flemming <lflemming@middlebury.edu>",
+    "Alivia Kliesen <akliesen@middlebury.edu>",
+    "Jake Gilbert <jakeg@middlebury.edu>"
+  ],
   "contributors": [
     "Christopher Andrews <candrews@middlebury.edu>",
     "Michael Linderman <mlinderman@middlebury.edu>"
   ],
+  "url": "https://github.com/csci0312-f22/project-potoo",
+  "description":"This project consists of a dynamic quiz generator and progress tracker for any number of courses intended for teachers and students.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
