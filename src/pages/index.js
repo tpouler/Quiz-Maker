@@ -25,7 +25,7 @@ export default function Main() {
       </Head>
 
       <main>
-        <h1 className="title">Midd Quiz</h1>
+        <h1 className="title">Generic Project</h1>
         <Quiz questions={questions} complete={complete} />
       </main>
 
