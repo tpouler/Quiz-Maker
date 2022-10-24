@@ -13,34 +13,34 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 
 //This function gives us the html for each question and calls setAnswer
-function AnswerInfo({ answer, setAnswer }) {
+function AnswerInfo({ question }) {
+  const [answer, setAnswer] = useState("");
+
+  function setResponse(response) {
+    setAnswer(response);
+    question.response = response;
+  }
+
   return (
     <textarea
       type="text"
       value={answer}
       onChange={(event) => {
-        setAnswer(event.target.value);
+        setResponse(event.target.value);
       }}
     />
   );
 }
 AnswerInfo.propTypes = {
-  answer: PropTypes.string,
-  setAnswer: PropTypes.func,
+  question: PropTypes.object,
 };
 
 export default function Quiz({ questions, complete }) {
-  //Not sure how to update the "response" for each question when it changes
-  const [response, setAnswer] = useState("");
-
-  //What do we do with this?
-  response;
-
   const questionMap = questions.map((question) => (
     <div key={question.id}>
       {question.question}
       <br />
-      <AnswerInfo answer={question.response} setAnswer={setAnswer} />
+      <AnswerInfo question={question} />
       <br />
     </div>
   ));
