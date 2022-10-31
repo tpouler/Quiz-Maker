@@ -12,6 +12,8 @@ import { useState } from "react";
 
 import PropTypes from "prop-types";
 
+import styles from "../styles/index.module.css";
+
 //This function gives us the html for each question and calls setAnswer
 function AnswerInfo({ question }) {
   const [answer, setAnswer] = useState("");
@@ -22,13 +24,18 @@ function AnswerInfo({ question }) {
   }
 
   return (
-    <textarea
-      type="text"
-      value={answer}
-      onChange={(event) => {
-        setResponse(event.target.value);
-      }}
-    />
+    <div>
+      <textarea
+        type="text"
+        value={answer}
+        placeholder="Please input a value..."
+        cols="50"
+        onChange={(event) => {
+          setResponse(event.target.value);
+        }}
+      />
+      <br />
+    </div>
   );
 }
 AnswerInfo.propTypes = {
@@ -49,7 +56,12 @@ export default function Quiz({ questions, complete }) {
     <div>
       {questionMap}
 
-      <button type="save" value="Save" onClick={() => complete(questions)}>
+      <button
+        className={styles.button}
+        type="save"
+        value="Save"
+        onClick={() => complete(questions)}
+      >
         Submit
       </button>
     </div>

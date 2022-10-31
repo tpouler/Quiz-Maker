@@ -27,7 +27,7 @@ export default function Main() {
   if (!submitted) {
     console.log(`boolean of answer Submitted is: ${submitted}`);
     return (
-      <div className={styles.container}>
+      <div className={styles.header}>
         <Head>
           <title>Generic project</title>
           <link rel="icon" href="/favicon.ico" />
