@@ -5,6 +5,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: royalblue;
+  color: white;
+  font-size: 30px;
 }
 
 .header {
@@ -25,4 +28,15 @@
   border-radius: 8px;
   display: inline-block;
   font-size: 14px;
+}
+
+.bar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.barElement {
+  display: inline;
+  padding: 20px;
 }
