@@ -29,12 +29,21 @@ export default function Main() {
     return (
       <div className={styles.header}>
         <Head>
-          <title>Generic project</title>
+          <title>Potoo project</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
+        <ul className={styles.bar}>
+          <li className={styles.barElement}>
+            <a href="">Home</a>
+          </li>
+          <li className={styles.barElement}>
+            <a href="">Hints</a>
+          </li>
+        </ul>
+
         <main>
-          <h1 className="title">Generic Project</h1>
+          <h1 className="title">Quiz 1</h1>
           <Quiz questions={questions} complete={complete} />
         </main>
 
