@@ -77,11 +77,9 @@ export default function Quiz({ questions, complete, submitted }) {
   const Buttons = () => {
     return (
       <div>
-        <AwesomeButton type="primary" onReleased={() => complete(questions)}>
+        <AwesomeButton type="secondary" onReleased={() => complete(questions)}>
           Submit
         </AwesomeButton>
-        <div className={styles.divider} />
-        <AwesomeButton type="secondary">Save</AwesomeButton>
         <div className={styles.divider} />
         <AwesomeButton type="danger">Exit</AwesomeButton>
       </div>
@@ -100,20 +98,3 @@ Quiz.propTypes = {
   complete: PropTypes.func,
   submitted: PropTypes.bool,
 };
-
-/*
-We may want to switch over to using a form eventually. It seems like this is a common approach.
-    <div className="container">
-        <form action="action_page.php">
-
-            <label htmlFor="fname">First Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="Your name.." />
-
-            <label htmlFor="subject">Subject</label>
-            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px" />
-
-            <input type="submit" value="Submit" />
-
-        </form>
-    </div>
-*/
