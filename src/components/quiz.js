@@ -33,14 +33,14 @@ function AnswerInfo({ question, submitted }) {
   return (
     <div>
       {!submitted && (
-        <textarea
+        <input
           type="text"
           value={answer}
-          placeholder="Please input a value..."
-          cols="50"
           onChange={(event) => {
             setResponse(event.target.value);
           }}
+          placeholder="Please input a value..."
+          className={styles.input}
         />
       )}
       {submitted && (
@@ -48,8 +48,8 @@ function AnswerInfo({ question, submitted }) {
           className={styles.answer}
           style={
             question.response !== question.answer
-              ? { background: "red" }
-              : { background: "green" }
+              ? { background: "#ce564d" }
+              : { background: "#4dcc77" }
           }
         >
           Your Answer: {answer}
