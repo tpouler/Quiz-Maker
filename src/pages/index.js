@@ -24,45 +24,33 @@ export default function Main() {
     return questionList;
   }
 
-  if (!submitted) {
-    console.log(`boolean of answer Submitted is: ${submitted}`);
-    return (
-      <div className={styles.header}>
-        <Head>
-          <title>Potoo project</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
+  console.log(`boolean of answer Submitted is: ${submitted}`);
+  return (
+    <div className={styles.header}>
+      <Head>
+        <title>Potoo project</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
+      <nav className={styles.flexbox}>
+        <a href="home">Home</a>
         <ul className={styles.bar}>
-          <li className={styles.barElement}>
-            <a href="">Home</a>
-          </li>
           <li className={styles.barElement}>
             <a href="">Hints</a>
           </li>
+          <li className={styles.barElement}>
+            <a href="">Login</a>
+          </li>
         </ul>
+      </nav>
 
-        <main>
-          <h1 className="title">Quiz 1</h1>
-          <Quiz questions={questions} complete={complete} />
-        </main>
+      <main>
+        <h1 className="title">Quiz 1</h1>
+        <Quiz questions={questions} complete={complete} submitted={submitted} />
+        {submitted && <ScoreReport questions={questions} />}
+      </main>
 
-        <footer>A 312 project</footer>
-      </div>
-    );
-  } else {
-    return (
-      <div className={styles.container}>
-        <Head>
-          <title>Generic project</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-
-        <main>
-          <ScoreReport questions={questions} />
-        </main>
-        <footer>A 312 project</footer>
-      </div>
-    );
-  }
+      <footer>A 312 project</footer>
+    </div>
+  );
 }
