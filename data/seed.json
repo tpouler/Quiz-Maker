@@ -10,5 +10,29 @@
     "question": "What is 2 + 2?",
     "answer": "4",
     "response": ""
+  },
+  {
+    "id": "3",
+    "question": "What is 4(2+3)?",
+    "answer": "20",
+    "response": ""
+  },
+  {
+    "id": "4",
+    "question": "What is 64/8?",
+    "answer": "8",
+    "response": ""
+  },
+  {
+    "id": "5",
+    "question": "If x + 8 = 32, What is x?",
+    "answer": "24",
+    "response": ""
+  },
+  {
+    "id": "6",
+    "question": "What is the positive square root of 144?",
+    "answer": "12",
+    "response": ""
   }
 ]
