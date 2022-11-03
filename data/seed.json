@@ -28,11 +28,5 @@
     "question": "If x + 8 = 32, What is x?",
     "answer": "24",
     "response": ""
-  },
-  {
-    "id": "6",
-    "question": "What is the positive square root of 144?",
-    "answer": "12",
-    "response": ""
   }
 ]
