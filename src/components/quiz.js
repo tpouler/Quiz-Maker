@@ -14,6 +14,13 @@ import PropTypes from "prop-types";
 
 import styles from "../styles/index.module.css";
 
+//Documentation to understand AwesomeButton
+//https://github.com/rcaferati/react-awesome-button
+import { AwesomeButton } from "react-awesome-button";
+
+// eslint-disable-next-line quotes
+import "react-awesome-button/dist/styles.css";
+
 //This function gives us the html for each question and calls setAnswer
 function AnswerInfo({ question, submitted }) {
   const [answer, setAnswer] = useState("");
@@ -67,20 +74,24 @@ export default function Quiz({ questions, complete, submitted }) {
     </div>
   ));
 
+  const Buttons = () => {
+    return (
+      <div>
+        <AwesomeButton type="primary" onReleased={() => complete(questions)}>
+          Submit
+        </AwesomeButton>
+        <div className={styles.divider} />
+        <AwesomeButton type="secondary">Save</AwesomeButton>
+        <div className={styles.divider} />
+        <AwesomeButton type="danger">Exit</AwesomeButton>
+      </div>
+    );
+  };
+
   return (
     <div>
       {questionMap}
-
-      {!submitted && (
-        <button
-          className={styles.button}
-          type="save"
-          value="Save"
-          onClick={() => complete(questions)}
-        >
-          Submit
-        </button>
-      )}
+      {!submitted && Buttons()}
     </div>
   );
 }
