@@ -33,6 +33,9 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@iconify/icons-akar-icons": "^1.2.11",
+    "@iconify/icons-ant-design": "^1.2.4",
+    "@iconify/react": "^4.0.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "eslint": "^8.25.0",

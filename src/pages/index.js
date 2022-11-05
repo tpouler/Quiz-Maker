@@ -10,6 +10,15 @@ import ScoreReport from "../components/scoreReport";
 
 import { useState } from "react";
 
+// eslint-disable-next-line quotes
+import { Icon } from "@iconify/react";
+// eslint-disable-next-line quotes
+import homeAlt1 from "@iconify/icons-akar-icons/home-alt1";
+// eslint-disable-next-line quotes
+import questionFill from "@iconify/icons-akar-icons/question-fill";
+// eslint-disable-next-line quotes
+import loginOutlined from "@iconify/icons-ant-design/login-outlined";
+
 export default function Main() {
   //Imports data from the Json file
   const [questions] = useState(data);
@@ -32,17 +41,18 @@ export default function Main() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <nav className={styles.flexbox}>
-        <a href="home">Home</a>
-        <ul className={styles.bar}>
-          <li className={styles.barElement}>
-            <a href="">Hints</a>
-          </li>
-          <li className={styles.barElement}>
-            <a href="">Login</a>
-          </li>
-        </ul>
-      </nav>
+      <div className={styles.topnav}>
+        <a className={styles.active} href="home">
+          {" "}
+          <Icon icon={homeAlt1} width="25" height="25" inline /> Home
+        </a>
+        <a href="hints">
+          <Icon icon={questionFill} width="25" height="20" inline /> Hints
+        </a>
+        <a href="login">
+          <Icon icon={loginOutlined} width="25" height="20" /> Login
+        </a>
+      </div>
 
       <main>
         <h1 className="title">Quiz 1</h1>
