@@ -18,15 +18,20 @@
   "url": "https://github.com/csci0312-f22/project-potoo",
   "description": "This project consists of a dynamic quiz generator and progress tracker for any number of courses intended for teachers and students.",
   "scripts": {
-    "dev": "next dev",
+    "dev:production": "next dev",
     "build": "next build",
     "export": "next export",
     "start": "next start",
-    "test": "jest",
     "lint": "eslint src",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "dev:emulate": "NEXT_PUBLIC_EMULATE=true next dev",
+    "emulator": "firebase emulators:start",
+    "test": "NEXT_PUBLIC_EMULATE=true jest --runInBand",
+    "test:ci": "firebase emulators:exec 'npm test --runInBand'",
+    "seed": "NEXT_PUBLIC_EMULATE=true node src/utils/seed-database.mjs data/seed.json"
   },
   "dependencies": {
+    "firebase": "^9.13.0",
     "next": "12.3.1",
     "react": "18.2.0",
     "react-awesome-button": "^7.0.4",
