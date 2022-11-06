@@ -2,13 +2,13 @@ import Head from "next/head";
 
 import styles from "../styles/index.module.css";
 
-import data from "../../data/seed.json";
-
 import Quiz from "../components/quiz";
 
 import ScoreReport from "../components/scoreReport";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+import { getFirestore, getDocs, collection } from "firebase/firestore";
 
 // All icons were taken from the following link
 // https://icon-sets.iconify.design/
@@ -22,18 +22,31 @@ import questionFill from "@iconify/icons-akar-icons/question-fill";
 // eslint-disable-next-line quotes
 import loginOutlined from "@iconify/icons-ant-design/login-outlined";
 
-//Testing
+async function getData(callback) {
+  const db = getFirestore();
+  const collectionSnapshot = await getDocs(collection(db, "questions"));
+  const qArray = [];
+  collectionSnapshot.forEach((document) => {
+    qArray.push({ ...document.data(), fsid: document.id });
+  });
+  callback(qArray);
+}
 
 export default function Main() {
   //Imports data from the Json file
-  const [questions] = useState(data);
+  const [questions, setQuestions] = useState([]);
   const [submitted, setSubmitted] = useState();
+
+  useEffect(() => {
+    getData(setQuestions);
+    // DELETE eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   //Still need to update json to have answer field filled in with out answer
   function complete(questionList) {
     //Can delete - only for testing to make sure response elements are updating
-    questionList.map((element) => console.log(element.response));
-    console.log(questions[0].response);
+    //questionList.map((element) => console.log(element.response));
+    //console.log(questions[0].response);
     setSubmitted(true);
     return questionList;
   }
