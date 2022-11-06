@@ -33,7 +33,7 @@ export default function Main() {
     return questionList;
   }
 
-  console.log(`boolean of answer Submitted is: ${submitted}`);
+  console.log(`boolean of answer submitted is: ${submitted}`);
   return (
     <div className={styles.header}>
       <Head>
