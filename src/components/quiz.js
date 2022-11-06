@@ -16,6 +16,8 @@ import PropTypes from "prop-types";
 
 import styles from "../styles/index.module.css";
 
+//import button from "../styles/awesome.module.css"
+
 //Documentation to understand AwesomeButton
 //https://github.com/rcaferati/react-awesome-button
 import { AwesomeButton } from "react-awesome-button";
