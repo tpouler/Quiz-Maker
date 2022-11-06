@@ -10,6 +10,9 @@ import ScoreReport from "../components/scoreReport";
 
 import { useState } from "react";
 
+// All icons were taken from the following link
+// https://icon-sets.iconify.design/
+
 // eslint-disable-next-line quotes
 import { Icon } from "@iconify/react";
 // eslint-disable-next-line quotes
