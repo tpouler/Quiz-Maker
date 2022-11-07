@@ -13,10 +13,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js 16.x
+    - name: Install Node
       uses: actions/setup-node@v3
       with:
         node-version: 16.x
         cache: 'npm'
+
+    # Setup Java for firebase CLI
+    - name: Install Java
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '17'
+
+    - run: npm install -g firebase-tools
     - run: npm ci
-    - run: npm test
+    - run: npm run test:ci
