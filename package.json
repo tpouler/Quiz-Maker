@@ -18,6 +18,7 @@
   "url": "https://github.com/csci0312-f22/project-potoo",
   "description": "This project consists of a dynamic quiz generator and progress tracker for any number of courses intended for teachers and students.",
   "scripts": {
+    "dev": "next dev",
     "dev:production": "next dev",
     "build": "next build",
     "export": "next export",

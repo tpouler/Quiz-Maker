@@ -71,7 +71,7 @@ AnswerInfo.propTypes = {
 export default function Quiz({ questions, complete, submitted }) {
   const questionMap = questions.map((question) => (
     <div key={question.id}>
-      {question.question}
+      {question.question} • {question.topic}
       <br />
       <AnswerInfo question={question} submitted={submitted} />
       <br />
