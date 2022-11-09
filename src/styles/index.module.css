@@ -12,7 +12,6 @@
 }
 
 .header {
-  padding: 60px;
   text-align: center;
   background: #37538c;
   color: white;
@@ -95,7 +94,6 @@
 .topnav {
   background-color: #333;
   overflow: hidden;
-  border-radius: 30px;
 }
 
 /* Style the links inside the navigation bar */
