@@ -16,6 +16,8 @@ import PropTypes from "prop-types";
 
 import styles from "../styles/index.module.css";
 
+import button from "../styles/awesome.module.css";
+
 //import button from "../styles/awesome.module.css"
 
 //Documentation to understand AwesomeButton
@@ -85,7 +87,9 @@ export default function Quiz({ questions, complete, submitted }) {
           Submit
         </AwesomeButton>
         <div className={styles.divider} />
-        <AwesomeButton type="danger">Exit</AwesomeButton>
+        <AwesomeButton className={button.btn} type="danger">
+          Exit
+        </AwesomeButton>
       </div>
     );
   };
