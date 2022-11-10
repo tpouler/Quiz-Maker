@@ -46,6 +46,16 @@ export default function Main() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {/* <header className={headerStyle.header}>
+        <nav>
+          <ul> 
+            <li><a href="home" ><Icon icon={homeAlt1} width="25" height="25" inline /> Homes</a></li>
+            <li><a href="hints" ><Icon icon={questionFill} width="25" height="20" inline /> HintsDemo</a></li>
+            <li><a href="login" ><Icon icon={loginOutlined} width="25" height="20" /> Login</a></li>
+          </ul>
+        </nav>
+      </header> */}
+
       <div className={styles.topnav}>
         <a className={styles.active} href="home">
           {" "}

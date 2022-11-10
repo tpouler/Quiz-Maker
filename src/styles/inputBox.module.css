@@ -1,3 +1,6 @@
+/*
+https://codepen.io/lucasyem/pen/ZEEYKdj
+
 $primary: #11998e;
 $secondary: #38ef7d;
 $white: #fff;
@@ -57,15 +60,16 @@ $gray: #9b9b9b;
   border-image: linear-gradient(to right, $primary, $secondary);
   border-image-slice: 1;
 }
+*/
 /* reset input */
-.form__field {
+/* .form__field {
   &:required,
   &:invalid {
     box-shadow: none;
   }
 }
 /* demo */
-body {
+/* body {
   font-family: "Poppins", sans-serif;
   display: flex;
   flex-direction: column;
@@ -75,3 +79,4 @@ body {
   font-size: 1.5rem;
   background-color: #222222;
 }
+*/
