@@ -24,8 +24,6 @@ import styles from "../styles/index.module.css";
 //https://github.com/rcaferati/react-awesome-button
 import { AwesomeButton } from "react-awesome-button";
 
-// eslint-disable-next-line quotes
-
 //This function gives us the html for each question and calls setAnswer
 function AnswerInfo({ question, submitted }) {
   const [answer, setAnswer] = useState("");
