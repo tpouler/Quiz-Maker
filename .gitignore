@@ -15,6 +15,7 @@
 
 # production
 /build
+.firebase/hosting.*.cache
 
 # misc
 .DS_Store
@@ -35,3 +36,7 @@ yarn-error.log*
 # vercel
 .vercel
 
+#firebase
+ui-debug.log
+firebase-debug.log
+firestore-debug.log
