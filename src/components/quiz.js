@@ -16,16 +16,13 @@ import PropTypes from "prop-types";
 
 import styles from "../styles/index.module.css";
 
-import button from "../styles/awesome.module.css";
+//import button from "../styles/awesome.module.css";
 
-//import button from "../styles/awesome.module.css"
+//import button from "../styles/awesome.module.css";
 
 //Documentation to understand AwesomeButton
 //https://github.com/rcaferati/react-awesome-button
 import { AwesomeButton } from "react-awesome-button";
-
-// eslint-disable-next-line quotes
-import "react-awesome-button/dist/styles.css";
 
 //This function gives us the html for each question and calls setAnswer
 function AnswerInfo({ question, submitted }) {
@@ -87,9 +84,7 @@ export default function Quiz({ questions, complete, submitted }) {
           Submit
         </AwesomeButton>
         <div className={styles.divider} />
-        <AwesomeButton className={button.btn} type="danger">
-          Exit
-        </AwesomeButton>
+        <AwesomeButton type="danger">Exit</AwesomeButton>
       </div>
     );
   };
