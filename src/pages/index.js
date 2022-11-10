@@ -57,12 +57,11 @@ export default function Main() {
       </header> */}
 
       <div className={styles.topnav}>
-        <a className={styles.active} href="home">
-          {" "}
+        <a className={styles.active} href="">
           <Icon icon={homeAlt1} width="25" height="25" inline /> Home
         </a>
-        <a href="hints">
-          <Icon icon={questionFill} width="25" height="20" inline /> Hints
+        <a href="Professor">
+          <Icon icon={questionFill} width="25" height="20" inline /> Professor
         </a>
         <a href="login">
           <Icon icon={loginOutlined} width="25" height="20" /> Login
