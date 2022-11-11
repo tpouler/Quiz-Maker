@@ -52,7 +52,7 @@ describe("Firestore utility functions test", () => {
       };
 
       let snapshot = await getDoc(
-        doc(db, "subjects", newQuestion.topic, "questions", newQuestion.id)
+        doc(db, "questions", newQuestion.topic, "questions", newQuestion.id)
       );
 
       expect(snapshot.exists()).toBeFalsy();
@@ -61,7 +61,7 @@ describe("Firestore utility functions test", () => {
 
       // make sure the article is in the database
       snapshot = await getDoc(
-        doc(db, "subjects", newQuestion.topic, "questions", newQuestion.id)
+        doc(db, "questions", newQuestion.topic, "questions", newQuestion.id)
       );
 
       expect(snapshot.exists()).toBeTruthy();
@@ -76,22 +76,22 @@ describe("Firestore utility functions test", () => {
     test("addQuestion: Adding question add new section", async () => {
       const newQuestion = {
         id: "12",
-        question: "10 + 12?",
+        question: "2 + 10?",
         answer: "12",
         response: "",
         topic: "Science",
       };
       // make sure the section does exist before
       let snapshot = await getDoc(
-        doc(db, "subjects", newQuestion.topic, "questions", newQuestion.id)
+        doc(db, "questions", newQuestion.topic, "questions", newQuestion.id)
       );
       expect(snapshot.exists()).toBeFalsy();
 
-      await addArticle({ ...newQuestion });
+      await addQuestion({ ...newQuestion });
 
       // the section should now exist
       snapshot = await getDoc(
-        doc(db, "subjects", newQuestion.topic, "questions", newQuestion.id)
+        doc(db, "questions", newQuestion.topic, "questions", newQuestion.id)
       );
       expect(snapshot.exists()).toBeTruthy();
 

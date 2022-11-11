@@ -47,7 +47,7 @@ export function initializeFirebase(){
   const copy = JSON.parse(JSON.stringify(question));
   delete copy.topic;
 
-  const sectionsRef = collection(db, "subjects");
+  const sectionsRef = collection(db, "questions");
 
   const section = question.topic;
 
@@ -78,7 +78,7 @@ export async function loadData(data){
   const db = getFirestore();
   const questions = new Map();
 
-  const collectionRef = collection(db, "subjects");
+  const collectionRef = collection(db, "questions");
   // record the title and id
   
   data.forEach((curr) => {
