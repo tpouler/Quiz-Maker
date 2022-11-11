@@ -159,4 +159,3 @@ export async function clearDatabase(){
     await deleteDoc(doc(db, "subjects", section.data().section));
   }));
 }
-

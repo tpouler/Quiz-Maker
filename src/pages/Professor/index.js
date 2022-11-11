@@ -7,6 +7,8 @@ import SubmittedQuestions from "../../components/Professor/submittedQuestions";
 import { useState } from "react";
 import homeAlt1 from "@iconify/icons-akar-icons/home-alt1";
 import loginOutlined from "@iconify/icons-ant-design/login-outlined";
+// eslint-disable-next-line quotes
+import questionFill from "@iconify/icons-akar-icons/question-fill";
 
 export default function Main() {
   const [questions] = useState(data);
@@ -28,9 +30,11 @@ export default function Main() {
         </Head>
 
         <div className={styles.topnav}>
-          <a className={styles.active} href="javascript:history.back()">
-            {" "}
+          <a href="javascript:history.back()">
             <Icon icon={homeAlt1} width="25" height="25" inline /> Home
+          </a>
+          <a className={styles.active} href="Professor">
+            <Icon icon={questionFill} width="25" height="20" inline /> Professor
           </a>
 
           <a href="login">
@@ -58,9 +62,11 @@ export default function Main() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <div className={styles.topnav}>
-          <a className={styles.active} href="home">
-            {" "}
+          <a href="home">
             <Icon icon={homeAlt1} width="25" height="25" inline /> Home
+          </a>
+          <a className={styles.active} href="Professor">
+            <Icon icon={questionFill} width="25" height="20" inline /> Professor
           </a>
           <a href="login">
             <Icon icon={loginOutlined} width="25" height="20" /> Login
