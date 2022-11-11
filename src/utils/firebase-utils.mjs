@@ -1,8 +1,9 @@
 // Import the functions you need from the SDKs you need
 
 import { getApp, initializeApp } from "firebase/app";
-import {  initializeFirestore, connectFirestoreEmulator, getFirestore, collection, doc, addDoc, deleteDoc, getDocs } from "firebase/firestore";
+import {  initializeFirestore, connectFirestoreEmulator, getFirestore, collection, doc, setDoc, deleteDoc, getDocs } from "firebase/firestore";
 
+// addDoc
 // Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBmBpPRwfoKmUCfUYpwasMR-WG0Q7IH2DU",
@@ -45,12 +46,39 @@ export function initializeFirebase(){
 export async function loadData(data, collectionName){
 
   const db = getFirestore();
+  const questions = new Map();
 
   const collectionRef = collection(db, collectionName);
+  // record the title and id
 
-  await Promise.all(data.map(async (d)=>{
-    // add the document to firestore
-    await addDoc(collectionRef, d);
+  console.log(data);
+  
+  data.forEach((curr) => {
+    console.log(curr);
+    const copy = JSON.parse(JSON.stringify(curr));
+    delete copy.topic;
+    //const reference = {id: curr.id, topic: curr.topic }
+    if (questions.has(curr.topic)){
+      questions.get(curr.topic).push(copy);
+    }else{
+      questions.set(curr.topic, [copy])
+    }
+  })
+
+  console.log(questions);
+
+  const sectionNames = Array.from(questions.keys());
+
+  console.log(sectionNames)
+
+  await Promise.all(sectionNames.map(async (section) => {
+    const titles = questions.get(section);
+
+    await setDoc(doc(collectionRef, section), {section});
+
+    await Promise.all(titles.map(async q => {
+      await setDoc(doc(collectionRef, section, "questions", q.id), q);
+    }))
   }));
 }
 
