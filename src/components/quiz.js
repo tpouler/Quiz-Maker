@@ -80,11 +80,11 @@ export default function Quiz({ questions, complete, submitted }) {
   const Buttons = () => {
     return (
       <div>
-        <AwesomeButton type="secondary" onReleased={() => complete(questions)}>
+        <AwesomeButton type="primary" onReleased={() => complete(questions)}>
           Submit
         </AwesomeButton>
         <div className={styles.divider} />
-        <AwesomeButton type="danger">Exit</AwesomeButton>
+        <AwesomeButton type="danger">Reset</AwesomeButton>
       </div>
     );
   };

@@ -18,7 +18,7 @@
    const data = JSON.parse(contents);
  
    initializeFirebase();
-   await loadData(data, "questions");
+   await loadData(data);
   
    console.log("Seeding complete");
  }

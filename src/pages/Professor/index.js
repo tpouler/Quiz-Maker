@@ -28,7 +28,7 @@ export default function Main() {
         </Head>
 
         <div className={styles.topnav}>
-          <a className={styles.active} href="home">
+          <a className={styles.active} href="javascript:history.back()">
             {" "}
             <Icon icon={homeAlt1} width="25" height="25" inline /> Home
           </a>
@@ -56,7 +56,7 @@ export default function Main() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <div className={styles.topnav}>
-          <a className={styles.active} href="home">
+          <a className={styles.active} href="javascript:history.back()">
             {" "}
             <Icon icon={homeAlt1} width="25" height="25" inline /> Home
           </a>
