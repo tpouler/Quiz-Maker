@@ -10,7 +10,7 @@
 
 //Testing pushing
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import PropTypes from "prop-types";
 
@@ -33,10 +33,10 @@ function AnswerInfo({ question, submitted, reset, resetQuestion }) {
     question.response = response;
   }
 
-  if (reset) {
+  useEffect(() => {
     setAnswer("");
     resetQuestion(false);
-  }
+  }, [reset, resetQuestion]);
 
   return (
     <div>

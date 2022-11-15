@@ -30,7 +30,7 @@ export default function Main() {
         </Head>
 
         <div className={styles.topnav}>
-          <a href="javascript:history.back()">
+          <a href="http://localhost:3000/">
             <Icon icon={homeAlt1} width="25" height="25" inline /> Home
           </a>
           <a className={styles.active} href="Professor">

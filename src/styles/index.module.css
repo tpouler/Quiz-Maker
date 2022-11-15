@@ -18,6 +18,13 @@
   font-size: 30px;
 }
 
+.body {
+  text-align: center;
+  background: #37538c;
+  color: white;
+  font-size: 30px;
+}
+
 .bar {
   list-style-type: none;
   margin: 0;
