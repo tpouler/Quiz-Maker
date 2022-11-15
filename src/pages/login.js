@@ -103,7 +103,7 @@ export default function Login() {
             onChange={() => setNewUser(!newUser)}
             className={styles.cbox}
           />{" "}
-          New User?
+          New User
         </p>
 
         <p>
@@ -113,7 +113,7 @@ export default function Login() {
             onChange={() => setProf(!prof)}
             className={styles.cbox}
           />{" "}
-          Professor?
+          Professor
         </p>
 
         <div>
