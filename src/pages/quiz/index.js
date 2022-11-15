@@ -1,8 +1,16 @@
 import Head from "next/head";
 
-import styles from "../styles/index.module.css";
+import styles from "../../styles/index.module.css";
 
-import LoginStatus from "../components/LoginStatus";
+import data from "../../../data/seed.json";
+
+import Quiz from "../../components/quiz";
+
+import ScoreReport from "../../components/scoreReport";
+
+import { useState } from "react";
+
+import LoginStatus from "../../components/LoginStatus";
 
 // All icons were taken from the following link
 // https://icon-sets.iconify.design/
@@ -19,6 +27,17 @@ import quizIcon from "@iconify/icons-material-symbols/quiz";
 //Testing
 
 export default function Main() {
+  //Imports data from the Json file
+  const [questions] = useState(data);
+  const [submitted, setSubmitted] = useState();
+  //const [errorMessage, setErrorMessage] = useState();
+
+  //Still need to update json to have answer field filled in with out answer
+  function complete(questionList) {
+    setSubmitted(true);
+    return questionList;
+  }
+
   //console.log(`boolean of answer submitted is: ${submitted}`);
   return (
     <div className={styles.header}>
@@ -28,33 +47,23 @@ export default function Main() {
       </Head>
 
       <div className={styles.topnav}>
-        <a className={styles.active} href="http://localhost:3000/">
+        <a href="http://localhost:3000/">
           <Icon icon={homeAlt1} width="25" height="25" inline /> Home
         </a>
         <a href="professor">
           <Icon icon={questionFill} width="25" height="20" inline /> Professor
         </a>
-        <a href="quiz">
-          {" "}
+        <a href="quiz" className={styles.active}>
           <Icon icon={quizIcon} width="25" height="20" inline /> Quiz
         </a>
         <LoginStatus />
       </div>
 
-      <h1>Welcome to our quiz page!</h1>
-      <p>
-        This is a page where you can practice your skills and continue to
-        progress over time.
-      </p>
-      <br />
-      <p>Please click one of the options from the nav bar above.</p>
-      <br />
-      <div>Professor</div>
-      <div>This is where you can add questions to your quiz</div>
-      <br />
-      <div>Quiz</div>
-      <div>This is where you can practice your skills</div>
-      <br />
+      <main>
+        <h1 className="title">Quiz 1</h1>
+        <Quiz questions={questions} complete={complete} submitted={submitted} />
+        {submitted && <ScoreReport questions={questions} />}
+      </main>
 
       <footer>A 312 project</footer>
     </div>

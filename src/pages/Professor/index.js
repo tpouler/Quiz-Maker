@@ -9,6 +9,8 @@ import homeAlt1 from "@iconify/icons-akar-icons/home-alt1";
 import LoginStatus from "../../components/LoginStatus";
 // eslint-disable-next-line quotes
 import questionFill from "@iconify/icons-akar-icons/question-fill";
+// eslint-disable-next-line quotes
+import quizIcon from "@iconify/icons-material-symbols/quiz";
 
 export default function Main() {
   const [questions] = useState(data);
@@ -30,14 +32,16 @@ export default function Main() {
         </Head>
 
         <div className={styles.topnav}>
-          <a href="javascript:history.back()">
+          <a href="http://localhost:3000/">
             <Icon icon={homeAlt1} width="25" height="25" inline /> Home
           </a>
-          <a className={styles.active} href="Professor">
+          <a className={styles.active} href="professor">
             <Icon icon={questionFill} width="25" height="20" inline /> Professor
           </a>
-          <a href="Quiz">Quiz</a>
-
+          <a href="quiz">
+            <Icon icon={quizIcon} width="25" height="20" inline />
+            Quiz
+          </a>
           <LoginStatus />
         </div>
 

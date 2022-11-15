@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import styles from "../styles/index.module.css";
+import { AwesomeButton } from "react-awesome-button";
 
 export default function ScoreReport({ questions }) {
   const checkResponse = (question) => {
@@ -21,9 +21,9 @@ export default function ScoreReport({ questions }) {
         You got {numCorrect} out of {questions.length} correct! This is a score
         of {(numCorrect / questions.length) * 100} %.
       </p>
-      <button className={styles.button} type="return" value="Return">
-        Return to Home
-      </button>
+      <AwesomeButton type="secondary" href="http://localhost:3000/">
+        Return Home
+      </AwesomeButton>
     </div>
   );
 }
