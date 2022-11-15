@@ -25,12 +25,17 @@ import styles from "../styles/index.module.css";
 import { AwesomeButton } from "react-awesome-button";
 
 //This function gives us the html for each question and calls setAnswer
-function AnswerInfo({ question, submitted }) {
+function AnswerInfo({ question, submitted, reset, resetQuestion }) {
   const [answer, setAnswer] = useState("");
 
   function setResponse(response) {
     setAnswer(response);
     question.response = response;
+  }
+
+  if (reset) {
+    setAnswer("");
+    resetQuestion(false);
   }
 
   return (
@@ -65,14 +70,24 @@ function AnswerInfo({ question, submitted }) {
 AnswerInfo.propTypes = {
   question: PropTypes.object,
   submitted: PropTypes.bool,
+  reset: PropTypes.bool,
+  resetQuestion: PropTypes.func,
 };
 
 export default function Quiz({ questions, complete, submitted }) {
+  const [reset, resetQuestion] = useState(false);
+
+  console.log(reset);
   const questionMap = questions.map((question) => (
     <div key={question.id}>
       {question.question} • {question.topic}
       <br />
-      <AnswerInfo question={question} submitted={submitted} />
+      <AnswerInfo
+        question={question}
+        submitted={submitted}
+        reset={reset}
+        resetQuestion={resetQuestion}
+      />
       <br />
     </div>
   ));
@@ -84,7 +99,9 @@ export default function Quiz({ questions, complete, submitted }) {
           Submit
         </AwesomeButton>
         <div className={styles.divider} />
-        <AwesomeButton type="danger">Reset</AwesomeButton>
+        <AwesomeButton type="danger" onReleased={() => resetQuestion(true)}>
+          Reset
+        </AwesomeButton>
       </div>
     );
   };

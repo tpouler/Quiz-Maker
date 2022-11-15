@@ -33,9 +33,6 @@ export default function Main() {
 
   //Still need to update json to have answer field filled in with out answer
   function complete(questionList) {
-    //Can delete - only for testing to make sure response elements are updating
-    //questionList.map((element) => console.log(element.response));
-    //console.log(questions[0].response);
     setSubmitted(true);
     return questionList;
   }
