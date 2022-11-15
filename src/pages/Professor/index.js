@@ -33,10 +33,10 @@ export default function Main() {
           <a href="http://localhost:3000/">
             <Icon icon={homeAlt1} width="25" height="25" inline /> Home
           </a>
-          <a className={styles.active} href="Professor">
+          <a className={styles.active} href="professor">
             <Icon icon={questionFill} width="25" height="20" inline /> Professor
           </a>
-          <a href="Quiz">Quiz</a>
+          <a href="quiz">Quiz</a>
 
           <LoginStatus />
         </div>

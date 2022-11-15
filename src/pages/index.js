@@ -30,7 +30,7 @@ export default function Main() {
         <a className={styles.active} href="http://localhost:3000/">
           <Icon icon={homeAlt1} width="25" height="25" inline /> Home
         </a>
-        <a href="Professor">
+        <a href="professor">
           <Icon icon={questionFill} width="25" height="20" inline /> Professor
         </a>
         <a href="quiz">Quiz</a>

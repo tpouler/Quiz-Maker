@@ -52,7 +52,7 @@ export default function Main() {
         <a href="professor">
           <Icon icon={questionFill} width="25" height="20" inline /> Professor
         </a>
-        <a href="Quiz" className={styles.active}>
+        <a href="quiz" className={styles.active}>
           Quiz
         </a>
         <LoginStatus />
