@@ -6,7 +6,7 @@ import { getAuth } from "firebase/auth";
 import { Icon } from "@iconify/react";
 import loginOutlined from "@iconify/icons-ant-design/login-outlined";
 
-import styles from "../styles/LoginStatus.module.css";
+import loginsStyles from "../styles/LoginStatus.module.css";
 
 export default function LoginStatus() {
   const user = useUser();
@@ -19,7 +19,7 @@ export default function LoginStatus() {
 
   if (user && user.email) {
     return (
-      <div className={styles.content}>
+      <div className={loginsStyles.content}>
         <div>
           <Icon
             icon={loginOutlined}
@@ -34,7 +34,7 @@ export default function LoginStatus() {
     );
   } else {
     return (
-      <div className={styles.content}>
+      <div className={loginsStyles.content}>
         <Link href="/login">Log in</Link>
       </div>
     );

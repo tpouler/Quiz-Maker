@@ -1,9 +1,11 @@
 .content {
   display: flex;
+  float: right;
 }
 
 .content p {
   margin-left: 10px;
+  margin-right: 10px;
   margin-top: 0px;
   font-size: 16px;
 }
