@@ -65,6 +65,7 @@ export default function Main() {
         <a href="Professor">
           <Icon icon={questionFill} width="25" height="20" inline /> Professor
         </a>
+        <a href="Quiz">Quiz</a>
         <LoginStatus />
       </div>
 
