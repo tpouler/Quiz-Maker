@@ -1,0 +1,9 @@
+.content {
+  display: flex;
+}
+
+.content p {
+  margin-left: 10px;
+  margin-top: 0px;
+  font-size: 16px;
+}

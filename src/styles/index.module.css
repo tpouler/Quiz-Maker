@@ -119,3 +119,35 @@
   background-color: #727480;
   color: white;
 }
+
+.login {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+}
+
+.loginstatus {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  width: 100%;
+}
+
+.error {
+  color: red;
+}
+
+.cbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.login_boxes {
+  margin-top: 40px;
+  margin-bottom: 0px;
+}
