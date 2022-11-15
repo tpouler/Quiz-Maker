@@ -22,6 +22,7 @@ import homeAlt1 from "@iconify/icons-akar-icons/home-alt1";
 // eslint-disable-next-line quotes
 import questionFill from "@iconify/icons-akar-icons/question-fill";
 // eslint-disable-next-line quotes
+import quizIcon from "@iconify/icons-material-symbols/quiz";
 
 //Testing
 
@@ -53,7 +54,7 @@ export default function Main() {
           <Icon icon={questionFill} width="25" height="20" inline /> Professor
         </a>
         <a href="quiz" className={styles.active}>
-          Quiz
+          <Icon icon={quizIcon} width="25" height="20" inline /> Quiz
         </a>
         <LoginStatus />
       </div>
