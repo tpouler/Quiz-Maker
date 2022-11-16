@@ -16,7 +16,6 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newUser, setNewUser] = useState(false);
-  const [prof, setProf] = useState(false);
 
   const handleLogin = async () => {
     const auth = getAuth();
@@ -24,11 +23,7 @@ export default function Login() {
     if (newUser) {
       try {
         await createUserWithEmailAndPassword(auth, email, password);
-        if (prof) {
-          router.push("/Professor");
-        } else {
-          router.push("/");
-        }
+        router.push("/");
       } catch (error) {
         if (error.message.includes("invalid-email")) {
           setErrorMessage(
@@ -45,11 +40,7 @@ export default function Login() {
     } else {
       try {
         await signInWithEmailAndPassword(auth, email, password);
-        if (prof) {
-          router.push("/Professor");
-        } else {
-          router.push("/");
-        }
+        router.push("/");
       } catch (error) {
         if (error.message.includes("invalid-email")) {
           setErrorMessage(
@@ -104,16 +95,6 @@ export default function Login() {
             className={styles.cbox}
           />{" "}
           New User
-        </p>
-
-        <p>
-          <input
-            type="checkbox"
-            value={prof}
-            onChange={() => setProf(!prof)}
-            className={styles.cbox}
-          />{" "}
-          Professor
         </p>
 
         <div>
