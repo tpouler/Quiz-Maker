@@ -11,8 +11,10 @@ export default function AddQuestion({ topics, setSubmitted }) {
   const [answer, setAnswer] = useState(); // eslint-disable-line
   const [topic, setTopic] = useState();
   const [newTopic, setNewTopic] = useState(false);
+  const [allowSubmit, setAllowSubmit] = useState(false); // eslint-disable-line
 
   function handleChange(e) {
+    setAllowSubmit(true);
     if (e.target.value === "custom") {
       setNewTopic(true);
     } else {
@@ -52,6 +54,10 @@ export default function AddQuestion({ topics, setSubmitted }) {
         </p>
         <label htmlFor="topics"> Select a topic: </label>
         <select name="topics" id="topics" onChange={handleChange}>
+          <option id="" value="" disabled selected hidden>
+            {" "}
+            Select an option...{" "}
+          </option>
           {topicsList}
           <option id="custom" value="custom">
             {" "}
@@ -73,6 +79,7 @@ export default function AddQuestion({ topics, setSubmitted }) {
   };
 
   async function createID(inputTopic) {
+    //
     const db = getFirestore();
     let id = 0;
     if (!newTopic) {
@@ -84,8 +91,8 @@ export default function AddQuestion({ topics, setSubmitted }) {
 
       let greatestID = 0;
       for (let i = 0; i < topicsArr.length; i++) {
-        if (topicsArr[i].id > greatestID) {
-          greatestID = topicsArr[i].id;
+        if (parseInt(topicsArr[i].id) > greatestID) {
+          greatestID = parseInt(topicsArr[i].id);
         }
       }
 
@@ -103,16 +110,17 @@ export default function AddQuestion({ topics, setSubmitted }) {
     ) {
       console.log("topic:");
       console.log(topic);
-      id = createID(topic);
-
+      const id = createID(topic);
+      console.log(id);
+      //Promise not resolving fast enough
       const questionObj = {
-        id: "7",
+        id: "string1",
         question: question,
         answer: answer,
         response: "",
         topic: topic,
       };
-
+      console.log(questionObj);
       addQuestion(questionObj);
 
       setSubmitted(true);
@@ -123,18 +131,24 @@ export default function AddQuestion({ topics, setSubmitted }) {
     console.log(newTopic);
   }, [newTopic]);
 
+  useEffect(() => {
+    console.log(allowSubmit);
+  }, [allowSubmit]);
+
   return (
     <div>
       {questionInput()}
-      <button
-        type="secondary"
-        onClick={() => {
-          submit();
-        }}
-      >
-        {" "}
-        Submit{" "}
-      </button>
+      {allowSubmit && (
+        <button
+          type="secondary"
+          onClick={() => {
+            submit();
+          }}
+        >
+          {" "}
+          Submit{" "}
+        </button>
+      )}
     </div>
   );
 } //function addQuestion bracket
