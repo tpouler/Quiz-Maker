@@ -4,6 +4,7 @@ import "react-awesome-button/dist/styles.css";
 import { addQuestion } from "../../utils/firebase-utils.mjs";
 import { useEffect } from "react";
 import { getFirestore, getDocs, collection } from "firebase/firestore";
+import { AwesomeButton } from "react-awesome-button";
 export default function AddQuestion({ topics, setSubmitted }) {
   // eslint-disable-line
 
@@ -139,15 +140,27 @@ export default function AddQuestion({ topics, setSubmitted }) {
     <div>
       {questionInput()}
       {allowSubmit && (
-        <button
-          type="secondary"
-          onClick={() => {
-            submit();
-          }}
-        >
-          {" "}
-          Submit{" "}
-        </button>
+        <div>
+          <br />
+          <AwesomeButton
+            type="secondary"
+            onReleased={() => {
+              submit();
+            }}
+          >
+            Submit
+          </AwesomeButton>
+        </div>
+
+        // <button
+        //   type="secondary"
+        //   onClick={() => {
+        //     submit();
+        //   }}
+        // >
+        //   {" "}
+        //   Submit{" "}
+        // </button>
       )}
     </div>
   );

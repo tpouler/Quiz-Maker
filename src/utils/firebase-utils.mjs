@@ -47,6 +47,7 @@ export function initializeFirebase(){
  export async function addQuestion(question){
   const db = getFirestore();
 
+  console.log("Here testing");
   const copy = JSON.parse(JSON.stringify(question));
   delete copy.topic;
 

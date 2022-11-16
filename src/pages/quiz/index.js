@@ -2,7 +2,8 @@ import Head from "next/head";
 
 import styles from "../../styles/index.module.css";
 
-import data from "../../../data/seed.json";
+//import data from "../../../data/seed.json";
+import useQuestions from "../../hooks/useQuestions.js";
 
 import Quiz from "../../components/quiz";
 
@@ -28,7 +29,8 @@ import quizIcon from "@iconify/icons-material-symbols/quiz";
 
 export default function Main() {
   //Imports data from the Json file
-  const [questions] = useState(data);
+  //const [questions] = useState(data);
+  const questions = useQuestions();
   const [submitted, setSubmitted] = useState();
   //const [errorMessage, setErrorMessage] = useState();
 
