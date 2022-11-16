@@ -65,9 +65,14 @@ export default function Main() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <div className={styles.topnav}>
-          <a className={styles.active} href="javascript:history.back()">
-            {" "}
+          <a href="http://localhost:3000/">
             <Icon icon={homeAlt1} width="25" height="25" inline /> Home
+          </a>
+          <a href="professor" className={styles.active}>
+            <Icon icon={questionFill} width="25" height="20" inline /> Professor
+          </a>
+          <a href="quiz">
+            <Icon icon={quizIcon} width="25" height="20" inline /> Quiz
           </a>
           <LoginStatus />
         </div>
