@@ -5,6 +5,7 @@ import { addQuestion } from "../../utils/firebase-utils.mjs";
 import { useEffect } from "react";
 import { getFirestore, getDocs, collection } from "firebase/firestore";
 import { AwesomeButton } from "react-awesome-button";
+import styles from "../../styles/index.module.css";
 export default function AddQuestion({ topics, setSubmitted }) {
   // eslint-disable-line
 
@@ -34,7 +35,7 @@ export default function AddQuestion({ topics, setSubmitted }) {
   const questionInput = () => {
     return (
       <div>
-        question input:
+        Question Input:
         <p>
           <input
             type={"Question"}
@@ -42,6 +43,7 @@ export default function AddQuestion({ topics, setSubmitted }) {
             onChange={(event) => {
               setQuestion(event.target.value);
             }}
+            className={styles.input}
           />
         </p>
         <p>
@@ -51,6 +53,7 @@ export default function AddQuestion({ topics, setSubmitted }) {
             onChange={(event) => {
               setAnswer(event.target.value);
             }}
+            className={styles.input}
           />
         </p>
         <label htmlFor="topics"> Select a topic: </label>
