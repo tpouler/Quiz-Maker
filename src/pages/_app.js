@@ -29,7 +29,7 @@ function MainApp({ Component, pageProps }) {
         router.push("/login");
       }
     });
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
     <UserContext.Provider value={user}>
