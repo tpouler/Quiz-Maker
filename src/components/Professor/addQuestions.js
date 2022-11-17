@@ -5,6 +5,7 @@ import { addQuestion } from "../../utils/firebase-utils.mjs";
 import { useEffect } from "react";
 import { AwesomeButton } from "react-awesome-button";
 import styles from "../../styles/index.module.css";
+import selectStyles from "../../styles/select.module.css";
 export default function AddQuestion({ topics, setSubmitted }) {
   // eslint-disable-line
 
@@ -55,11 +56,16 @@ export default function AddQuestion({ topics, setSubmitted }) {
             className={styles.input}
           />
         </p>
-        <label htmlFor="topics"> Select a topic: </label>
-        <select name="topics" id="topics" onChange={handleChange}>
+        {/* <label htmlFor="topics"> Select a topic: </label> */}
+        <select
+          className={selectStyles.select}
+          name="topics"
+          id="topics"
+          onChange={handleChange}
+        >
           <option id="" value="" disabled selected hidden>
             {" "}
-            Select an option...{" "}
+            Select an topic{" "}
           </option>
           {topicsList}
           <option id="custom" value="custom">
@@ -68,14 +74,18 @@ export default function AddQuestion({ topics, setSubmitted }) {
           </option>
         </select>
         {newTopic && (
-          <input
-            required
-            type="NewTopic"
-            placeholder="Write new topic name here"
-            onChange={(event) => {
-              setTopic(event.target.value);
-            }}
-          />
+          <div>
+            <br />
+            <input
+              className={styles.input1}
+              required
+              type="NewTopic"
+              placeholder="Write new topic name here"
+              onChange={(event) => {
+                setTopic(event.target.value);
+              }}
+            />
+          </div>
         )}
       </div>
     );
