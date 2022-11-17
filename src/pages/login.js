@@ -96,6 +96,7 @@ export default function Login() {
           />{" "}
           New User
         </p>
+        <br />
 
         <div>
           <AwesomeButton
