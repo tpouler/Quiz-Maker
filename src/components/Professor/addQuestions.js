@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import "react-awesome-button/dist/styles.css";
 import { addQuestion } from "../../utils/firebase-utils.mjs";
 import { useEffect } from "react";
-import { getFirestore, getDocs, collection } from "firebase/firestore";
 import { AwesomeButton } from "react-awesome-button";
 import styles from "../../styles/index.module.css";
 import selectStyles from "../../styles/select.module.css";
@@ -92,29 +91,6 @@ export default function AddQuestion({ topics, setSubmitted }) {
     );
   };
 
-  async function createID(inputTopic) {
-    //
-    const db = getFirestore();
-    let id = 0;
-    if (!newTopic) {
-      const topicSnapshot = await getDocs(collection(db, inputTopic));
-      const topicsArr = [];
-      topicSnapshot.forEach((document) => {
-        topicsArr.push({ ...document.data() });
-      });
-
-      let greatestID = 0;
-      for (let i = 0; i < topicsArr.length; i++) {
-        if (parseInt(topicsArr[i].id) > greatestID) {
-          greatestID = parseInt(topicsArr[i].id);
-        }
-      }
-
-      id = greatestID + 1;
-    }
-    return id.toString();
-  }
-
   const submit = () => {
     if (
       (question !== undefined) &
@@ -122,21 +98,13 @@ export default function AddQuestion({ topics, setSubmitted }) {
       (answer !== undefined) &
       (answer !== "")
     ) {
-      console.log("topic:");
-      console.log(topic);
-      const id = createID(topic);
-      console.log(id);
-      //Promise not resolving fast enough
       const questionObj = {
-        id: "string1",
         question: question,
         answer: answer,
         response: "",
         topic: topic,
       };
-      console.log(questionObj);
       addQuestion(questionObj);
-
       setSubmitted(true);
     }
   };
@@ -164,16 +132,6 @@ export default function AddQuestion({ topics, setSubmitted }) {
             Submit
           </AwesomeButton>
         </div>
-
-        // <button
-        //   type="secondary"
-        //   onClick={() => {
-        //     submit();
-        //   }}
-        // >
-        //   {" "}
-        //   Submit{" "}
-        // </button>
       )}
     </div>
   );
