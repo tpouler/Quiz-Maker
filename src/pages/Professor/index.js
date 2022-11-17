@@ -32,7 +32,7 @@ export default function Main() {
         </Head>
 
         <div className={styles.topnav}>
-          <a href="http://localhost:3000/">
+          <a href="home">
             <Icon icon={homeAlt1} width="25" height="25" inline /> Home
           </a>
           <a className={styles.active} href="professor">
@@ -65,7 +65,7 @@ export default function Main() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <div className={styles.topnav}>
-          <a href="http://localhost:3000/">
+          <a href="home">
             <Icon icon={homeAlt1} width="25" height="25" inline /> Home
           </a>
           <a href="professor" className={styles.active}>
