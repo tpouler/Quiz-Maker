@@ -9,17 +9,6 @@ import {
   addQuestion,
 } from "../utils/firebase-utils.mjs";
 
-/*
-My function imports:
-updateArticle,
-
-Firestore Imports:
-query,
-collection,
-where,
-getDocs,
-*/
-
 jest.setTimeout(8000);
 
 describe("Firestore utility functions test", () => {
@@ -44,60 +33,50 @@ describe("Firestore utility functions test", () => {
   describe("addQuestion: addQuestion tests", () => {
     test("addQuestion: Adding question adds the question in the correct section", async () => {
       const newQuestion = {
-        id: "10",
         question: "10 + 10?",
         answer: "10",
         response: "",
         topic: "Math",
       };
 
-      let snapshot = await getDoc(
-        doc(db, "questions", newQuestion.topic, "questions", newQuestion.id)
-      );
+      console.log("testing");
 
-      expect(snapshot.exists()).toBeFalsy();
+      const addedQuestion = await addQuestion({ ...newQuestion });
 
-      await addQuestion({ ...newQuestion });
+      console.log("In test 1");
+      console.log(addedQuestion);
 
       // make sure the article is in the database
-      snapshot = await getDoc(
-        doc(db, "questions", newQuestion.topic, "questions", newQuestion.id)
+      const snapshot = await getDoc(
+        doc(db, "questions", newQuestion.topic, "questions", addedQuestion.id)
       );
 
       expect(snapshot.exists()).toBeTruthy();
 
       // make sure the article has the right values
       const fetchedQuestion = snapshot.data();
-      expect(fetchedQuestion.id).toBe(newQuestion.id);
       expect(fetchedQuestion.question).toBe(newQuestion.question);
       expect(fetchedQuestion.answer).toBe(newQuestion.answer);
     });
 
     test("addQuestion: Adding question add new section", async () => {
       const newQuestion = {
-        id: "12",
         question: "2 + 10?",
         answer: "12",
         response: "",
         topic: "Science",
       };
-      // make sure the section does exist before
-      let snapshot = await getDoc(
-        doc(db, "questions", newQuestion.topic, "questions", newQuestion.id)
-      );
-      expect(snapshot.exists()).toBeFalsy();
 
-      await addQuestion({ ...newQuestion });
+      const addedQuestion = await addQuestion({ ...newQuestion });
 
       // the section should now exist
-      snapshot = await getDoc(
-        doc(db, "questions", newQuestion.topic, "questions", newQuestion.id)
+      const snapshot = await getDoc(
+        doc(db, "questions", newQuestion.topic, "questions", addedQuestion.id)
       );
       expect(snapshot.exists()).toBeTruthy();
 
       // make sure the title has the right values
       const fetchedQuestion = snapshot.data();
-      expect(fetchedQuestion.id).toBe(newQuestion.id);
       expect(fetchedQuestion.question).toBe(newQuestion.question);
       expect(fetchedQuestion.answer).toBe(newQuestion.answer);
     });
