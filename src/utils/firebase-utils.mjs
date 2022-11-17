@@ -156,10 +156,10 @@ export async function clearDatabase(){
   const db = getFirestore();
 
   // remove the sections
-  const sectionsSnapshot = await getDocs(collection(db, "subjects"));
+  const sectionsSnapshot = await getDocs(collection(db, "questions"));
   await Promise.all(sectionsSnapshot.docs.map(async (section)=>{
     //console.log(section.data());
-    await clearCollection(collection(db, "subjects", section.data().section, "questions"));
-    await deleteDoc(doc(db, "subjects", section.data().section));
+    await clearCollection(collection(db, "questions", section.data().section, "questions"));
+    await deleteDoc(doc(db, "questions", section.data().section));
   }));
 }
