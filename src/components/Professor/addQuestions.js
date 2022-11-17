@@ -57,7 +57,7 @@ export default function AddQuestion({ topics, setSubmitted }) {
             className={styles.input}
           />
         </p>
-        <label htmlFor="topics"> Select a topic: </label>
+        {/* <label htmlFor="topics"> Select a topic: </label> */}
         <select
           className={selectStyles.select}
           name="topics"
