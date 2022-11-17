@@ -68,8 +68,10 @@ export async function addQuestion(question) {
 
   const section = question.topic;
 
-  addDoc(collection(db, "questions", section, "questions"), copy);
   await setDoc(doc(sectionsRef, section), { section });
+
+  const docref = await addDoc(collection(db, "questions", section, "questions"), copy);
+  
 
   //console.log(articleTitle.title)
   //await setDoc(doc(sectionsRef, section, "questions", docref.id), copy);
@@ -79,6 +81,7 @@ export async function addQuestion(question) {
     answer: question.answer,
     response: question.response,
     topic: question.topic,
+    id: docref.id
   };
 }
 
@@ -124,9 +127,11 @@ export async function loadData(data) {
  */
 export async function clearCollection(collectionRef) {
   const docSnapshot = await getDocs(collectionRef);
+  console.log("Do we get here?")
+  
   //docSnapshot.forEach((d) => (console.log(doc(collectionRef, d.data().id))));
   await Promise.all(
-    docSnapshot.docs.map((d) => deleteDoc(doc(collectionRef, d.data().id)))
+    docSnapshot.docs.map((d) => deleteDoc(doc(collectionRef, d.id)))
   );
 }
 
