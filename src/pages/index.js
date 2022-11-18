@@ -28,7 +28,7 @@ export default function Main() {
       </Head>
 
       <div className={styles.topnav}>
-        <a className={styles.active} href="http://localhost:3000/">
+        <a className={styles.active} href="home">
           <Icon icon={homeAlt1} width="25" height="25" inline /> Home
         </a>
         <a href="professor">
