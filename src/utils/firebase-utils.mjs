@@ -42,7 +42,7 @@ export function initializeFirebase() {
       process.env.FIRESTORE_EMULATOR_HOST ||
       process.env.NODE_ENV === "test"
     ) {
-      console.log("Connecting to emulator");
+      //console.log("Connecting to emulator");
       const auth = getAuth();
       connectAuthEmulator(auth, "http://localhost:9099");
       connectFirestoreEmulator(db, "localhost", 8080);
@@ -60,7 +60,7 @@ export function initializeFirebase() {
 export async function addQuestion(question) {
   const db = getFirestore();
 
-  console.log("Here testing");
+  //console.log("Here testing");
   const copy = JSON.parse(JSON.stringify(question));
   delete copy.topic;
 
@@ -72,8 +72,6 @@ export async function addQuestion(question) {
 
   const docref = await addDoc(collection(db, "questions", section, "questions"), copy);
   
-
-  //console.log(articleTitle.title)
   //await setDoc(doc(sectionsRef, section, "questions", docref.id), copy);
 
   return {
@@ -127,7 +125,7 @@ export async function loadData(data) {
  */
 export async function clearCollection(collectionRef) {
   const docSnapshot = await getDocs(collectionRef);
-  console.log("Do we get here?")
+  //console.log("Do we get here?")
   
   //docSnapshot.forEach((d) => (console.log(doc(collectionRef, d.data().id))));
   await Promise.all(

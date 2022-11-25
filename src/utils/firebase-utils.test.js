@@ -39,12 +39,12 @@ describe("Firestore utility functions test", () => {
         topic: "Math",
       };
 
-      console.log("testing");
+      //console.log("testing");
 
       const addedQuestion = await addQuestion({ ...newQuestion });
 
-      console.log("In test 1");
-      console.log(addedQuestion);
+      // console.log("In test 1");
+      // console.log(addedQuestion);
 
       // make sure the article is in the database
       const snapshot = await getDoc(
