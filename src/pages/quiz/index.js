@@ -40,7 +40,6 @@ export default function Main() {
     return questionList;
   }
 
-  //console.log(`boolean of answer submitted is: ${submitted}`);
   return (
     <div className={styles.header}>
       <Head>
