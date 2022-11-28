@@ -1,8 +1,8 @@
 import Head from "next/head";
-
 import styles from "../../styles/index.module.css";
-
 import LoginStatus from "../../components/LoginStatus";
+import { useUser } from "../../contexts/UserContext";
+import { useState, useEffect } from "react";
 
 // All icons were taken from the following link
 // https://icon-sets.iconify.design/
@@ -19,7 +19,17 @@ import quizIcon from "@iconify/icons-material-symbols/quiz";
 //Testing
 
 export default function Main() {
-  //console.log(`boolean of answer submitted is: ${submitted}`);
+  const [prof, setProf] = useState(false);
+  const user = useUser();
+
+  useEffect(() => {
+    if (user && user.displayName) {
+      if (user.displayName === "professor") {
+        setProf(true);
+      }
+    }
+  }, [user]); // eslint-disable-line
+
   return (
     <div className={styles.header}>
       <Head>
@@ -31,9 +41,11 @@ export default function Main() {
         <a className={styles.active} href="home">
           <Icon icon={homeAlt1} width="25" height="25" inline /> Home
         </a>
-        <a href="professor">
-          <Icon icon={questionFill} width="25" height="20" inline /> Professor
-        </a>
+        {prof && (
+          <a href="professor">
+            <Icon icon={questionFill} width="25" height="20" inline /> Professor
+          </a>
+        )}
         <a href="quiz">
           {" "}
           <Icon icon={quizIcon} width="25" height="20" inline /> Quiz
