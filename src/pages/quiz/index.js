@@ -9,7 +9,9 @@ import Quiz from "../../components/quiz";
 
 import ScoreReport from "../../components/scoreReport";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+import { useUser } from "../../contexts/UserContext";
 
 import LoginStatus from "../../components/LoginStatus";
 
@@ -32,7 +34,16 @@ export default function Main() {
   //const [questions] = useState(data);
   const questions = useQuestions(["Math", "Science"]);
   const [submitted, setSubmitted] = useState();
-  //const [errorMessage, setErrorMessage] = useState();
+  const [prof, setProf] = useState(false);
+  const user = useUser();
+
+  useEffect(() => {
+    if (user && user.displayName) {
+      if (user.displayName === "professor") {
+        setProf(true);
+      }
+    }
+  }, [user]); // eslint-disable-line
 
   //Still need to update json to have answer field filled in with out answer
   function complete(questionList) {
@@ -51,9 +62,11 @@ export default function Main() {
         <a href="home">
           <Icon icon={homeAlt1} width="25" height="25" inline /> Home
         </a>
-        <a href="professor">
-          <Icon icon={questionFill} width="25" height="20" inline /> Professor
-        </a>
+        {prof && (
+          <a href="professor">
+            <Icon icon={questionFill} width="25" height="20" inline /> Professor
+          </a>
+        )}
         <a href="quiz" className={styles.active}>
           <Icon icon={quizIcon} width="25" height="20" inline /> Quiz
         </a>
