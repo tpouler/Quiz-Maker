@@ -32,7 +32,7 @@ export default function Login() {
         } else {
           await updateProfile(user, { displayName: "student" });
         }
-        router.push("/home");
+        router.push("/");
       } catch (error) {
         if (error.message.includes("invalid-email")) {
           setErrorMessage(
@@ -56,7 +56,7 @@ export default function Login() {
         } else {
           await updateProfile(user, { displayName: "student" });
         }
-        router.push("/home");
+        router.push("/");
       } catch (error) {
         if (error.message.includes("invalid-email")) {
           setErrorMessage(

@@ -4,6 +4,8 @@ import styles from "../styles/index.module.css";
 
 import LoginStatus from "../components/LoginStatus";
 
+import Link from "next/link";
+
 // All icons were taken from the following link
 // https://icon-sets.iconify.design/
 
@@ -28,16 +30,21 @@ export default function Main() {
       </Head>
 
       <div className={styles.topnav}>
-        <a className={styles.active} href="home">
-          <Icon icon={homeAlt1} width="25" height="25" inline /> Home
-        </a>
-        <a href="professor">
-          <Icon icon={questionFill} width="25" height="20" inline /> Professor
-        </a>
-        <a href="quiz">
-          {" "}
-          <Icon icon={quizIcon} width="25" height="20" inline /> Quiz
-        </a>
+        <Link className={styles.active} href="/">
+          <span>
+            <Icon icon={homeAlt1} width="25" height="25" inline /> Home
+          </span>
+        </Link>
+        <Link href="/professor">
+          <span>
+            <Icon icon={questionFill} width="25" height="20" inline /> Professor
+          </span>
+        </Link>
+        <Link href="/quiz">
+          <span>
+            <Icon icon={quizIcon} width="25" height="20" inline /> Quiz
+          </span>
+        </Link>
         <LoginStatus />
       </div>
 
