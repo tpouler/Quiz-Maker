@@ -31,7 +31,7 @@ export default function Main() {
         <a className={styles.active} href="home">
           <Icon icon={homeAlt1} width="25" height="25" inline /> Home
         </a>
-        <a href="professor">
+        <a href="Professor">
           <Icon icon={questionFill} width="25" height="20" inline /> Professor
         </a>
         <a href="quiz">
