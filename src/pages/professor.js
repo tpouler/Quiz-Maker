@@ -12,18 +12,11 @@ import questionFill from "@iconify/icons-akar-icons/question-fill";
 import quizIcon from "@iconify/icons-material-symbols/quiz";
 import useTopics from "../../hooks/useTopics";
 import Link from "next/link";
+import useTopics from "../../hooks/useTopics";
 
 export default function Main() {
-  // const [questions] = useState(data);
+
   const [submitted, setSubmitted] = useState();
-
-  // const topicsList = [];
-
-  // questions.forEach((element) => {
-  //   if (!topicsList.includes(element.topic)) {
-  //     topicsList.push(element.topic);
-  //   }
-  // });
 
   const topicsList = useTopics();
 
