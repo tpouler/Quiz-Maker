@@ -23,6 +23,7 @@ export default function LoginStatus() {
         <div>
           <Icon
             icon={loginOutlined}
+            title="logIcon"
             onClick={() => logout()}
             width="25"
             height="20"
