@@ -10,10 +10,12 @@ import LoginStatus from "../components/LoginStatus";
 import questionFill from "@iconify/icons-akar-icons/question-fill";
 // eslint-disable-next-line quotes
 import quizIcon from "@iconify/icons-material-symbols/quiz";
+import useTopics from "../../hooks/useTopics";
 import Link from "next/link";
 import useTopics from "../../hooks/useTopics";
 
 export default function Main() {
+
   const [submitted, setSubmitted] = useState();
 
   const topicsList = useTopics();
