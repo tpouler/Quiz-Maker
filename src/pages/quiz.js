@@ -70,13 +70,13 @@ export default function QuizMain() {
         {prof && (
           <Link href="/professor">
             <span>
-              <Icon icon={questionFill} width="25" height="20" inline />{" "}
+              <Icon icon={questionFill} width="25" height="20" inline />
               Professor
             </span>
           </Link>
         )}
-        <Link href="/quiz" className={styles.active}>
-          <span>
+        <Link href="/quiz">
+          <span className={styles.active}>
             <Icon icon={quizIcon} width="25" height="20" inline /> Quiz
           </span>
         </Link>

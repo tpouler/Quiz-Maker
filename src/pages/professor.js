@@ -41,8 +41,8 @@ export default function ProfessorMain() {
               Home
             </span>
           </Link>
-          <Link className={styles.active} href="/professor">
-            <span>
+          <Link href="/professor">
+            <span className={styles.active}>
               <Icon icon={questionFill} width="25" height="20" inline />
               Professor
             </span>
