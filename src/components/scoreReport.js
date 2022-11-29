@@ -14,12 +14,15 @@ export default function ScoreReport({ questions }) {
     }
   });
 
+  const score = (numCorrect / questions.length) * 100;
+  const roundedScore = Number(score).toFixed(2);
+
   return (
     <div>
       <h2> Results: </h2>
       <p>
         You got {numCorrect} out of {questions.length} correct! This is a score
-        of {(numCorrect / questions.length) * 100} %.
+        of {roundedScore} %.
       </p>
       <AwesomeButton type="secondary" href="http://localhost:3000/">
         Return Home
