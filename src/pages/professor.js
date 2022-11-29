@@ -1,29 +1,20 @@
 import Head from "next/head";
-import styles from "../../styles/index.module.css";
+import styles from "../styles/index.module.css";
 import { Icon } from "@iconify/react";
-// import data from "../../../data/seed.json";
 import AddQuestion from "../../components/Professor/addQuestions";
 import SubmittedQuestions from "../../components/Professor/submittedQuestions";
 import { useState } from "react";
 import homeAlt1 from "@iconify/icons-akar-icons/home-alt1";
-import LoginStatus from "../../components/LoginStatus";
+import LoginStatus from "../components/LoginStatus";
 // eslint-disable-next-line quotes
 import questionFill from "@iconify/icons-akar-icons/question-fill";
 // eslint-disable-next-line quotes
 import quizIcon from "@iconify/icons-material-symbols/quiz";
+import Link from "next/link";
 import useTopics from "../../hooks/useTopics";
 
 export default function Main() {
-  // const [questions] = useState(data);
   const [submitted, setSubmitted] = useState();
-
-  // const topicsList = [];
-
-  // questions.forEach((element) => {
-  //   if (!topicsList.includes(element.topic)) {
-  //     topicsList.push(element.topic);
-  //   }
-  // });
 
   const topicsList = useTopics();
 
@@ -36,16 +27,24 @@ export default function Main() {
         </Head>
 
         <div className={styles.topnav}>
-          <a href="home">
-            <Icon icon={homeAlt1} width="25" height="25" inline /> Home
-          </a>
-          <a className={styles.active} href="professor">
-            <Icon icon={questionFill} width="25" height="20" inline /> Professor
-          </a>
-          <a href="quiz">
-            <Icon icon={quizIcon} width="25" height="20" inline />
-            Quiz
-          </a>
+          <Link href="/">
+            <span>
+              <Icon icon={homeAlt1} width="25" height="25" inline />
+              Home
+            </span>
+          </Link>
+          <Link href="/professor">
+            <span className={styles.active}>
+              <Icon icon={questionFill} width="25" height="20" inline />
+              Professor
+            </span>
+          </Link>
+          <Link href="/quiz">
+            <span>
+              <Icon icon={quizIcon} width="25" height="20" inline />
+              Quiz
+            </span>
+          </Link>
           <LoginStatus />
         </div>
 
