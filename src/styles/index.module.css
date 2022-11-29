@@ -159,9 +159,12 @@
 }
 
 .error {
-  color: white;
+  color: black;
   font-family: Arial, Helvetica, sans-serif;
-  text-decoration: red wavy underline;
+  border-style: solid;
+  border-color: black;
+  background-color: #ffcccc;
+  padding: 10px;
 }
 
 .cbox {
