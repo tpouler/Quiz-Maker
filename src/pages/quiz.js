@@ -1,19 +1,21 @@
 import Head from "next/head";
 
-import styles from "../../styles/index.module.css";
+import styles from "../styles/index.module.css";
 
 //import data from "../../../data/seed.json";
-import useQuestions from "../../hooks/useQuestions.js";
+import useQuestions from "../hooks/useQuestions.js";
 
-import Quiz from "../../components/quiz";
+import Quiz from "../components/quiz";
 
-import ScoreReport from "../../components/scoreReport";
+import ScoreReport from "../components/scoreReport";
 
 import { useState, useEffect } from "react";
 
-import { useUser } from "../../contexts/UserContext";
+import { useUser } from "../contexts/UserContext";
 
-import LoginStatus from "../../components/LoginStatus";
+import LoginStatus from "../components/LoginStatus";
+
+import Link from "next/link";
 
 // All icons were taken from the following link
 // https://icon-sets.iconify.design/
@@ -29,7 +31,7 @@ import quizIcon from "@iconify/icons-material-symbols/quiz";
 
 //Testing
 
-export default function Main() {
+export default function QuizMain() {
   //Imports data from the Json file
   //const [questions] = useState(data);
   const questions = useQuestions(["Math", "Science"]);
@@ -59,17 +61,25 @@ export default function Main() {
       </Head>
 
       <div className={styles.topnav}>
-        <a href="home">
-          <Icon icon={homeAlt1} width="25" height="25" inline /> Home
-        </a>
+        <Link href="/">
+          <span>
+            <Icon icon={homeAlt1} width="25" height="25" inline />
+            Home
+          </span>
+        </Link>
         {prof && (
-          <a href="professor">
-            <Icon icon={questionFill} width="25" height="20" inline /> Professor
-          </a>
+          <Link href="/professor">
+            <span>
+              <Icon icon={questionFill} width="25" height="20" inline />
+              Professor
+            </span>
+          </Link>
         )}
-        <a href="quiz" className={styles.active}>
-          <Icon icon={quizIcon} width="25" height="20" inline /> Quiz
-        </a>
+        <Link href="/quiz">
+          <span className={styles.active}>
+            <Icon icon={quizIcon} width="25" height="20" inline /> Quiz
+          </span>
+        </Link>
         <LoginStatus />
       </div>
 
