@@ -1,10 +1,8 @@
 import Head from "next/head";
 import styles from "../styles/index.module.css";
 import { Icon } from "@iconify/react";
-//import data from "../../data/seed.json";
-import AddQuestion from "../components/Professor/addQuestions";
-import useQuestions from "../hooks/useQuestions.js";
-import SubmittedQuestions from "../components/Professor/submittedQuestions";
+import AddQuestion from "../../components/Professor/addQuestions";
+import SubmittedQuestions from "../../components/Professor/submittedQuestions";
 import { useState } from "react";
 import homeAlt1 from "@iconify/icons-akar-icons/home-alt1";
 import LoginStatus from "../components/LoginStatus";
@@ -12,20 +10,23 @@ import LoginStatus from "../components/LoginStatus";
 import questionFill from "@iconify/icons-akar-icons/question-fill";
 // eslint-disable-next-line quotes
 import quizIcon from "@iconify/icons-material-symbols/quiz";
+import useTopics from "../../hooks/useTopics";
 import Link from "next/link";
 
-export default function ProfessorMain() {
-  const questions = useQuestions(["Math", "Science"]);
-  //const [questions] = useState(data);
+export default function Main() {
+  // const [questions] = useState(data);
   const [submitted, setSubmitted] = useState();
 
-  const topicsList = [];
+  // const topicsList = [];
 
-  questions.forEach((element) => {
-    if (!topicsList.includes(element.topic)) {
-      topicsList.push(element.topic);
-    }
-  });
+  // questions.forEach((element) => {
+  //   if (!topicsList.includes(element.topic)) {
+  //     topicsList.push(element.topic);
+  //   }
+  // });
+
+  const topicsList = useTopics();
+
   if (submitted !== true) {
     return (
       <div className={styles.header}>
