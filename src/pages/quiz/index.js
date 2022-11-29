@@ -32,7 +32,7 @@ import quizIcon from "@iconify/icons-material-symbols/quiz";
 export default function Main() {
   //Imports data from the Json file
   //const [questions] = useState(data);
-  const questions = useQuestions();
+  const questions = useQuestions(["Math", "Science"]);
   const [submitted, setSubmitted] = useState();
   const [prof, setProf] = useState(false);
   const user = useUser();
@@ -51,7 +51,6 @@ export default function Main() {
     return questionList;
   }
 
-  //console.log(`boolean of answer submitted is: ${submitted}`);
   return (
     <div className={styles.header}>
       <Head>

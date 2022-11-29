@@ -7,24 +7,28 @@
 import { getFirestore, collection, onSnapshot } from "firebase/firestore";
 import { useState, useEffect } from "react";
 
-function useQuestions() {
+function useQuestions(topics) {
   const [sections, setSections] = useState([]);
   const db = getFirestore();
 
+  console.log(topics);
+
   useEffect(() => {
-    onSnapshot(
-      collection(db, "questions", "Math", "questions"),
-      (sectionList) => {
-        const sectionsFetched = [];
-        sectionList.docs.forEach((doc) => {
-          // console.log("testing");
-          //console.log(doc.data())
-          sectionsFetched.push(doc.data());
-        });
-        //console.log(sectionsFetched);
-        setSections(sectionsFetched);
-      }
-    );
+    const sectionsFetched = [];
+    topics.forEach((topic) => {
+      onSnapshot(
+        collection(db, "questions", topic, "questions"),
+        (sectionList) => {
+          sectionList.docs.forEach((doc) => {
+            // console.log("testing");
+            //console.log(doc.data())
+            sectionsFetched.push(doc.data());
+          });
+          //console.log(sectionsFetched);
+          setSections(sectionsFetched);
+        }
+      );
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
