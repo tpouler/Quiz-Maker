@@ -51,8 +51,10 @@ export default function Topics({ setTopics, setTopicsChosen }) {
         onChange={handleSelect}
         isSearchable
         isMulti
+        styles={{ menu: (provided) => ({ ...provided, zIndex: 9999 }) }}
       />
 
+      <br />
       <AwesomeButton
         type="secondary"
         disabled={selected === null}
