@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 import { AwesomeButton } from "react-awesome-button";
+import { useUser } from "../contexts/UserContext";
+import { addResult } from "../utils/firebase-utils.mjs";
 
 export default function ScoreReport({ questions }) {
   const checkResponse = (question) => {
@@ -16,6 +18,13 @@ export default function ScoreReport({ questions }) {
 
   const score = (numCorrect / questions.length) * 100;
   const roundedScore = Number(score).toFixed(2);
+
+  const userID = useUser().uid;
+  const result = {
+    score: roundedScore,
+  };
+
+  addResult(result, userID);
 
   return (
     <div>

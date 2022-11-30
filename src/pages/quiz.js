@@ -99,7 +99,7 @@ export default function QuizMain() {
             setTopicsChosen={setTopicsChosen}
           />
         )}
-        {topicsChosen && !submitted && (
+        {topicsChosen && (
           <Quiz
             topics={topics}
             complete={complete}
@@ -107,7 +107,7 @@ export default function QuizMain() {
             setQuestions={setQuestions}
           />
         )}
-        {topicsChosen && submitted && <ScoreReport questions={questions} />}
+        {submitted && <ScoreReport questions={questions} />}
       </main>
 
       <footer>A 312 project</footer>
