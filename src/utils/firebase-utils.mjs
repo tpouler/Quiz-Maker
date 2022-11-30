@@ -85,9 +85,10 @@ export async function addQuestion(question) {
 }
 
 export async function addResult(result, uid){
+  const currDate = new Date();
   const resultData = {
     score: result.score,
-    date: new Date(),
+    date: currDate.toLocaleString(),
   };
   const db = getFirestore();
   const resultsRef = collection(db,"results", uid, "quizResults");

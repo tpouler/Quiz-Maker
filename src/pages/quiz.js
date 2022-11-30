@@ -89,6 +89,13 @@ export default function QuizMain() {
             <Icon icon={quizIcon} width="25" height="20" inline /> Quiz
           </span>
         </Link>
+        {!prof && (
+          <Link href="/sresults">
+            <span>
+              <Icon icon="fluent-mdl2:feedback-response-solid" /> Results
+            </span>
+          </Link>
+        )}
         <LoginStatus />
       </div>
 
