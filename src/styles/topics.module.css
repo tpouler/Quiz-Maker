@@ -1,4 +1,11 @@
 .multiselect {
   width: 400px;
   color: black;
+  position: relative;
+  z-index: 9999999999;
+  transition: height 1s ease;
+}
+
+.multiselect:hover {
+  cursor: pointer;
 }
