@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { AwesomeButton } from "react-awesome-button";
 import styles from "../../styles/index.module.css";
 import selectStyles from "../../styles/select.module.css";
+import { useUser } from "../../contexts/UserContext";
 export default function AddQuestion({ topics, setSubmitted }) {
   // eslint-disable-line
 
@@ -14,6 +15,7 @@ export default function AddQuestion({ topics, setSubmitted }) {
   const [topic, setTopic] = useState();
   const [newTopic, setNewTopic] = useState(false);
   const [allowSubmit, setAllowSubmit] = useState(false); // eslint-disable-line
+  const user = useUser();
 
   function handleChange(e) {
     setAllowSubmit(true);
@@ -27,8 +29,7 @@ export default function AddQuestion({ topics, setSubmitted }) {
 
   const topicsList = topics.map((t) => (
     <option id={t} key={t} value={t}>
-      {" "}
-      {t}{" "}
+      {t}
     </option>
   ));
 
@@ -64,13 +65,11 @@ export default function AddQuestion({ topics, setSubmitted }) {
           onChange={handleChange}
         >
           <option id="" value="" disabled selected hidden>
-            {" "}
-            Select an topic{" "}
+            Select an topic
           </option>
           {topicsList}
           <option id="custom" value="custom">
-            {" "}
-            Add a new category{" "}
+            Add a new category
           </option>
         </select>
         {newTopic && (
@@ -101,7 +100,7 @@ export default function AddQuestion({ topics, setSubmitted }) {
       const questionObj = {
         question: question,
         answer: answer,
-        response: "",
+        uid: user.uid,
         topic: topic,
       };
       addQuestion(questionObj);
