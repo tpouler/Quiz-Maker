@@ -20,7 +20,15 @@ export default function SubmittedQuestions({ setSubmitted }) {
         Yes
       </AwesomeButton>
       <div className={styles.divider} />
-      <AwesomeButton type="danger">No</AwesomeButton>
+
+      <AwesomeButton
+        onReleased={() => {
+          location.href = "/quiz";
+        }}
+        type="danger"
+      >
+        No
+      </AwesomeButton>
       {/* <button className = {styles.button} type= "submit" onClick={() =>{setSubmitted(false)}} value= "submit" > Yes </button>
         <button className = {styles.button} type= "return"  value= "return"> No </button> */}
     </div>
