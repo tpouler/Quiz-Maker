@@ -12,7 +12,8 @@ import {
   deleteDoc,
   getDocs,
 } from "firebase/firestore";
-import { getAuth, connectAuthEmulator } from "firebase/auth";
+import { getAuth, connectAuthEmulator} from "firebase/auth";
+
 
 // addDoc
 // Firebase configuration
@@ -52,9 +53,9 @@ export function initializeFirebase() {
 }
 
 /**
- * This function adds a single article to the database
+ * This function adds a single question to the database
  *
- * @param {Object} article
+ * @param {Object} question 
  * @return article with id set to document name
  */
 export async function addQuestion(question) {
@@ -81,6 +82,17 @@ export async function addQuestion(question) {
     topic: question.topic,
     id: docref.id
   };
+}
+
+export async function addResult(result, uid){
+  const currDate = new Date();
+  const resultData = {
+    score: result.score,
+    date: currDate.toLocaleString(),
+  };
+  const db = getFirestore();
+  const resultsRef = collection(db,"results", uid, "quizResults");
+  await addDoc(resultsRef, resultData);
 }
 
 /**

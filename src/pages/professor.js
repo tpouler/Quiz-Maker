@@ -13,7 +13,7 @@ import quizIcon from "@iconify/icons-material-symbols/quiz";
 import useTopics from "../hooks/useTopics";
 import Link from "next/link";
 
-export default function Main() {
+export default function ProfessorMain() {
   const [submitted, setSubmitted] = useState();
 
   const topicsList = useTopics();

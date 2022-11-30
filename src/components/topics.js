@@ -55,6 +55,7 @@ export default function Topics({ setTopics, setTopicsChosen }) {
 
       <AwesomeButton
         type="secondary"
+        disabled={selected === null}
         onReleased={() => {
           console.log("release");
           submitTopics();

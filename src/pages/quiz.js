@@ -89,6 +89,13 @@ export default function QuizMain() {
             <Icon icon={quizIcon} width="25" height="20" inline /> Quiz
           </span>
         </Link>
+        {!prof && (
+          <Link href="/sresults">
+            <span>
+              <Icon icon="fluent-mdl2:feedback-response-solid" /> Results
+            </span>
+          </Link>
+        )}
         <LoginStatus />
       </div>
 
@@ -99,7 +106,7 @@ export default function QuizMain() {
             setTopicsChosen={setTopicsChosen}
           />
         )}
-        {topicsChosen && !submitted && (
+        {topicsChosen && (
           <Quiz
             topics={topics}
             complete={complete}
@@ -107,7 +114,7 @@ export default function QuizMain() {
             setQuestions={setQuestions}
           />
         )}
-        {topicsChosen && submitted && <ScoreReport questions={questions} />}
+        {submitted && <ScoreReport questions={questions} />}
       </main>
 
       <footer>A 312 project</footer>
