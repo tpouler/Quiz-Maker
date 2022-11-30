@@ -23,6 +23,7 @@ import styles from "../styles/index.module.css";
 //Documentation to understand AwesomeButton
 //https://github.com/rcaferati/react-awesome-button
 import { AwesomeButton } from "react-awesome-button";
+import useQuestions from "../hooks/useQuestions";
 
 //This function gives us the html for each question and calls setAnswer
 function AnswerInfo({ question, submitted, reset, resetQuestion }) {
@@ -74,12 +75,11 @@ AnswerInfo.propTypes = {
   resetQuestion: PropTypes.func,
 };
 
-export default function Quiz({ questions, complete, submitted }) {
+export default function Quiz({ topics, complete, submitted, setQuestions }) {
   const [reset, resetQuestion] = useState(false);
-
-  //console.log(questions)
-
-  //console.log(reset);
+  //console.log(topics);
+  const questions = useQuestions(topics);
+  setQuestions(questions);
   const questionMap = questions.map((question) => (
     <div key={question.id}>
       {question.question}
@@ -120,4 +120,6 @@ Quiz.propTypes = {
   questions: PropTypes.array,
   complete: PropTypes.func,
   submitted: PropTypes.bool,
+  topics: PropTypes.array,
+  setQuestions: PropTypes.func,
 };

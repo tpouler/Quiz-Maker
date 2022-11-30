@@ -11,8 +11,6 @@ function useTopics() {
   const [topics, setTopics] = useState([]);
   const db = getFirestore();
 
-  console.log(topics);
-
   useEffect(() => {
     const topicsFetched = [];
     onSnapshot(collection(db, "questions"), (topicsList) => {

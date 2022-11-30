@@ -3,7 +3,6 @@ import Head from "next/head";
 import styles from "../styles/index.module.css";
 
 //import data from "../../../data/seed.json";
-import useQuestions from "../hooks/useQuestions.js";
 
 import Quiz from "../components/quiz";
 
@@ -16,6 +15,8 @@ import { useUser } from "../contexts/UserContext";
 import LoginStatus from "../components/LoginStatus";
 
 import Link from "next/link";
+
+import ChooseTopic from "../components/chooseTopic";
 
 // All icons were taken from the following link
 // https://icon-sets.iconify.design/
@@ -34,9 +35,13 @@ import quizIcon from "@iconify/icons-material-symbols/quiz";
 export default function QuizMain() {
   //Imports data from the Json file
   //const [questions] = useState(data);
-  const questions = useQuestions(["Math", "Science"]);
+  //const questions = useQuestions(["Math", "Science"]);
   const [submitted, setSubmitted] = useState();
+  const [topicsChosen, setTopicsChosen] = useState(false);
   const [prof, setProf] = useState(false);
+  const [topics, setTopics] = useState([]);
+  const [questions, setQuestions] = useState([]);
+
   const user = useUser();
 
   useEffect(() => {
@@ -46,6 +51,10 @@ export default function QuizMain() {
       }
     }
   }, [user]); // eslint-disable-line
+
+  useEffect(() => {
+    //console.log(topics)
+  }, [topics]);
 
   //Still need to update json to have answer field filled in with out answer
   function complete(questionList) {
@@ -84,9 +93,21 @@ export default function QuizMain() {
       </div>
 
       <main>
-        <h1 className="title">Quiz 1</h1>
-        <Quiz questions={questions} complete={complete} submitted={submitted} />
-        {submitted && <ScoreReport questions={questions} />}
+        {!topicsChosen && !submitted && (
+          <ChooseTopic
+            setTopics={setTopics}
+            setTopicsChosen={setTopicsChosen}
+          />
+        )}
+        {topicsChosen && !submitted && (
+          <Quiz
+            topics={topics}
+            complete={complete}
+            submitted={submitted}
+            setQuestions={setQuestions}
+          />
+        )}
+        {topicsChosen && submitted && <ScoreReport questions={questions} />}
       </main>
 
       <footer>A 312 project</footer>

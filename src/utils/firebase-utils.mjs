@@ -22,7 +22,7 @@ const firebaseConfig = {
   projectId: "potoo-40376",
   storageBucket: "potoo-40376.appspot.com",
   messagingSenderId: "783644932424",
-  appId: "1:783644932424:web:e5f82562101debd294db7d",
+  appId: "1:783644932424:web:e5f82562101debd294db7d"
 };
 
 // Initialize Firebase
