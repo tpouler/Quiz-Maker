@@ -7,15 +7,17 @@ import Select from "react-select";
 import useTopics from "../hooks/useTopics";
 import { useState } from "react";
 import styles from "../styles/topics.module.css";
+import { AwesomeButton } from "react-awesome-button";
+import PropTypes from "prop-types";
 
-export default function Topics() {
+export default function Topics({ setTopics, setTopicsChosen }) {
   const [selected, setSelected] = useState();
 
-  const topics = useTopics();
+  const topicsList = useTopics();
 
   const topicsOptions = [];
 
-  topics.forEach((t) => {
+  topicsList.forEach((t) => {
     const newObj = {};
     newObj["value"] = t;
     newObj["label"] = t;
@@ -25,6 +27,20 @@ export default function Topics() {
   function handleSelect(data) {
     setSelected(data);
   }
+
+  const submitTopics = () => {
+    if (selected !== undefined) {
+      const newArr = [];
+      selected.forEach((obj) => {
+        newArr.push(obj.value);
+      });
+      console.log(newArr);
+      setTopics(newArr);
+      setTopicsChosen(true);
+    }
+
+    console.log(selected);
+  };
 
   return (
     <div className={styles.multiselect}>
@@ -36,6 +52,20 @@ export default function Topics() {
         isSearchable
         isMulti
       />
+
+      <AwesomeButton
+        type="secondary"
+        onReleased={() => {
+          console.log("release");
+          submitTopics();
+        }}
+      >
+        Submit
+      </AwesomeButton>
     </div>
   );
 }
+Topics.propTypes = {
+  setTopicsChosen: PropTypes.func,
+  setTopics: PropTypes.func,
+};

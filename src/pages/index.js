@@ -80,7 +80,6 @@ export default function Main() {
       <div>Quiz</div>
       <div>This is where you can practice your skills</div>
       <br />
-
       <footer>A 312 project</footer>
     </div>
   );

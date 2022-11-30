@@ -6,16 +6,14 @@
 
 import { getFirestore, collection, onSnapshot } from "firebase/firestore";
 import { useState, useEffect } from "react";
-
-function useQuestions(topics) {
+import PropTypes from "prop-types";
+function useQuestions(topicsList) {
   const [sections, setSections] = useState([]);
   const db = getFirestore();
 
-  console.log(topics);
-
   useEffect(() => {
     const sectionsFetched = [];
-    topics.forEach((topic) => {
+    topicsList.forEach((topic) => {
       onSnapshot(
         collection(db, "questions", topic, "questions"),
         (sectionList) => {
@@ -34,5 +32,9 @@ function useQuestions(topics) {
 
   return sections;
 }
+
+useQuestions.propTypes = {
+  topicsList: PropTypes.array,
+};
 
 export default useQuestions;

@@ -1,8 +1,8 @@
 import Head from "next/head";
 import styles from "../styles/index.module.css";
 import { Icon } from "@iconify/react";
-import AddQuestion from "../../components/Professor/addQuestions";
-import SubmittedQuestions from "../../components/Professor/submittedQuestions";
+import AddQuestion from "../components/Professor/addQuestions";
+import SubmittedQuestions from "../components/Professor/submittedQuestions";
 import { useState } from "react";
 import homeAlt1 from "@iconify/icons-akar-icons/home-alt1";
 import LoginStatus from "../components/LoginStatus";
@@ -10,12 +10,10 @@ import LoginStatus from "../components/LoginStatus";
 import questionFill from "@iconify/icons-akar-icons/question-fill";
 // eslint-disable-next-line quotes
 import quizIcon from "@iconify/icons-material-symbols/quiz";
-import useTopics from "../../hooks/useTopics";
+import useTopics from "../hooks/useTopics";
 import Link from "next/link";
-import useTopics from "../../hooks/useTopics";
 
 export default function Main() {
-
   const [submitted, setSubmitted] = useState();
 
   const topicsList = useTopics();
