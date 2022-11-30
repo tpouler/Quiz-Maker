@@ -15,14 +15,15 @@ function useTopics() {
     const topicsFetched = [];
     onSnapshot(collection(db, "questions"), (topicsList) => {
       topicsList.docs.forEach((doc) => {
-        // console.log("testing");
-        //console.log(doc.data())
+        console.log("testing");
+        console.log(doc.data());
         topicsFetched.push(doc.data().section);
       });
       setTopics(topicsFetched);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  console.log(topics);
   return topics;
 }
 

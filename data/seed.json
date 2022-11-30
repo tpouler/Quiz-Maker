@@ -1,33 +1,81 @@
 [
   {
-    "question": "What is 1 + 1?",
+    "question": "1 + 1 = _",
     "answer": "2",
     "response": "",
-    "topic": "Math"
+    "topic": "Addition"
   },
   {
-    "question": "What is 2 + 2?",
-    "answer": "4",
+    "question": "5 + 7 = _",
+    "answer": "12",
     "response": "",
-    "topic": "Math"
+    "topic": "Addition"
   },
   {
-    "question": "What is 4(2+3)?",
+    "question": "11 + 13 = _",
+    "answer": "24",
+    "response": "",
+    "topic": "Addition"
+  },
+  {
+    "question": "20 + 14 = _",
+    "answer": "34",
+    "response": "",
+    "topic": "Addition"
+  },
+  {
+    "question": "14 + 3 = _",
+    "answer": "17",
+    "response": "",
+    "topic": "Addition"
+  },
+  {
+    "question": "4(2+3) = _",
     "answer": "20",
     "response": "",
-    "topic": "Math"
+    "topic": "Multiplication"
   },
   {
-    "question": "What is 64/8?",
+    "question": "What is 7 * 6 = _",
+    "answer": "42",
+    "response": "",
+    "topic": "Multiplication"
+  },
+  {
+    "question": "What is 9 * 5 = _",
+    "answer": "45",
+    "response": "",
+    "topic": "Multiplication"
+  },
+  {
+    "question": "What is 10 * 11 = _",
+    "answer": "110",
+    "response": "",
+    "topic": "Multiplication"
+  },
+  {
+    "question": "64/8 = _",
     "answer": "8",
     "response": "",
-    "topic": "Math"
+    "topic": "Division"
+  },
+  {
+    "question": "70/10 = _",
+    "answer": "7",
+    "response": "",
+    "topic": "Division"
+  },
+  {
+    "question": "16/4 = _",
+    "answer": "4",
+    "response": "",
+    "topic": "Division"
   },
   {
     "question": "If x + 8 = 32, What is x?",
     "answer": "24",
     "response": "",
-    "topic": "Math"
+    "topic": "Algebra"
   },
   {
     "question": "Here's a Science Question",
