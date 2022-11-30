@@ -23,7 +23,7 @@ export default function SubmittedQuestions({ setSubmitted }) {
 
       <AwesomeButton
         onReleased={() => {
-          location.href = "/quiz";
+          location.href = "/";
         }}
         type="danger"
       >
