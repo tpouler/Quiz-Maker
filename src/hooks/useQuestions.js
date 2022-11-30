@@ -18,11 +18,8 @@ function useQuestions(topicsList) {
         collection(db, "questions", topic, "questions"),
         (sectionList) => {
           sectionList.docs.forEach((doc) => {
-            // console.log("testing");
-            //console.log(doc.data())
             sectionsFetched.push(doc.data());
           });
-          //console.log(sectionsFetched);
           setSections(sectionsFetched);
         }
       );

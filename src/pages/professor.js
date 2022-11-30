@@ -68,15 +68,24 @@ export default function Main() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <div className={styles.topnav}>
-          <a href="home">
-            <Icon icon={homeAlt1} width="25" height="25" inline /> Home
-          </a>
-          <a href="professor" className={styles.active}>
-            <Icon icon={questionFill} width="25" height="20" inline /> Professor
-          </a>
-          <a href="quiz">
-            <Icon icon={quizIcon} width="25" height="20" inline /> Quiz
-          </a>
+          <Link href="/">
+            <span>
+              <Icon icon={homeAlt1} width="25" height="25" inline />
+              Home
+            </span>
+          </Link>
+          <Link href="/professor">
+            <span className={styles.active}>
+              <Icon icon={questionFill} width="25" height="20" inline />
+              Professor
+            </span>
+          </Link>
+          <Link href="/quiz">
+            <span>
+              <Icon icon={quizIcon} width="25" height="20" inline />
+              Quiz
+            </span>
+          </Link>
           <LoginStatus />
         </div>
         <main>

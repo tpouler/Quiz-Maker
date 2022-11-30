@@ -16,9 +16,7 @@ import PropTypes from "prop-types";
 
 import styles from "../styles/index.module.css";
 
-//import button from "../styles/awesome.module.css";
-
-//import button from "../styles/awesome.module.css";
+import { useUser } from "../contexts/UserContext";
 
 //Documentation to understand AwesomeButton
 //https://github.com/rcaferati/react-awesome-button
@@ -77,13 +75,21 @@ AnswerInfo.propTypes = {
 
 export default function Quiz({ topics, complete, submitted, setQuestions }) {
   const [reset, resetQuestion] = useState(false);
-  //console.log(topics);
+  const user = useUser();
   const questions = useQuestions(topics);
   setQuestions(questions);
-  const questionMap = questions.map((question) => (
+
+  // console.log(questions)
+
+  const newQuestions = questions.filter((q) => {
+    return q.uid === "1" || q.uid === user.uid;
+  });
+
+  // console.log(newQuestions)
+
+  const questionMap = newQuestions.map((question) => (
     <div key={question.id}>
       {question.question}
-      {/* • {question.topic} */}
       <br />
       <AnswerInfo
         question={question}
