@@ -4,6 +4,7 @@ import useTopics from "../hooks/useTopics";
 import Select from "react-select";
 import { useState } from "react";
 import styles from "../styles/topics.module.css";
+import tableStyles from "../styles/ResultsTable.module.css";
 
 export default function ResultsTable({ userID }) {
   const [selected, setSelected] = useState();
@@ -47,8 +48,9 @@ export default function ResultsTable({ userID }) {
           isMulti={false}
         />
       </div>
+      <p> </p>
       {selected && (
-        <div className="table">
+        <div className={tableStyles.table}>
           <table>
             <tr>
               <th> Date </th>
