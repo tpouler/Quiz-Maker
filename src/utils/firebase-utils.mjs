@@ -91,6 +91,8 @@ export async function addResult(result, uid){
   const db = getFirestore();
   const resultsRef = collection(db,"results", uid, "quizResults");
   await addDoc(resultsRef, resultData);
+
+  return {...resultData};
 }
 
 /**
