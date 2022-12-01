@@ -1,4 +1,9 @@
 .multiselect {
   width: 400px;
   color: black;
+  position: relative;
+}
+
+.multiselect:hover {
+  cursor: pointer;
 }
