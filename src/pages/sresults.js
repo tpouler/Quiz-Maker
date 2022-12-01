@@ -32,53 +32,54 @@ export default function SresultsMain() {
       }
     }
   }, [user]); // eslint-disable-line
+  if (user) {
+    return (
+      <div className={styles.header}>
+        <Head>
+          <title>Potoo project</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-  return (
-    <div className={styles.header}>
-      <Head>
-        <title>Potoo project</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <div className={styles.topnav}>
-        <Link href="/">
-          <span>
-            <Icon icon={homeAlt1} width="25" height="25" inline />
-            Home
-          </span>
-        </Link>
-        {prof && (
-          <Link href="/professor">
+        <div className={styles.topnav}>
+          <Link href="/">
             <span>
-              <Icon icon={questionFill} width="25" height="20" inline />
-              Professor
+              <Icon icon={homeAlt1} width="25" height="25" inline />
+              Home
             </span>
           </Link>
-        )}
-        <Link href="/quiz">
-          <span>
-            <Icon icon={quizIcon} width="25" height="20" inline /> Quiz
-          </span>
-        </Link>
-        {!prof && (
-          <Link href="/sresults">
-            <span className={styles.active}>
-              <Icon
-                icon="fluent-mdl2:feedback-response-solid"
-                width="25"
-                height="20"
-                inline
-              />
-              Results
+          {prof && (
+            <Link href="/professor">
+              <span>
+                <Icon icon={questionFill} width="25" height="20" inline />
+                Professor
+              </span>
+            </Link>
+          )}
+          <Link href="/quiz">
+            <span>
+              <Icon icon={quizIcon} width="25" height="20" inline /> Quiz
             </span>
           </Link>
-        )}
+          {!prof && (
+            <Link href="/sresults">
+              <span className={styles.active}>
+                <Icon
+                  icon="fluent-mdl2:feedback-response-solid"
+                  width="25"
+                  height="20"
+                  inline
+                />
+                Results
+              </span>
+            </Link>
+          )}
 
-        <LoginStatus />
+          <LoginStatus />
+        </div>
+
+        <main>{!prof && <ResultsTable userID={user.uid} />}</main>
+        <footer>A 312 project</footer>
       </div>
-
-      <main>{!prof && <ResultsTable userID={user.uid} />}</main>
-      <footer>A 312 project</footer>
-    </div>
-  );
+    );
+  }
 }
