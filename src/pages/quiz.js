@@ -53,8 +53,13 @@ export default function QuizMain() {
   }, [user]); // eslint-disable-line
 
   useEffect(() => {
-    //console.log(topics)
+    // console.log(topics)
   }, [topics]);
+
+  useEffect(() => {
+    console.log("questions");
+    console.log(questions);
+  }, [questions]);
 
   //Still need to update json to have answer field filled in with out answer
   function complete(questionList) {

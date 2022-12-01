@@ -63,7 +63,6 @@ export async function addQuestion(question) {
 
   //console.log("Here testing");
   const copy = JSON.parse(JSON.stringify(question));
-  delete copy.topic;
 
   const sectionsRef = collection(db, "questions");
 
@@ -86,13 +85,14 @@ export async function addQuestion(question) {
 
 export async function addResult(result, uid){
   const currDate = new Date();
-  const resultData = {
-    score: result.score,
+  const resultData = { ...result,
     date: currDate.toLocaleString(),
   };
   const db = getFirestore();
   const resultsRef = collection(db,"results", uid, "quizResults");
   await addDoc(resultsRef, resultData);
+
+  return {...resultData};
 }
 
 /**

@@ -34,12 +34,9 @@ export default function Topics({ setTopics, setTopicsChosen }) {
       selected.forEach((obj) => {
         newArr.push(obj.value);
       });
-      console.log(newArr);
       setTopics(newArr);
       setTopicsChosen(true);
     }
-
-    console.log(selected);
   };
 
   return (

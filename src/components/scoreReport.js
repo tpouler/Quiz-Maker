@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { AwesomeButton } from "react-awesome-button";
 import { useUser } from "../contexts/UserContext";
 import { addResult } from "../utils/firebase-utils.mjs";
+// import useTopics from "../hooks/useTopics";
 
 export default function ScoreReport({ questions }) {
   const checkResponse = (question) => {
@@ -10,21 +11,30 @@ export default function ScoreReport({ questions }) {
 
   let numCorrect = 0;
 
-  questions.forEach((d) => {
-    if (checkResponse(d)) {
+  const newObj = {};
+  questions.forEach((ques) => {
+    if (newObj[ques.topic] === undefined) {
+      newObj[ques.topic] = { corr: 0, total: 0 };
+    }
+    if (checkResponse(ques)) {
+      newObj[ques.topic]["corr"] += 1;
       numCorrect++;
     }
+    newObj[ques.topic]["total"] += 1;
   });
+
+  const resultObj = {};
+  Object.keys(newObj).forEach((t) => {
+    const tScore = (newObj[t]["corr"] / newObj[t]["total"]) * 100;
+    const roundedTScore = Number(tScore).toFixed(2);
+    resultObj[t] = roundedTScore;
+  });
+
+  const userID = useUser().uid;
+  addResult(resultObj, userID);
 
   const score = (numCorrect / questions.length) * 100;
   const roundedScore = Number(score).toFixed(2);
-
-  const userID = useUser().uid;
-  const result = {
-    score: roundedScore,
-  };
-
-  addResult(result, userID);
 
   return (
     <div>
@@ -32,6 +42,11 @@ export default function ScoreReport({ questions }) {
       <p>
         You got {numCorrect} out of {questions.length} correct! This is a score
         of {roundedScore} %.
+      </p>
+      <p>
+        {" "}
+        Check out all of your past quiz results in the Results tab in the top
+        bar
       </p>
       <AwesomeButton type="secondary" href="http://localhost:3000/">
         Return Home
