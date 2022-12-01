@@ -1,5 +1,4 @@
 import Head from "next/head";
-
 import styles from "../styles/index.module.css";
 import LoginStatus from "../components/LoginStatus";
 import Link from "next/link";
@@ -19,11 +18,12 @@ import questionFill from "@iconify/icons-akar-icons/question-fill";
 import quizIcon from "@iconify/icons-material-symbols/quiz";
 import ResultsTable from "../components/ResultsTable";
 
-export default function Sresults() {
+export default function SresultsMain() {
   const [prof, setProf] = useState(false);
 
   const user = useUser();
-  const userID = user.uid;
+  console.log("checking user");
+  console.log(user);
 
   useEffect(() => {
     if (user && user.displayName) {
@@ -60,23 +60,24 @@ export default function Sresults() {
             <Icon icon={quizIcon} width="25" height="20" inline /> Quiz
           </span>
         </Link>
-        <Link href="/sresults">
-          <span className={styles.active}>
-            <Icon
-              icon="fluent-mdl2:feedback-response-solid"
-              width="25"
-              height="20"
-              inline
-            />{" "}
-            Results
-          </span>
-        </Link>
+        {!prof && (
+          <Link href="/sresults">
+            <span className={styles.active}>
+              <Icon
+                icon="fluent-mdl2:feedback-response-solid"
+                width="25"
+                height="20"
+                inline
+              />
+              Results
+            </span>
+          </Link>
+        )}
+
         <LoginStatus />
       </div>
 
-      <main>
-        <ResultsTable userID={userID} />
-      </main>
+      <main>{!prof && <ResultsTable userID={user.uid} />}</main>
       <footer>A 312 project</footer>
     </div>
   );
