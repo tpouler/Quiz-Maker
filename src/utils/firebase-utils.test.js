@@ -37,6 +37,8 @@ describe("Firestore utility functions test", () => {
         answer: "10",
         response: "",
         topic: "Math",
+        course: "CS312",
+        uid: "1",
       };
 
       //console.log("testing");
@@ -48,7 +50,15 @@ describe("Firestore utility functions test", () => {
 
       // make sure the article is in the database
       const snapshot = await getDoc(
-        doc(db, "questions", newQuestion.topic, "questions", addedQuestion.id)
+        doc(
+          db,
+          "courses",
+          newQuestion.course,
+          "topics",
+          newQuestion.topic,
+          "questions",
+          addedQuestion.id
+        )
       );
 
       expect(snapshot.exists()).toBeTruthy();
@@ -65,13 +75,23 @@ describe("Firestore utility functions test", () => {
         answer: "12",
         response: "",
         topic: "Science",
+        course: "CS312",
+        uid: "1",
       };
 
       const addedQuestion = await addQuestion({ ...newQuestion });
 
       // the section should now exist
       const snapshot = await getDoc(
-        doc(db, "questions", newQuestion.topic, "questions", addedQuestion.id)
+        doc(
+          db,
+          "courses",
+          newQuestion.course,
+          "topics",
+          newQuestion.topic,
+          "questions",
+          addedQuestion.id
+        )
       );
       expect(snapshot.exists()).toBeTruthy();
 
