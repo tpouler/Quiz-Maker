@@ -97,7 +97,12 @@ export default function QuizMain() {
         {!prof && (
           <Link href="/sresults">
             <span>
-              <Icon icon="fluent-mdl2:feedback-response-solid" /> Results
+              <Icon
+                icon="fluent-mdl2:feedback-response-solid"
+                width="25"
+                height="20"
+              />
+              Results
             </span>
           </Link>
         )}

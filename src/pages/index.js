@@ -22,7 +22,9 @@ import questionFill from "@iconify/icons-akar-icons/question-fill";
 // eslint-disable-next-line quotes
 import quizIcon from "@iconify/icons-material-symbols/quiz";
 
-//Testing
+//Documentation to understand AwesomeButton
+//https://github.com/rcaferati/react-awesome-button
+import { AwesomeButton } from "react-awesome-button";
 
 export default function Main() {
   //console.log(`boolean of answer submitted is: ${submitted}`);
@@ -84,8 +86,16 @@ export default function Main() {
         This is a page where you can practice your skills and continue to
         progress over time.
       </p>
+      <AwesomeButton type="primary" onReleased={() => complete(questions)}>
+        Load Questions
+      </AwesomeButton>
+      <div className={styles.divider} />
+      <AwesomeButton type="primary" onReleased={() => complete(questions)}>
+        Reset Questions
+      </AwesomeButton>
       <br />
-      <p>Please click one of the options from the nav bar above.</p>
+      <br />
+      <div>Please click one of the options from the nav bar above.</div>
       <br />
       <div>Professor</div>
       <div>This is where you can add questions to your quiz</div>
