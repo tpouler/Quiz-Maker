@@ -17,13 +17,14 @@ import questionFill from "@iconify/icons-akar-icons/question-fill";
 // eslint-disable-next-line quotes
 import quizIcon from "@iconify/icons-material-symbols/quiz";
 import ResultsTable from "../components/ResultsTable";
+import SelectCourse from "../components/selectCourse";
 
 export default function SresultsMain() {
   const [prof, setProf] = useState(false);
+  const [currCourse, setCurrCourse] = useState();
+  const [courseChosen, setCourseChosen] = useState(false);
 
   const user = useUser();
-  console.log("checking user");
-  console.log(user);
 
   useEffect(() => {
     if (user && user.displayName) {
@@ -77,7 +78,18 @@ export default function SresultsMain() {
           <LoginStatus />
         </div>
 
-        <main>{!prof && <ResultsTable userID={user.uid} />}</main>
+        <main>
+          {!prof && !courseChosen && (
+            <SelectCourse
+              prof={prof}
+              setCourse={setCurrCourse}
+              setCourseChosen={setCourseChosen}
+            />
+          )}
+          {!prof && courseChosen && (
+            <ResultsTable userID={user.email} course={currCourse} />
+          )}
+        </main>
         <footer>A 312 project</footer>
       </div>
     );

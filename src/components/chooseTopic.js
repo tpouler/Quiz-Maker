@@ -7,7 +7,7 @@ import Topics from "./topics";
 import PropTypes from "prop-types";
 //Testing
 
-export default function ChooseTopic({ setTopics, setTopicsChosen }) {
+export default function ChooseTopic({ course, setTopics, setTopicsChosen }) {
   //console.log(`boolean of answer submitted is: ${submitted}`);
 
   return (
@@ -19,13 +19,18 @@ export default function ChooseTopic({ setTopics, setTopicsChosen }) {
 
       <h1>Please select which topics you want to be on the quiz!</h1>
       <center>
-        <Topics setTopics={setTopics} setTopicsChosen={setTopicsChosen} />
+        <Topics
+          course={course}
+          setTopics={setTopics}
+          setTopicsChosen={setTopicsChosen}
+        />
       </center>
     </div>
   );
 }
 
 ChooseTopic.propTypes = {
+  course: PropTypes.string,
   setTopicsChosen: PropTypes.func,
   setTopics: PropTypes.func,
 };

@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 
 import { useUser } from "../contexts/UserContext";
+import { addStudent } from "../utils/firebase-utils.mjs";
 
 // All icons were taken from the following link
 // https://icon-sets.iconify.design/
@@ -28,7 +29,7 @@ export default function Main() {
   //console.log(`boolean of answer submitted is: ${submitted}`);
   const [prof, setProf] = useState(false);
   const user = useUser();
-
+  addStudent("CS312", "a@gmail.com");
   useEffect(() => {
     if (user && user.displayName) {
       if (user.displayName === "professor") {
@@ -93,6 +94,7 @@ export default function Main() {
       <div>Quiz</div>
       <div>This is where you can practice your skills</div>
       <br />
+      <div> </div>
       <footer>A 312 project</footer>
     </div>
   );

@@ -17,7 +17,8 @@ import { useEffect } from "react";
 export default function ProfessorMain() {
   const [submitted, setSubmitted] = useState();
 
-  const topicsList = useTopics();
+  const topicsList = useTopics("CS312");
+  console.log(topicsList);
 
   useEffect(() => {}, [submitted]); // eslint-disable-line
 

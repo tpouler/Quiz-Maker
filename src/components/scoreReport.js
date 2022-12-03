@@ -4,7 +4,7 @@ import { useUser } from "../contexts/UserContext";
 import { addResult } from "../utils/firebase-utils.mjs";
 // import useTopics from "../hooks/useTopics";
 
-export default function ScoreReport({ questions }) {
+export default function ScoreReport({ questions, course }) {
   const checkResponse = (question) => {
     return question.response === question.answer;
   };
@@ -30,8 +30,9 @@ export default function ScoreReport({ questions }) {
     resultObj[t] = roundedTScore;
   });
 
-  const userID = useUser().uid;
-  addResult(resultObj, userID);
+  const userID = useUser().email;
+  console.log(userID);
+  addResult(resultObj, course, userID);
 
   const score = (numCorrect / questions.length) * 100;
   const roundedScore = Number(score).toFixed(2);
@@ -57,4 +58,5 @@ export default function ScoreReport({ questions }) {
 
 ScoreReport.propTypes = {
   questions: PropTypes.array,
+  course: PropTypes.string,
 };

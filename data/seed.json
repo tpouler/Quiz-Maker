@@ -3,84 +3,98 @@
     "question": "1 + 1 = _",
     "answer": "2",
     "uid": "1",
-    "topic": "Addition"
+    "topic": "Addition",
+    "course": "CS312"
   },
   {
     "question": "5 + 7 = _",
     "answer": "12",
     "uid": "1",
-    "topic": "Addition"
+    "topic": "Addition",
+    "course": "CS312"
   },
   {
     "question": "11 + 13 = _",
     "answer": "24",
     "uid": "1",
-    "topic": "Addition"
+    "topic": "Addition",
+    "course": "CS312"
   },
   {
     "question": "20 + 14 = _",
     "answer": "34",
     "uid": "1",
-    "topic": "Addition"
+    "topic": "Addition",
+    "course": "CS312"
   },
   {
     "question": "14 + 3 = _",
     "answer": "17",
     "uid": "1",
-    "topic": "Addition"
+    "topic": "Addition",
+    "course": "CS312"
   },
   {
     "question": "4(2+3) = _",
     "answer": "20",
     "uid": "1",
-    "topic": "Multiplication"
+    "topic": "Multiplication",
+    "course": "CS312"
   },
   {
     "question": "What is 7 * 6 = _",
     "answer": "42",
     "uid": "1",
-    "topic": "Multiplication"
+    "topic": "Multiplication",
+    "course": "CS312"
   },
   {
     "question": "What is 9 * 5 = _",
     "answer": "45",
     "uid": "1",
-    "topic": "Multiplication"
+    "topic": "Multiplication",
+    "course": "CS312"
   },
   {
     "question": "What is 10 * 11 = _",
     "answer": "110",
     "uid": "1",
-    "topic": "Multiplication"
+    "topic": "Multiplication",
+    "course": "CS312"
   },
   {
     "question": "64/8 = _",
     "answer": "8",
     "uid": "1",
-    "topic": "Division"
+    "topic": "Division",
+    "course": "CS312"
   },
   {
     "question": "70/10 = _",
     "answer": "7",
     "uid": "1",
-    "topic": "Division"
+    "topic": "Division",
+    "course": "CS312"
   },
   {
     "question": "16/4 = _",
     "answer": "4",
     "uid": "1",
-    "topic": "Division"
+    "topic": "Division",
+    "course": "CS312"
   },
   {
     "question": "If x + 8 = 32, What is x?",
     "answer": "24",
     "uid": "1",
-    "topic": "Algebra"
+    "topic": "Algebra",
+    "course": "CS312"
   },
   {
     "question": "Here's a Science Question",
     "answer": "0",
     "uid": "1",
-    "topic": "Science"
+    "topic": "Science",
+    "course": "CS312"
   }
 ]

@@ -17,6 +17,7 @@ import LoginStatus from "../components/LoginStatus";
 import Link from "next/link";
 
 import ChooseTopic from "../components/chooseTopic";
+import SelectCourse from "../components/selectCourse";
 
 // All icons were taken from the following link
 // https://icon-sets.iconify.design/
@@ -41,6 +42,9 @@ export default function QuizMain() {
   const [prof, setProf] = useState(false);
   const [topics, setTopics] = useState([]);
   const [questions, setQuestions] = useState([]);
+  const [currCourse, setCurrCourse] = useState();
+  const [courseChosen, setCourseChosen] = useState(false);
+  const [id, setID] = useState();
 
   const user = useUser();
 
@@ -48,24 +52,30 @@ export default function QuizMain() {
     if (user && user.displayName) {
       if (user.displayName === "professor") {
         setProf(true);
+        setID(user.uid);
+      } else {
+        setProf(false);
+        setID(user.email);
       }
     }
   }, [user]); // eslint-disable-line
 
-  useEffect(() => {
-    // console.log(topics)
-  }, [topics]);
+  // useEffect(() => {
+  //   // console.log(topics)
+  // }, [topics]);
 
-  useEffect(() => {
-    console.log("questions");
-    console.log(questions);
-  }, [questions]);
+  // useEffect(() => {
+  //   console.log("questions");
+  //   console.log(questions);
+  // }, [questions]);
 
   //Still need to update json to have answer field filled in with out answer
   function complete(questionList) {
     setSubmitted(true);
     return questionList;
   }
+  console.log("this is the id:");
+  console.log(id);
 
   return (
     <div className={styles.header}>
@@ -105,21 +115,33 @@ export default function QuizMain() {
       </div>
 
       <main>
-        {!topicsChosen && !submitted && (
+        {!courseChosen && (
+          <SelectCourse
+            prof={prof}
+            setCourse={setCurrCourse}
+            courseChosen={courseChosen}
+            setCourseChosen={setCourseChosen}
+          />
+        )}
+        {courseChosen && !topicsChosen && !submitted && (
           <ChooseTopic
+            course={currCourse}
             setTopics={setTopics}
             setTopicsChosen={setTopicsChosen}
           />
         )}
-        {topicsChosen && (
+        {courseChosen && topicsChosen && (
           <Quiz
+            course={currCourse}
             topics={topics}
             complete={complete}
             submitted={submitted}
             setQuestions={setQuestions}
           />
         )}
-        {submitted && <ScoreReport questions={questions} />}
+        {courseChosen && submitted && (
+          <ScoreReport questions={questions} course={currCourse} />
+        )}
       </main>
 
       <footer>A 312 project</footer>

@@ -65,7 +65,7 @@ export default function AddQuestion({ topics, setSubmitted }) {
           onChange={handleChange}
         >
           <option id="" value="" disabled selected hidden>
-            Select an topic
+            Select a topic
           </option>
           {topicsList}
           <option id="custom" value="custom">
@@ -102,6 +102,7 @@ export default function AddQuestion({ topics, setSubmitted }) {
         answer: answer,
         uid: user.uid,
         topic: topic,
+        course: "CS312",
       };
       addQuestion(questionObj);
       setSubmitted(true);
