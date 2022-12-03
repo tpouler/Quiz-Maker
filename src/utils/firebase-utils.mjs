@@ -46,7 +46,7 @@ export function initializeFirebase() {
       process.env.NODE_ENV === "test"
     ) {
       //console.log("Connecting to emulator");
-      const auth = getAuth();
+      const auth = getAuth(app);
       connectAuthEmulator(auth, "http://localhost:9099");
       connectFirestoreEmulator(db, "localhost", 8080);
     }
