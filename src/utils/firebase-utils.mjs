@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 
 import { getApp, initializeApp } from "firebase/app";
 import {
@@ -136,6 +136,8 @@ export async function addCourse(uid, courseTitle){
 export async function addResult(result, course, email){
   const currDate = new Date();
   const resultData = { ...result,
+    student: email,
+    course: course,
     date: currDate.toLocaleString(),
   };
   const db = getFirestore();
