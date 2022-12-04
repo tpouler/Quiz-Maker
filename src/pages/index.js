@@ -21,7 +21,6 @@ import homeAlt1 from "@iconify/icons-akar-icons/home-alt1";
 import questionFill from "@iconify/icons-akar-icons/question-fill";
 // eslint-disable-next-line quotes
 import quizIcon from "@iconify/icons-material-symbols/quiz";
-import useAllresults from "../hooks/useAllresults";
 
 //Testing
 
@@ -29,9 +28,6 @@ export default function Main() {
   //console.log(`boolean of answer submitted is: ${submitted}`);
   const [prof, setProf] = useState(false);
   const user = useUser();
-
-  const results = useAllresults("CS312");
-  console.log(results);
 
   useEffect(() => {
     if (user && user.displayName) {

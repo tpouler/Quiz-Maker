@@ -9,7 +9,7 @@ import {
   addQuestion,
 } from "../utils/firebase-utils.mjs";
 
-jest.setTimeout(8000);
+jest.setTimeout(15000);
 
 describe("Firestore utility functions test", () => {
   let db;
@@ -74,7 +74,7 @@ describe("Firestore utility functions test", () => {
         question: "2 + 10?",
         answer: "12",
         response: "",
-        topic: "Science",
+        topic: "Alivia Rules",
         course: "CS312",
         uid: "1",
       };
