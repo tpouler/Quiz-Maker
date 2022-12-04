@@ -13,6 +13,7 @@ import {
   getDocs,
   updateDoc,
   arrayUnion,
+  arrayRemove,
 } from "firebase/firestore";
 import { getAuth, connectAuthEmulator} from "firebase/auth";
 

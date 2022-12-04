@@ -15,6 +15,7 @@ export default function SelectCourse({ prof, setCourse, setCourseChosen }) {
   const user = useUser();
 
   const [currCourse, setCurrCourse] = useState();
+
   let id;
   if (prof) {
     id = user.uid;
