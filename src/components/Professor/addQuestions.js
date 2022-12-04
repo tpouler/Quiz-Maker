@@ -155,6 +155,5 @@ export default function AddQuestion({
 AddQuestion.propTypes = {
   currCourse: PropTypes.string,
   setSubmitted: PropTypes.func,
-  submitted: PropTypes.bool,
   setCourseChosen: PropTypes.func,
 };

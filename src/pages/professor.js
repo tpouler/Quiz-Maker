@@ -113,7 +113,6 @@ export default function ProfessorMain() {
           <AddQuestion
             currCourse={currCourse}
             setSubmitted={setSubmitted}
-            submitted={submitted}
             setCourseChosen={setCourseChosen}
           />
         )}
