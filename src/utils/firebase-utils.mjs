@@ -1,4 +1,4 @@
-// Import the functions you need from the SDKs you need
+/* eslint-disable no-unused-vars */
 
 import { getApp, initializeApp } from "firebase/app";
 import {
@@ -66,7 +66,7 @@ export async function addQuestion(question){
   const copy = JSON.parse(JSON.stringify(question));
 
   let ref = collection(db, "courses");
-  await setDoc(doc(ref, question.course), {id: question.uid, name: question.course}, {merge: true});
+  await setDoc(doc(ref, question.course), {id: question.uid, name: question.course, students: arrayUnion()}, {merge: true});
   ref = collection(db, "courses",question.course, "topics");
   await setDoc(doc(ref, question.topic), {name: question.topic});
   ref = collection(db, "courses", question.course, "topics", question.topic, "questions");
@@ -100,6 +100,12 @@ export async function removeStudent(course, email){
   await updateDoc(ref, {
     students: arrayRemove(email)
   })
+}
+
+export async function addCourse(uid, courseTitle){
+  const db = getFirestore();
+
+  await setDoc(doc(db, "courses", courseTitle), {name: courseTitle, id: uid, students:[] })
 }
 
 // export async function addQuestion(question) {
