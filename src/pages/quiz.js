@@ -87,10 +87,17 @@ export default function QuizMain() {
       <div className={styles.topnav}>
         <Link href="/">
           <span>
-            <Icon icon={homeAlt1} width="25" height="25" inline />
-            Home
+            <Icon icon={homeAlt1} width="25" height="25" inline /> Home
           </span>
         </Link>
+        {prof && (
+          <Link href="/manage">
+            <span>
+              <Icon icon="ion:person" width="25" height="25" inline />
+              Manage
+            </span>
+          </Link>
+        )}
         {prof && (
           <Link href="/professor">
             <span>
@@ -107,7 +114,26 @@ export default function QuizMain() {
         {!prof && (
           <Link href="/sresults">
             <span>
-              <Icon icon="fluent-mdl2:feedback-response-solid" /> Results
+              <Icon
+                icon="fluent-mdl2:feedback-response-solid"
+                width="25"
+                height="20"
+                inline
+              />{" "}
+              Results
+            </span>
+          </Link>
+        )}
+        {prof && (
+          <Link href="/presults">
+            <span>
+              <Icon
+                icon="fluent-mdl2:feedback-response-solid"
+                width="25"
+                height="20"
+                inline
+              />
+              Results
             </span>
           </Link>
         )}

@@ -41,10 +41,17 @@ export default function PresultsMain() {
         <div className={styles.topnav}>
           <Link href="/">
             <span>
-              <Icon icon={homeAlt1} width="25" height="25" inline />
-              Home
+              <Icon icon={homeAlt1} width="25" height="25" inline /> Home
             </span>
           </Link>
+          {prof && (
+            <Link href="/manage">
+              <span>
+                <Icon icon="ion:person" width="25" height="25" inline />
+                Manage
+              </span>
+            </Link>
+          )}
           {prof && (
             <Link href="/professor">
               <span>
@@ -58,6 +65,19 @@ export default function PresultsMain() {
               <Icon icon={quizIcon} width="25" height="20" inline /> Quiz
             </span>
           </Link>
+          {!prof && (
+            <Link href="/sresults">
+              <span>
+                <Icon
+                  icon="fluent-mdl2:feedback-response-solid"
+                  width="25"
+                  height="20"
+                  inline
+                />{" "}
+                Results
+              </span>
+            </Link>
+          )}
           {prof && (
             <Link href="/presults">
               <span className={styles.active}>
@@ -71,7 +91,6 @@ export default function PresultsMain() {
               </span>
             </Link>
           )}
-
           <LoginStatus />
         </div>
 

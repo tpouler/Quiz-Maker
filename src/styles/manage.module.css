@@ -1,13 +1,15 @@
 .coursetile {
   border: 2px solid black;
-  width: 25%;
+  width: 100%;
   background-color: powderblue;
   margin: auto;
   padding: 20px;
   text-align: center;
+  color: black;
 }
 
 .li {
   list-style-type: none;
   text-align: left;
+  font-size: 15px;
 }

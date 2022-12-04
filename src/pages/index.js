@@ -55,6 +55,14 @@ export default function Main() {
           </span>
         </Link>
         {prof && (
+          <Link href="/manage">
+            <span>
+              <Icon icon="ion:person" width="25" height="25" inline />
+              Manage
+            </span>
+          </Link>
+        )}
+        {prof && (
           <Link href="/professor">
             <span>
               <Icon icon={questionFill} width="25" height="20" inline />
