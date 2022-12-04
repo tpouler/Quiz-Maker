@@ -10,17 +10,28 @@ import LoginStatus from "../components/LoginStatus";
 import questionFill from "@iconify/icons-akar-icons/question-fill";
 // eslint-disable-next-line quotes
 import quizIcon from "@iconify/icons-material-symbols/quiz";
-import useTopics from "../hooks/useTopics";
 import Link from "next/link";
 import { useEffect } from "react";
+import SelectCourse from "../components/selectCourse";
+import { useUser } from "../contexts/UserContext";
 
 export default function ProfessorMain() {
   const [submitted, setSubmitted] = useState();
+  const [currCourse, setCurrCourse] = useState();
+  const [courseChosen, setCourseChosen] = useState(false);
+  const [prof, setProf] = useState(true);
 
-  const topicsList = useTopics("CS312");
-  console.log(topicsList);
+  const user = useUser();
 
   useEffect(() => {}, [submitted]); // eslint-disable-line
+
+  useEffect(() => {
+    if (user && user.displayName) {
+      if (user.displayName === "professor") {
+        setProf(true);
+      }
+    }
+  }, [user]);
 
   return (
     <div className={styles.header}>
@@ -52,15 +63,27 @@ export default function ProfessorMain() {
       </div>
 
       <main>
-        <h1 className="title">Add Questions</h1>
-        {!submitted && (
-          <AddQuestion
-            topics={topicsList}
-            setSubmitted={setSubmitted}
-            submitted={submitted}
+        {!courseChosen && <h1 className="title">Add Questions</h1>}
+        {courseChosen && (
+          <h1 className="title"> Add Questions for {currCourse}</h1>
+        )}
+        {!courseChosen && (
+          <SelectCourse
+            prof={prof}
+            setCourse={setCurrCourse}
+            courseChosen={courseChosen}
+            setCourseChosen={setCourseChosen}
           />
         )}
-        {submitted && (
+        {courseChosen && !submitted && (
+          <AddQuestion
+            currCourse={currCourse}
+            setSubmitted={setSubmitted}
+            submitted={submitted}
+            setCourseChosen={setCourseChosen}
+          />
+        )}
+        {courseChosen && submitted && (
           <SubmittedQuestions
             setSubmitted={setSubmitted}
             submitted={submitted}
