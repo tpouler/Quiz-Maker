@@ -1,5 +1,4 @@
 import AllResultsTable from "../components/Professor/allResultsTable";
-import useAllresults from "../hooks/useAllresults";
 import styles from "../styles/index.module.css";
 import LoginStatus from "../components/LoginStatus";
 import Head from "next/head";
@@ -13,22 +12,26 @@ import questionFill from "@iconify/icons-akar-icons/question-fill";
 import { useEffect, useState } from "react";
 import quizIcon from "@iconify/icons-material-symbols/quiz";
 import { useUser } from "../contexts/UserContext";
+import SelectCourse from "../components/selectCourse";
 
 export default function PresultsMain() {
-  const [prof, setProf] = useState(true);
+  const [prof, setProf] = useState();
+  const [id, setID] = useState();
+  const [course, setCourse] = useState();
+  const [courseChosen, setCourseChosen] = useState(false);
   const user = useUser();
 
   useEffect(() => {
     if (user && user.displayName) {
       if (user.displayName === "professor") {
         setProf(true);
+        setID(user.uid);
+      } else {
+        setProf(false);
+        setID(user.email);
       }
     }
-  }, [user]);
-
-  const course = "CS312";
-  const results = useAllresults(course);
-  console.log(results);
+  }, [user]); // eslint-disable-line
 
   if (user) {
     return (
@@ -94,7 +97,18 @@ export default function PresultsMain() {
           <LoginStatus />
         </div>
 
-        <main>{prof && <AllResultsTable results={results} />}</main>
+        <main>
+          {prof !== undefined && id !== undefined && !courseChosen && (
+            <SelectCourse
+              prof={prof}
+              id={id}
+              setCourse={setCourse}
+              setCourseChosen={setCourseChosen}
+            />
+          )}
+
+          {prof && courseChosen && <AllResultsTable course={course} />}
+        </main>
         <footer>A 312 project</footer>
       </div>
     );

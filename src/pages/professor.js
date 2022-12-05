@@ -19,7 +19,8 @@ export default function ProfessorMain() {
   const [submitted, setSubmitted] = useState();
   const [currCourse, setCurrCourse] = useState();
   const [courseChosen, setCourseChosen] = useState(false);
-  const [prof, setProf] = useState(true);
+  const [prof, setProf] = useState();
+  const [id, setID] = useState();
 
   const user = useUser();
 
@@ -29,9 +30,13 @@ export default function ProfessorMain() {
     if (user && user.displayName) {
       if (user.displayName === "professor") {
         setProf(true);
+        setID(user.uid);
+      } else {
+        setProf(false);
+        setID(user.email);
       }
     }
-  }, [user]);
+  }, [user]); // eslint-disable-line
 
   return (
     <div className={styles.header}>
@@ -101,9 +106,10 @@ export default function ProfessorMain() {
         {courseChosen && (
           <h1 className="title"> Add Questions for {currCourse}</h1>
         )}
-        {!courseChosen && (
+        {prof !== undefined && id !== undefined && !courseChosen && (
           <SelectCourse
             prof={prof}
+            id={id}
             setCourse={setCurrCourse}
             courseChosen={courseChosen}
             setCourseChosen={setCourseChosen}

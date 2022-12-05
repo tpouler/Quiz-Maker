@@ -9,7 +9,7 @@ import {
   addQuestion,
 } from "../utils/firebase-utils.mjs";
 
-jest.setTimeout(15000);
+jest.setTimeout(20000);
 
 describe("Firestore utility functions test", () => {
   let db;

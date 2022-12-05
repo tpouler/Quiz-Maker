@@ -39,7 +39,7 @@ export default function QuizMain() {
   //const questions = useQuestions(["Math", "Science"]);
   const [submitted, setSubmitted] = useState();
   const [topicsChosen, setTopicsChosen] = useState(false);
-  const [prof, setProf] = useState(false);
+  const [prof, setProf] = useState();
   const [topics, setTopics] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [currCourse, setCurrCourse] = useState();
@@ -59,15 +59,6 @@ export default function QuizMain() {
       }
     }
   }, [user]); // eslint-disable-line
-
-  // useEffect(() => {
-  //   // console.log(topics)
-  // }, [topics]);
-
-  // useEffect(() => {
-  //   console.log("questions");
-  //   console.log(questions);
-  // }, [questions]);
 
   //Still need to update json to have answer field filled in with out answer
   function complete(questionList) {
@@ -141,9 +132,10 @@ export default function QuizMain() {
       </div>
 
       <main>
-        {!courseChosen && (
+        {prof !== undefined && id !== undefined && !courseChosen && (
           <SelectCourse
             prof={prof}
+            id={id}
             setCourse={setCurrCourse}
             courseChosen={courseChosen}
             setCourseChosen={setCourseChosen}

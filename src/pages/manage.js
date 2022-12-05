@@ -1,5 +1,3 @@
-import useCourses from "../hooks/useCourses";
-import CourseTile from "../components/Professor/courseTile";
 import Head from "next/head";
 import styles from "../styles/index.module.css";
 import LoginStatus from "../components/LoginStatus";
@@ -10,15 +8,27 @@ import homeAlt1 from "@iconify/icons-akar-icons/home-alt1";
 import questionFill from "@iconify/icons-akar-icons/question-fill";
 // eslint-disable-next-line quotes
 import quizIcon from "@iconify/icons-material-symbols/quiz";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useUser } from "../contexts/UserContext";
+import CourseTiles from "../components/Professor/courseTiles";
 
 export default function ManageMain() {
   const [prof, setProf] = useState(true);
-  setProf(true); //eventually this needs to be useEffect for user
+  const [id, setID] = useState();
 
-  const currCourses = useCourses(true, "1");
+  const user = useUser();
 
-  const courseTiles = currCourses.map((c) => <CourseTile key={c} course={c} />);
+  useEffect(() => {
+    if (user && user.displayName) {
+      if (user.displayName === "professor") {
+        setProf(true);
+        setID(user.uid);
+      } else {
+        setProf(false);
+        setID(user.email);
+      }
+    }
+  }, [user]); // eslint-disable-line
 
   return (
     <div className={styles.header}>
@@ -84,7 +94,7 @@ export default function ManageMain() {
       </div>
 
       <main>
-        <div> {courseTiles} </div>
+        {prof && id !== undefined && <CourseTiles prof={prof} id={id} />}
       </main>
       <footer> A 312 project </footer>
     </div>

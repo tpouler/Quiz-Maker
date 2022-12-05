@@ -13,7 +13,7 @@ import {
   getDocs,
   updateDoc,
   arrayUnion,
-  arrayRemove,
+  arrayRemove
 } from "firebase/firestore";
 import { getAuth, connectAuthEmulator} from "firebase/auth";
 
@@ -203,6 +203,7 @@ export async function clearCollection(collectionRef) {
 /**
  * This function clears all data out of the database. This is only used for testing.
  */
+
 export async function clearDatabase() {
   const db = getFirestore();
 
@@ -218,3 +219,20 @@ export async function clearDatabase() {
     })
   );
 }
+
+/** 
+export async function clearDatabase(){
+  const db = getFirestore();
+
+  const coursesSnap = await getDocs(collection(db, "courses"));
+
+  await coursesSnap.forEach(async (course) => {
+    const topicsSnap = await getDocs(collection(db, "courses", course.data().name, "topics"));
+   await topicsSnap.forEach(async (top) => {
+       await clearCollection(collection(db, "courses", course.data().name, "topics", top.data().name, "questions"));
+       await top.ref.delete();
+    });
+  });
+}
+*/
+

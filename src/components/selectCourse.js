@@ -9,19 +9,9 @@ import { AwesomeButton } from "react-awesome-button";
 import useCourses from "../hooks/useCourses";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { useUser } from "../contexts/UserContext";
 
-export default function SelectCourse({ prof, setCourse, setCourseChosen }) {
-  const user = useUser();
-
+export default function SelectCourse({ prof, id, setCourse, setCourseChosen }) {
   const [currCourse, setCurrCourse] = useState();
-
-  let id;
-  if (prof) {
-    id = user.uid;
-  } else {
-    id = user.email;
-  }
 
   const coursesList = useCourses(prof, id);
 
@@ -72,6 +62,7 @@ export default function SelectCourse({ prof, setCourse, setCourseChosen }) {
 
 SelectCourse.propTypes = {
   prof: PropTypes.bool,
+  id: PropTypes.string,
   setCourse: PropTypes.func,
   setCourseChosen: PropTypes.func,
 };

@@ -23,6 +23,7 @@ export default function SresultsMain() {
   const [prof, setProf] = useState(false);
   const [currCourse, setCurrCourse] = useState();
   const [courseChosen, setCourseChosen] = useState(false);
+  const [id, setID] = useState();
 
   const user = useUser();
 
@@ -30,9 +31,14 @@ export default function SresultsMain() {
     if (user && user.displayName) {
       if (user.displayName === "professor") {
         setProf(true);
+        setID(user.uid);
+      } else {
+        setProf(false);
+        setID(user.email);
       }
     }
   }, [user]); // eslint-disable-line
+
   if (user) {
     return (
       <div className={styles.header}>
@@ -79,14 +85,15 @@ export default function SresultsMain() {
         </div>
 
         <main>
-          {!prof && !courseChosen && (
+          {prof !== undefined && id !== undefined && !prof && !courseChosen && (
             <SelectCourse
               prof={prof}
+              id={id}
               setCourse={setCurrCourse}
               setCourseChosen={setCourseChosen}
             />
           )}
-          {!prof && courseChosen && (
+          {!prof && id !== undefined && courseChosen && (
             <ResultsTable userID={user.email} course={currCourse} />
           )}
         </main>

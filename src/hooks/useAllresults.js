@@ -13,7 +13,7 @@ function useAllresults(course) {
   const db = getFirestore();
 
   useEffect(() => {
-    const resultsFetched = [];
+    let resultsFetched = [];
     onSnapshot(collection(db, "courses", course, "results"), (studentsList) => {
       studentsList.docs.forEach((doc) => {
         const student = doc.data().email;
@@ -21,13 +21,13 @@ function useAllresults(course) {
           collection(db, "courses", course, "results", student, "quizResults"),
           (resultsList) => {
             resultsList.docs.forEach((res) => {
-              console.log(res.id);
               resultsFetched.push({ ...res.data(), id: res.id });
             });
+            resultsFetched = results.concat(resultsFetched);
+            setResults(resultsFetched);
           }
         );
       });
-      setResults(resultsFetched);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
