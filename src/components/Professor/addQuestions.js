@@ -7,7 +7,12 @@ import { AwesomeButton } from "react-awesome-button";
 import styles from "../../styles/index.module.css";
 import selectStyles from "../../styles/select.module.css";
 import { useUser } from "../../contexts/UserContext";
-export default function AddQuestion({ topics, setSubmitted }) {
+import useTopics from "../../hooks/useTopics.js";
+export default function AddQuestion({
+  currCourse,
+  setSubmitted,
+  setCourseChosen,
+}) {
   // eslint-disable-line
 
   const [question, setQuestion] = useState(); // eslint-disable-line
@@ -27,6 +32,7 @@ export default function AddQuestion({ topics, setSubmitted }) {
     }
   }
 
+  const topics = useTopics(currCourse);
   const topicsList = topics.map((t) => (
     <option id={t} key={t} value={t}>
       {t}
@@ -65,7 +71,7 @@ export default function AddQuestion({ topics, setSubmitted }) {
           onChange={handleChange}
         >
           <option id="" value="" disabled selected hidden>
-            Select an topic
+            Select a topic
           </option>
           {topicsList}
           <option id="custom" value="custom">
@@ -102,6 +108,7 @@ export default function AddQuestion({ topics, setSubmitted }) {
         answer: answer,
         uid: user.uid,
         topic: topic,
+        course: currCourse,
       };
       addQuestion(questionObj);
       setSubmitted(true);
@@ -118,6 +125,15 @@ export default function AddQuestion({ topics, setSubmitted }) {
 
   return (
     <div>
+      <AwesomeButton
+        type="secondary"
+        onReleased={() => {
+          setCourseChosen(false);
+        }}
+      >
+        Change Course
+      </AwesomeButton>
+      <p> </p>
       {questionInput()}
       {allowSubmit && (
         <div>
@@ -137,7 +153,7 @@ export default function AddQuestion({ topics, setSubmitted }) {
 } //function addQuestion bracket
 
 AddQuestion.propTypes = {
-  topics: PropTypes.arrayOf(PropTypes.string),
+  currCourse: PropTypes.string,
   setSubmitted: PropTypes.func,
-  submitted: PropTypes.bool,
+  setCourseChosen: PropTypes.func,
 };

@@ -7,18 +7,22 @@
 import { getFirestore, collection, onSnapshot } from "firebase/firestore";
 import { useState, useEffect } from "react";
 
-function useTopics() {
+function useTopics(currCourse) {
   const [topics, setTopics] = useState([]);
-  const db = getFirestore();
 
   useEffect(() => {
     const topicsFetched = [];
-    onSnapshot(collection(db, "questions"), (topicsList) => {
-      topicsList.docs.forEach((doc) => {
-        topicsFetched.push(doc.data().section);
-      });
-      setTopics(topicsFetched);
-    });
+    const db = getFirestore();
+    const snap = onSnapshot(
+      collection(db, "courses", currCourse, "topics"),
+      (topicsList) => {
+        topicsList.docs.forEach((doc) => {
+          topicsFetched.push(doc.data().name);
+        });
+        setTopics(topicsFetched);
+      }
+    );
+    return snap;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return topics;

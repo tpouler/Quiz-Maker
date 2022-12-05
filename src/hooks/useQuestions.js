@@ -7,15 +7,15 @@
 import { getFirestore, collection, onSnapshot } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-function useQuestions(topicsList) {
+function useQuestions(currCourse, topicsList) {
   const [sections, setSections] = useState([]);
-  const db = getFirestore();
 
   useEffect(() => {
     const sectionsFetched = [];
-    topicsList.forEach((topic) => {
+    const db = getFirestore();
+    topicsList.forEach((t) => {
       onSnapshot(
-        collection(db, "questions", topic, "questions"),
+        collection(db, "courses", currCourse, "topics", t, "questions"),
         (sectionList) => {
           sectionList.docs.forEach((doc) => {
             sectionsFetched.push(doc.data());

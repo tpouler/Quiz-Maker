@@ -7,20 +7,22 @@
 import { getFirestore, collection, onSnapshot } from "firebase/firestore";
 import { useState, useEffect } from "react";
 
-function useResults(uid) {
+function useResults(course, email) {
   const [results, setResults] = useState([]);
   const db = getFirestore();
 
   useEffect(() => {
     const resultsFetched = [];
-    onSnapshot(collection(db, "results", uid, "quizResults"), (resultsList) => {
-      resultsList.docs.forEach((doc) => {
-        console.log("testing");
-        console.log(doc.data());
-        resultsFetched.push(doc.data());
-      });
-      setResults(resultsFetched);
-    });
+    onSnapshot(
+      collection(db, "courses", course, "results", email, "quizResults"),
+      (resultsList) => {
+        resultsList.docs.forEach((doc) => {
+          console.log(doc.data());
+          resultsFetched.push(doc.data());
+        });
+        setResults(resultsFetched);
+      }
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   console.log(results);

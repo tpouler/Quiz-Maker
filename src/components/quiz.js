@@ -73,10 +73,16 @@ AnswerInfo.propTypes = {
   resetQuestion: PropTypes.func,
 };
 
-export default function Quiz({ topics, complete, submitted, setQuestions }) {
+export default function Quiz({
+  course,
+  topics,
+  complete,
+  submitted,
+  setQuestions,
+}) {
   const [reset, resetQuestion] = useState(false);
   const user = useUser();
-  const questions = useQuestions(topics);
+  const questions = useQuestions(course, topics);
   setQuestions(questions);
 
   // console.log(questions)
@@ -123,6 +129,7 @@ export default function Quiz({ topics, complete, submitted, setQuestions }) {
   );
 }
 Quiz.propTypes = {
+  course: PropTypes.string,
   questions: PropTypes.array,
   complete: PropTypes.func,
   submitted: PropTypes.bool,

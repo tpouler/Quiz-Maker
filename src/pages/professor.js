@@ -10,15 +10,17 @@ import LoginStatus from "../components/LoginStatus";
 import questionFill from "@iconify/icons-akar-icons/question-fill";
 // eslint-disable-next-line quotes
 import quizIcon from "@iconify/icons-material-symbols/quiz";
-import useTopics from "../hooks/useTopics";
 import Link from "next/link";
+import { useEffect } from "react";
+import SelectCourse from "../components/selectCourse";
+import { useUser } from "../contexts/UserContext";
 
 // import {loadData, clearDatabase} from "../utils/firebase-utils.mjs";
 // import data from "../../data/seed.json";
 
 //Documentation to understand AwesomeButton
 //https://github.com/rcaferati/react-awesome-button
-import { AwesomeButton } from "react-awesome-button";
+//import { AwesomeButton } from "react-awesome-button";
 
 // function loadQuestions() {
 //   loadData(data);
@@ -26,119 +28,141 @@ import { AwesomeButton } from "react-awesome-button";
 
 export default function ProfessorMain() {
   const [submitted, setSubmitted] = useState();
+  const [currCourse, setCurrCourse] = useState();
+  const [courseChosen, setCourseChosen] = useState(false);
+  const [prof, setProf] = useState();
+  const [id, setID] = useState();
 
-  const topicsList = useTopics();
+  const user = useUser();
 
-  if (submitted !== true) {
-    return (
-      <div className={styles.header}>
-        <Head>
-          <title>Potoo project</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
+  useEffect(() => {}, [submitted]); // eslint-disable-line
 
-        <div className={styles.topnav}>
-          <Link href="/">
+  useEffect(() => {
+    if (user && user.displayName) {
+      if (user.displayName === "professor") {
+        setProf(true);
+        setID(user.uid);
+      } else {
+        setProf(false);
+        setID(user.email);
+      }
+    }
+  }, [user]); // eslint-disable-line
+
+  return (
+    <div className={styles.header}>
+      <Head>
+        <title>Potoo project</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <div className={styles.topnav}>
+        <Link href="/">
+          <span>
+            <Icon icon={homeAlt1} width="25" height="25" inline /> Home
+          </span>
+        </Link>
+        {prof && (
+          <Link href="/manage">
             <span>
-              <Icon icon={homeAlt1} width="25" height="25" inline />
-              Home
+              <Icon icon="ion:person" width="25" height="25" inline />
+              Manage
             </span>
           </Link>
+        )}
+        {prof && (
           <Link href="/professor">
             <span className={styles.active}>
               <Icon icon={questionFill} width="25" height="20" inline />
               Professor
             </span>
           </Link>
-          <Link href="/quiz">
+        )}
+        <Link href="/quiz">
+          <span>
+            <Icon icon={quizIcon} width="25" height="20" inline /> Quiz
+          </span>
+        </Link>
+        {!prof && (
+          <Link href="/sresults">
             <span>
-              <Icon icon={quizIcon} width="25" height="20" inline />
-              Quiz
+              <Icon
+                icon="fluent-mdl2:feedback-response-solid"
+                width="25"
+                height="20"
+                inline
+              />{" "}
+              Results
             </span>
           </Link>
-          <LoginStatus />
-        </div>
-
-        <main>
-          <span>
-            <h1 className="title">Add Questions</h1>
-            <AddQuestion
-              topics={topicsList}
-              setSubmitted={setSubmitted}
-              submitted={submitted}
-            />
-          </span>
-          <br />
-          <span>
-            {/* <AwesomeButton type="primary" onReleased={() => loadQuestions()}>
-              Load Questions
-            </AwesomeButton>
-            <div className={styles.divider} />
-            <AwesomeButton type="primary" onReleased={() => clearDatabase()}>
-              Reset Questions
-            </AwesomeButton> */}
-          </span>
-        </main>
-
-        <footer>A 312 project</footer>
+        )}
+        {prof && (
+          <Link href="/presults">
+            <span>
+              <Icon
+                icon="fluent-mdl2:feedback-response-solid"
+                width="25"
+                height="20"
+                inline
+              />
+              Results
+            </span>
+          </Link>
+        )}
+        <LoginStatus />
       </div>
-    );
-  } else {
-    return (
-      <div className={styles.header}>
-        <Head>
-          <title>Potoo project</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <div className={styles.topnav}>
-          <Link href="/">
-            <span>
-              <Icon icon={homeAlt1} width="25" height="25" inline />
-              Home
-            </span>
-          </Link>
-          <Link href="/professor">
-            <span className={styles.active}>
-              <Icon icon={questionFill} width="25" height="20" inline />
-              Professor
-            </span>
-          </Link>
-          <Link href="/quiz">
-            <span>
-              <Icon icon={quizIcon} width="25" height="20" inline />
-              Quiz
-            </span>
-          </Link>
-          <LoginStatus />
-        </div>
-        <main>
-          <span>
-            <h1 className="title">Add Questions</h1>
-            <SubmittedQuestions
-              setSubmitted={setSubmitted}
-              submitted={submitted}
-            />
-          </span>
-          <br />
-          <span>
-            <AwesomeButton
-              type="primary"
-              onReleased={() => complete(questions)}
-            >
-              Load Questions
-            </AwesomeButton>
-            <div className={styles.divider} />
-            <AwesomeButton
-              type="primary"
-              onReleased={() => complete(questions)}
-            >
-              Reset Questions
-            </AwesomeButton>
-          </span>
-        </main>
 
-        <footer>A 312 project</footer>
-      </div>
-    );
-  }
+      <main>
+        {!courseChosen && <h1 className="title">Add Questions</h1>}
+        {courseChosen && (
+          <h1 className="title"> Add Questions for {currCourse}</h1>
+        )}
+        {prof !== undefined && id !== undefined && !courseChosen && (
+          <SelectCourse
+            prof={prof}
+            id={id}
+            setCourse={setCurrCourse}
+            courseChosen={courseChosen}
+            setCourseChosen={setCourseChosen}
+          />
+        )}
+        {courseChosen && !submitted && (
+          <AddQuestion
+            currCourse={currCourse}
+            setSubmitted={setSubmitted}
+            setCourseChosen={setCourseChosen}
+          />
+        )}
+        {courseChosen && submitted && (
+          <SubmittedQuestions
+            setSubmitted={setSubmitted}
+            submitted={submitted}
+          />
+        )}
+      </main>
+
+      <footer>A 312 project</footer>
+    </div>
+  );
 }
+
+//        <main>
+//           <span>
+//             <h1 className="title">Add Questions</h1>
+//             <AddQuestion
+//               topics={topicsList}
+//               setSubmitted={setSubmitted}
+//               submitted={submitted}
+//             />
+//           </span>
+//           <br />
+//           <span>
+//             {/* <AwesomeButton type="primary" onReleased={() => loadQuestions()}>
+//               Load Questions
+//             </AwesomeButton>
+//             <div className={styles.divider} />
+//             <AwesomeButton type="primary" onReleased={() => clearDatabase()}>
+//               Reset Questions
+//             </AwesomeButton> */}
+//           </span>
+//         </main>

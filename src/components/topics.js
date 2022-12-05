@@ -10,10 +10,10 @@ import styles from "../styles/topics.module.css";
 import { AwesomeButton } from "react-awesome-button";
 import PropTypes from "prop-types";
 
-export default function Topics({ setTopics, setTopicsChosen }) {
+export default function Topics({ course, setTopics, setTopicsChosen }) {
   const [selected, setSelected] = useState();
 
-  const topicsList = useTopics();
+  const topicsList = useTopics(course);
 
   const topicsOptions = [];
 
@@ -68,4 +68,5 @@ export default function Topics({ setTopics, setTopicsChosen }) {
 Topics.propTypes = {
   setTopicsChosen: PropTypes.func,
   setTopics: PropTypes.func,
+  course: PropTypes.string,
 };
