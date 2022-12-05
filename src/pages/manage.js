@@ -93,7 +93,7 @@ export default function ManageMain() {
         <LoginStatus />
       </div>
 
-      <main>
+      <main className={styles.main}>
         {prof && id !== undefined && <CourseTiles prof={prof} id={id} />}
       </main>
       <footer> A 312 project </footer>

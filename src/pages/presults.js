@@ -96,7 +96,7 @@ export default function PresultsMain() {
           <LoginStatus />
         </div>
 
-        <main>
+        <main className={styles.main}>
           {prof !== undefined && id !== undefined && !courseChosen && (
             <SelectCourse
               prof={prof}
