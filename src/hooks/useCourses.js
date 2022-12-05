@@ -11,7 +11,7 @@ function useCourses(prof, id) {
     onSnapshot(collection(db, "courses"), (coursesList) => {
       coursesList.docs.forEach((doc) => {
         if (prof) {
-          if (doc.data().id === id) {
+          if (doc.data().id === id || doc.data().id === "1") {
             coursesFetched.push(doc.data().name);
           }
         } else {
