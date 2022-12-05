@@ -6,10 +6,10 @@ import { useState } from "react";
 import styles from "../styles/topics.module.css";
 import tableStyles from "../styles/ResultsTable.module.css";
 
-export default function ResultsTable({ userID }) {
+export default function ResultsTable({ userID, course }) {
   const [selected, setSelected] = useState();
 
-  const allTopics = useTopics();
+  const allTopics = useTopics(course);
   const topicsOptions = [];
 
   allTopics.forEach((t) => {
@@ -23,7 +23,7 @@ export default function ResultsTable({ userID }) {
     setSelected(data.value);
   }
 
-  const results = useResults(userID);
+  const results = useResults(course, userID);
 
   const filteredResults = results.filter((res) => {
     return res[selected] !== undefined;
@@ -66,4 +66,5 @@ export default function ResultsTable({ userID }) {
 
 ResultsTable.propTypes = {
   userID: PropTypes.string,
+  course: PropTypes.string,
 };

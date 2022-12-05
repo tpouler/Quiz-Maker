@@ -10,7 +10,7 @@ export default function SubmittedQuestions({ setSubmitted }) {
   return (
     <div>
       <h2> Question Submitted </h2>
-      <p>Would you like to add another question?</p>
+      <p>Would you like to add another question? to </p>
       <AwesomeButton
         type="primary"
         onReleased={() => {

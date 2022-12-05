@@ -1,4 +1,4 @@
-// Import the functions you need from the SDKs you need
+
 
 import { getApp, initializeApp } from "firebase/app";
 import {
@@ -11,6 +11,9 @@ import {
   setDoc,
   deleteDoc,
   getDocs,
+  updateDoc,
+  arrayUnion,
+  arrayRemove
 } from "firebase/firestore";
 import { getAuth, connectAuthEmulator} from "firebase/auth";
 
@@ -44,7 +47,7 @@ export function initializeFirebase() {
       process.env.NODE_ENV === "test"
     ) {
       //console.log("Connecting to emulator");
-      const auth = getAuth();
+      const auth = getAuth(app);
       connectAuthEmulator(auth, "http://localhost:9099");
       connectFirestoreEmulator(db, "localhost", 8080);
     }
@@ -58,38 +61,90 @@ export function initializeFirebase() {
  * @param {Object} question 
  * @return article with id set to document name
  */
-export async function addQuestion(question) {
+export async function addQuestion(question){
   const db = getFirestore();
 
-  //console.log("Here testing");
   const copy = JSON.parse(JSON.stringify(question));
 
-  const sectionsRef = collection(db, "questions");
-
-  const section = question.topic;
-
-  await setDoc(doc(sectionsRef, section), { section });
-
-  const docref = await addDoc(collection(db, "questions", section, "questions"), copy);
-  
-  //await setDoc(doc(sectionsRef, section, "questions", docref.id), copy);
+  let ref = collection(db, "courses");
+  await setDoc(doc(ref, question.course), {id: question.uid, name: question.course, students: arrayUnion()}, {merge: true});
+  ref = collection(db, "courses",question.course, "topics");
+  await setDoc(doc(ref, question.topic), {name: question.topic});
+  ref = collection(db, "courses", question.course, "topics", question.topic, "questions");
+  const docRef = await addDoc(ref, copy);
 
   return {
     question: question.question,
     answer: question.answer,
     response: question.response,
     topic: question.topic,
-    id: docref.id
-  };
+    id: docRef.id,
+    course: question.course,
+    uid: question.uid
+  }
+
 }
 
-export async function addResult(result, uid){
+export async function addStudent(course, email) {
+  const db = getFirestore();
+
+  const ref = doc(db, "courses", course);
+  await updateDoc(ref, {
+    students: arrayUnion(email)
+  })
+}
+
+export async function removeStudent(course, email){
+  const db = getFirestore();
+
+  const ref = doc(db, "courses", course);
+  await updateDoc(ref, {
+    students: arrayRemove(email)
+  })
+}
+
+export async function addCourse(uid, courseTitle){
+  const db = getFirestore();
+
+  await setDoc(doc(db, "courses", courseTitle), {name: courseTitle, id: uid, students:[] })
+}
+
+// export async function addQuestion(question) {
+//   const db = getFirestore();
+
+//   //console.log("Here testing");
+//   const copy = JSON.parse(JSON.stringify(question));
+
+//   const sectionsRef = collection(db, "questions");
+
+//   const section = question.topic;
+
+//   await setDoc(doc(sectionsRef, section), { section });
+
+//   const docref = await addDoc(collection(db, "questions", section, "questions"), copy);
+  
+//   //await setDoc(doc(sectionsRef, section, "questions", docref.id), copy);
+
+//   return {
+//     question: question.question,
+//     answer: question.answer,
+//     response: question.response,
+//     topic: question.topic,
+//     id: docref.id
+//   };
+// }
+
+export async function addResult(result, course, email){
   const currDate = new Date();
   const resultData = { ...result,
+    student: email,
+    course: course,
     date: currDate.toLocaleString(),
   };
   const db = getFirestore();
-  const resultsRef = collection(db,"results", uid, "quizResults");
+
+  await setDoc(doc(db, "courses", course, "results", email), {"email": email}, {merge:true});
+  const resultsRef = collection(db, "courses", course, "results", email, "quizResults");
   await addDoc(resultsRef, resultData);
 
   return {...resultData};
@@ -148,6 +203,7 @@ export async function clearCollection(collectionRef) {
 /**
  * This function clears all data out of the database. This is only used for testing.
  */
+
 export async function clearDatabase() {
   const db = getFirestore();
 
@@ -163,3 +219,20 @@ export async function clearDatabase() {
     })
   );
 }
+
+/** 
+export async function clearDatabase(){
+  const db = getFirestore();
+
+  const coursesSnap = await getDocs(collection(db, "courses"));
+
+  await coursesSnap.forEach(async (course) => {
+    const topicsSnap = await getDocs(collection(db, "courses", course.data().name, "topics"));
+   await topicsSnap.forEach(async (top) => {
+       await clearCollection(collection(db, "courses", course.data().name, "topics", top.data().name, "questions"));
+       await top.ref.delete();
+    });
+  });
+}
+*/
+

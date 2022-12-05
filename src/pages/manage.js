@@ -1,49 +1,19 @@
 import Head from "next/head";
-
 import styles from "../styles/index.module.css";
-
-//import data from "../../../data/seed.json";
-
-import Quiz from "../components/quiz";
-
-import ScoreReport from "../components/scoreReport";
-
-import { useState, useEffect } from "react";
-
-import { useUser } from "../contexts/UserContext";
-
 import LoginStatus from "../components/LoginStatus";
-
 import Link from "next/link";
-
-import ChooseTopic from "../components/chooseTopic";
-import SelectCourse from "../components/selectCourse";
-
-// All icons were taken from the following link
-// https://icon-sets.iconify.design/
-
-// eslint-disable-next-line quotes
 import { Icon } from "@iconify/react";
-// eslint-disable-next-line quotes
 import homeAlt1 from "@iconify/icons-akar-icons/home-alt1";
 // eslint-disable-next-line quotes
 import questionFill from "@iconify/icons-akar-icons/question-fill";
 // eslint-disable-next-line quotes
 import quizIcon from "@iconify/icons-material-symbols/quiz";
+import { useState, useEffect } from "react";
+import { useUser } from "../contexts/UserContext";
+import CourseTiles from "../components/Professor/courseTiles";
 
-//Testing
-
-export default function QuizMain() {
-  //Imports data from the Json file
-  //const [questions] = useState(data);
-  //const questions = useQuestions(["Math", "Science"]);
-  const [submitted, setSubmitted] = useState();
-  const [topicsChosen, setTopicsChosen] = useState(false);
-  const [prof, setProf] = useState();
-  const [topics, setTopics] = useState([]);
-  const [questions, setQuestions] = useState([]);
-  const [currCourse, setCurrCourse] = useState();
-  const [courseChosen, setCourseChosen] = useState(false);
+export default function ManageMain() {
+  const [prof, setProf] = useState(true);
   const [id, setID] = useState();
 
   const user = useUser();
@@ -60,14 +30,6 @@ export default function QuizMain() {
     }
   }, [user]); // eslint-disable-line
 
-  //Still need to update json to have answer field filled in with out answer
-  function complete(questionList) {
-    setSubmitted(true);
-    return questionList;
-  }
-  console.log("this is the id:");
-  console.log(id);
-
   return (
     <div className={styles.header}>
       <Head>
@@ -83,7 +45,7 @@ export default function QuizMain() {
         </Link>
         {prof && (
           <Link href="/manage">
-            <span>
+            <span className={styles.active}>
               <Icon icon="ion:person" width="25" height="25" inline />
               Manage
             </span>
@@ -98,7 +60,7 @@ export default function QuizMain() {
           </Link>
         )}
         <Link href="/quiz">
-          <span className={styles.active}>
+          <span>
             <Icon icon={quizIcon} width="25" height="20" inline /> Quiz
           </span>
         </Link>
@@ -132,37 +94,9 @@ export default function QuizMain() {
       </div>
 
       <main>
-        {prof !== undefined && id !== undefined && !courseChosen && (
-          <SelectCourse
-            prof={prof}
-            id={id}
-            setCourse={setCurrCourse}
-            courseChosen={courseChosen}
-            setCourseChosen={setCourseChosen}
-          />
-        )}
-        {courseChosen && !topicsChosen && !submitted && (
-          <ChooseTopic
-            course={currCourse}
-            setTopics={setTopics}
-            setTopicsChosen={setTopicsChosen}
-          />
-        )}
-        {courseChosen && topicsChosen && (
-          <Quiz
-            course={currCourse}
-            topics={topics}
-            complete={complete}
-            submitted={submitted}
-            setQuestions={setQuestions}
-          />
-        )}
-        {courseChosen && submitted && (
-          <ScoreReport questions={questions} course={currCourse} />
-        )}
+        {prof && id !== undefined && <CourseTiles prof={prof} id={id} />}
       </main>
-
-      <footer>A 312 project</footer>
+      <footer> A 312 project </footer>
     </div>
   );
 }

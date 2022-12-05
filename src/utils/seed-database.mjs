@@ -2,7 +2,6 @@
  * This loads the film collection
  */
 
-
  import process from "node:process";
  import {readFileSync} from "node:fs";
  

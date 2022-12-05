@@ -51,6 +51,14 @@ export default function Main() {
           </span>
         </Link>
         {prof && (
+          <Link href="/manage">
+            <span>
+              <Icon icon="ion:person" width="25" height="25" inline />
+              Manage
+            </span>
+          </Link>
+        )}
+        {prof && (
           <Link href="/professor">
             <span>
               <Icon icon={questionFill} width="25" height="20" inline />
@@ -76,6 +84,19 @@ export default function Main() {
             </span>
           </Link>
         )}
+        {prof && (
+          <Link href="/presults">
+            <span>
+              <Icon
+                icon="fluent-mdl2:feedback-response-solid"
+                width="25"
+                height="20"
+                inline
+              />
+              Results
+            </span>
+          </Link>
+        )}
         <LoginStatus />
       </div>
 
@@ -93,6 +114,7 @@ export default function Main() {
       <div>Quiz</div>
       <div>This is where you can practice your skills</div>
       <br />
+      <div> </div>
       <footer>A 312 project</footer>
     </div>
   );
