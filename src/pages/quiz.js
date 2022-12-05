@@ -57,8 +57,8 @@ export default function QuizMain() {
   }, [topics]);
 
   useEffect(() => {
-    console.log("questions");
-    console.log(questions);
+    // console.log("questions");
+    // console.log(questions);
   }, [questions]);
 
   //Still need to update json to have answer field filled in with out answer

@@ -13,6 +13,18 @@ import quizIcon from "@iconify/icons-material-symbols/quiz";
 import useTopics from "../hooks/useTopics";
 import Link from "next/link";
 
+import loadData from "../utils/firebase-utils.mjs";
+import data from "../../data/seed.json";
+import clearDatabase from "../utils/firebase-utils.mjs";
+
+//Documentation to understand AwesomeButton
+//https://github.com/rcaferati/react-awesome-button
+import { AwesomeButton } from "react-awesome-button";
+
+function loadQuestions() {
+  loadData(data);
+}
+
 export default function ProfessorMain() {
   const [submitted, setSubmitted] = useState();
 
@@ -49,12 +61,24 @@ export default function ProfessorMain() {
         </div>
 
         <main>
-          <h1 className="title">Add Questions</h1>
-          <AddQuestion
-            topics={topicsList}
-            setSubmitted={setSubmitted}
-            submitted={submitted}
-          />
+          <span>
+            <h1 className="title">Add Questions</h1>
+            <AddQuestion
+              topics={topicsList}
+              setSubmitted={setSubmitted}
+              submitted={submitted}
+            />
+          </span>
+          <br />
+          <span>
+            <AwesomeButton type="primary" onReleased={() => loadQuestions()}>
+              Load Questions
+            </AwesomeButton>
+            <div className={styles.divider} />
+            <AwesomeButton type="primary" onReleased={() => clearDatabase()}>
+              Reset Questions
+            </AwesomeButton>
+          </span>
         </main>
 
         <footer>A 312 project</footer>
@@ -89,12 +113,31 @@ export default function ProfessorMain() {
           <LoginStatus />
         </div>
         <main>
-          <h1 className="title">Add Questions</h1>
-          <SubmittedQuestions
-            setSubmitted={setSubmitted}
-            submitted={submitted}
-          />
+          <span>
+            <h1 className="title">Add Questions</h1>
+            <SubmittedQuestions
+              setSubmitted={setSubmitted}
+              submitted={submitted}
+            />
+          </span>
+          <br />
+          <span>
+            <AwesomeButton
+              type="primary"
+              onReleased={() => complete(questions)}
+            >
+              Load Questions
+            </AwesomeButton>
+            <div className={styles.divider} />
+            <AwesomeButton
+              type="primary"
+              onReleased={() => complete(questions)}
+            >
+              Reset Questions
+            </AwesomeButton>
+          </span>
         </main>
+
         <footer>A 312 project</footer>
       </div>
     );
