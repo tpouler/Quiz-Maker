@@ -29,8 +29,8 @@
     "emulator": "firebase emulators:start",
     "test": "NEXT_PUBLIC_EMULATE=true jest --runInBand",
     "test:ci": "firebase emulators:exec 'npm test --runInBand'",
-    "seed:emulate": "NEXT_PUBLIC_EMULATE=true node src/utils/seed-database.mjs data/seed.json",
-    "seed": "node src/utils/seed-database.mjs data/seed.json"
+    "seed": "NEXT_PUBLIC_EMULATE=true node src/utils/seed-database.mjs data/seed.json",
+    "seed:deployed": "node src/utils/seed-database.mjs data/seed.json"
   },
   "dependencies": {
     "firebase": "^9.13.0",
