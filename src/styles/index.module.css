@@ -25,6 +25,10 @@
   font-size: 30px;
 }
 
+.main {
+  height: 75vh;
+}
+
 .bar {
   list-style-type: none;
   margin: 0;
