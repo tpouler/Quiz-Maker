@@ -1,4 +1,3 @@
-import AllResultsTable from "../components/Professor/allResultsTable";
 import styles from "../styles/index.module.css";
 import LoginStatus from "../components/LoginStatus";
 import Head from "next/head";
@@ -107,7 +106,7 @@ export default function PresultsMain() {
             />
           )}
 
-          {prof && courseChosen && <AllResultsTable course={course} />}
+          {prof && courseChosen && <div> placeholder text for {course}</div>}
         </main>
         <footer>A 312 project</footer>
       </div>

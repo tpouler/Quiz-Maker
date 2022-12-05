@@ -94,7 +94,7 @@ export default function SresultsMain() {
             />
           )}
           {!prof && id !== undefined && courseChosen && (
-            <ResultsTable userID={user.email} course={currCourse} />
+            <ResultsTable userID={id} course={currCourse} />
           )}
         </main>
         <footer>A 312 project</footer>
