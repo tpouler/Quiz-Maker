@@ -11,11 +11,14 @@ function useCourses(prof, id) {
     onSnapshot(collection(db, "courses"), (coursesList) => {
       coursesList.docs.forEach((doc) => {
         if (prof) {
-          if (doc.data().id === id) {
+          if (doc.data().id === id || doc.data().id === "1") {
             coursesFetched.push(doc.data().name);
           }
         } else {
-          if (doc.data().students.some((s) => s === id)) {
+          if (
+            doc.data().students.some((s) => s === id) ||
+            doc.data.id === "1"
+          ) {
             console.log("student found!!!");
             coursesFetched.push(doc.data().name);
           }
