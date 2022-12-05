@@ -15,6 +15,17 @@ import { useEffect } from "react";
 import SelectCourse from "../components/selectCourse";
 import { useUser } from "../contexts/UserContext";
 
+// import {loadData, clearDatabase} from "../utils/firebase-utils.mjs";
+// import data from "../../data/seed.json";
+
+//Documentation to understand AwesomeButton
+//https://github.com/rcaferati/react-awesome-button
+//import { AwesomeButton } from "react-awesome-button";
+
+// function loadQuestions() {
+//   loadData(data);
+// }
+
 export default function ProfessorMain() {
   const [submitted, setSubmitted] = useState();
   const [currCourse, setCurrCourse] = useState();
@@ -134,3 +145,24 @@ export default function ProfessorMain() {
     </div>
   );
 }
+
+//        <main>
+//           <span>
+//             <h1 className="title">Add Questions</h1>
+//             <AddQuestion
+//               topics={topicsList}
+//               setSubmitted={setSubmitted}
+//               submitted={submitted}
+//             />
+//           </span>
+//           <br />
+//           <span>
+//             {/* <AwesomeButton type="primary" onReleased={() => loadQuestions()}>
+//               Load Questions
+//             </AwesomeButton>
+//             <div className={styles.divider} />
+//             <AwesomeButton type="primary" onReleased={() => clearDatabase()}>
+//               Reset Questions
+//             </AwesomeButton> */}
+//           </span>
+//         </main>

@@ -159,6 +159,7 @@ export async function addResult(result, course, email){
  * @param {string} collectionName  - the name of the collection
  */
 export async function loadData(data) {
+  console.log("here");
   await Promise.all(
     data.map(async (curr) => {
       await addQuestion(curr);
@@ -174,13 +175,17 @@ export async function loadData(data) {
  *
  * @param {string} collectionName
  */
-// export async function clearCollection(collectionName){
-//   const db = getFirestore();
-//   const docSnapshot = await getDocs(collection(db, collectionName));
-//   await Promise.all(docSnapshot.docs.map((d)=>{
-//     return deleteDoc(doc(db, "questions", d.id))
-//   }));
+
+//  export async function resetCollection(collectionRef) {
+//   const docSnapshot = await getDocs(collectionRef);
+//   //console.log("Do we get here?")
+  
+//   //docSnapshot.forEach((d) => (console.log(doc(collectionRef, d.data().id))));
+//   await Promise.all(
+//     docSnapshot.docs.map((d) => deleteDoc(doc(collectionRef, d.id)))
+//   );
 // }
+
 
 /**
  * This function is designed to remove all documents from a

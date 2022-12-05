@@ -22,8 +22,6 @@ import questionFill from "@iconify/icons-akar-icons/question-fill";
 // eslint-disable-next-line quotes
 import quizIcon from "@iconify/icons-material-symbols/quiz";
 
-//Testing
-
 export default function Main() {
   //console.log(`boolean of answer submitted is: ${submitted}`);
   const [prof, setProf] = useState(false);
@@ -106,7 +104,7 @@ export default function Main() {
         progress over time.
       </p>
       <br />
-      <p>Please click one of the options from the nav bar above.</p>
+      <div>Please click one of the options from the nav bar above.</div>
       <br />
       <div>Professor</div>
       <div>This is where you can add questions to your quiz</div>

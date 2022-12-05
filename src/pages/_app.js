@@ -31,7 +31,7 @@ function MainApp({ Component, pageProps }) {
     });
   }, []); // eslint-disable-line
 
-  console.log(Component);
+  //console.log(Component);
 
   return (
     <UserContext.Provider value={user}>

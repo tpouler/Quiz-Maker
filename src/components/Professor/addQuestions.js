@@ -116,11 +116,11 @@ export default function AddQuestion({
   };
 
   useEffect(() => {
-    console.log(newTopic);
+    //console.log(newTopic);
   }, [newTopic]);
 
   useEffect(() => {
-    console.log(allowSubmit);
+    //console.log(allowSubmit);
   }, [allowSubmit]);
 
   return (
