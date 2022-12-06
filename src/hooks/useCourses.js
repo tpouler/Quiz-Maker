@@ -15,7 +15,10 @@ function useCourses(prof, id) {
             coursesFetched.push(doc.data().name);
           }
         } else {
-          if (doc.data().students.some((s) => s === id)) {
+          if (
+            doc.data().students.some((s) => s === id) ||
+            doc.data.id === "1"
+          ) {
             console.log("student found!!!");
             coursesFetched.push(doc.data().name);
           }
