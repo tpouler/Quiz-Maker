@@ -50,7 +50,6 @@ export default function SelectCourse({ prof, id, setCourse, setCourseChosen }) {
         type="secondary"
         disabled={currCourse === undefined}
         onReleased={() => {
-          console.log("release");
           submitCourse();
         }}
       >

@@ -49,7 +49,7 @@ export default function ScoreReport({ questions, course }) {
         Check out all of your past quiz results in the Results tab in the top
         bar
       </p>
-      <AwesomeButton type="secondary" href="http://localhost:3000/">
+      <AwesomeButton type="secondary" href="/">
         Return Home
       </AwesomeButton>
     </div>

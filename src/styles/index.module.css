@@ -179,3 +179,16 @@
   margin-top: 40px;
   margin-bottom: 0px;
 }
+
+.list_questions {
+  list-style-type: "- ";
+  margin: 10px;
+  cursor: pointer;
+}
+.list_questions:hover {
+  border-bottom: 3px solid white;
+}
+
+.ul_questions {
+  padding-left: 0px;
+}

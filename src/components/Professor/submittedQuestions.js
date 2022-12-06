@@ -4,13 +4,15 @@ import "react-awesome-button/dist/styles.css";
 import { AwesomeButton } from "react-awesome-button";
 
 // submitted,
-export default function SubmittedQuestions({ setSubmitted }) {
+export default function SubmittedQuestions({ setSubmitted, edit }) {
   // eslint-disable-line
 
   return (
     <div>
-      <h2> Question Submitted </h2>
-      <p>Would you like to add another question? to </p>
+      {!edit && <h2> Question Submitted </h2>}
+      {edit && <h2> Question Edited </h2>}
+      {!edit && <p>Would you like to add another question?</p>}
+      {edit && <p>Would you like to edit another question?</p>}
       <AwesomeButton
         type="primary"
         onReleased={() => {
@@ -29,13 +31,11 @@ export default function SubmittedQuestions({ setSubmitted }) {
       >
         No
       </AwesomeButton>
-      {/* <button className = {styles.button} type= "submit" onClick={() =>{setSubmitted(false)}} value= "submit" > Yes </button>
-        <button className = {styles.button} type= "return"  value= "return"> No </button> */}
     </div>
   );
 }
 
 SubmittedQuestions.propTypes = {
-  submitted: PropTypes.bool,
+  edit: PropTypes.bool,
   setSubmitted: PropTypes.func,
 };
