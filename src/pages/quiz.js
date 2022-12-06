@@ -129,7 +129,7 @@ export default function QuizMain() {
         <LoginStatus />
       </div>
 
-      <main>
+      <main className={styles.main}>
         {prof !== undefined && id !== undefined && !courseChosen && (
           <SelectCourse
             prof={prof}
@@ -146,15 +146,20 @@ export default function QuizMain() {
             setTopicsChosen={setTopicsChosen}
           />
         )}
-        {courseChosen && topicsChosen && (
-          <Quiz
-            course={currCourse}
-            topics={topics}
-            complete={complete}
-            submitted={submitted}
-            setQuestions={setQuestions}
-          />
-        )}
+        {prof !== undefined &&
+          id !== undefined &&
+          courseChosen &&
+          topicsChosen && (
+            <Quiz
+              course={currCourse}
+              topics={topics}
+              complete={complete}
+              submitted={submitted}
+              setQuestions={setQuestions}
+              prof={prof}
+              id={id}
+            />
+          )}
         {courseChosen && submitted && (
           <ScoreReport questions={questions} course={currCourse} />
         )}

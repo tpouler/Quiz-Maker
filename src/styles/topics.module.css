@@ -2,6 +2,14 @@
   width: 400px;
   color: black;
   position: relative;
+  top: 40%;
+  position: absolute;
+}
+
+.multiselect1 {
+  width: 400px;
+  color: black;
+  position: relative;
 }
 
 .multiselect:hover {

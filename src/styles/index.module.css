@@ -25,6 +25,10 @@
   font-size: 30px;
 }
 
+.main {
+  min-height: 75vh;
+}
+
 .bar {
   list-style-type: none;
   margin: 0;
@@ -117,6 +121,7 @@
 .topnav {
   background-color: #333;
   overflow: hidden;
+  max-width: 100%;
 }
 
 /* Style the links inside the navigation bar */

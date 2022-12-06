@@ -23,7 +23,6 @@ import questionFill from "@iconify/icons-akar-icons/question-fill";
 import quizIcon from "@iconify/icons-material-symbols/quiz";
 
 export default function Main() {
-  //console.log(`boolean of answer submitted is: ${submitted}`);
   const [prof, setProf] = useState(false);
   const user = useUser();
 
@@ -97,22 +96,22 @@ export default function Main() {
         )}
         <LoginStatus />
       </div>
-
-      <h1>Welcome to our quiz page!</h1>
-      <p>
-        This is a page where you can practice your skills and continue to
-        progress over time.
-      </p>
-      <br />
-      <div>Please click one of the options from the nav bar above.</div>
-      <br />
-      <div>Professor</div>
-      <div>This is where you can add questions to your quiz</div>
-      <br />
-      <div>Quiz</div>
-      <div>This is where you can practice your skills</div>
-      <br />
-      <div> </div>
+      <main className={styles.main}>
+        <h1>Welcome to our quiz page!</h1>
+        <p>
+          This is a page where you can practice your skills and continue to
+          progress over time.
+        </p>
+        <div>Please click one of the options from the nav bar above.</div>
+        <br />
+        <div>Professor</div>
+        <div>This is where you can add questions to your quiz</div>
+        <br />
+        <div>Quiz</div>
+        <div>This is where you can practice your skills</div>
+        <br />
+        <div> </div>
+      </main>
       <footer>A 312 project</footer>
     </div>
   );

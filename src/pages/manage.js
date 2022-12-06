@@ -11,10 +11,15 @@ import quizIcon from "@iconify/icons-material-symbols/quiz";
 import { useState, useEffect } from "react";
 import { useUser } from "../contexts/UserContext";
 import CourseTiles from "../components/Professor/courseTiles";
+import Collapsible from "react-collapsible";
+import { addCourse } from "../utils/firebase-utils.mjs";
+import inputStyle from "../styles/inputBox.module.css";
+import manage from "../styles/manage.module.css";
 
 export default function ManageMain() {
   const [prof, setProf] = useState(true);
   const [id, setID] = useState();
+  const [courseTitle, setCourseTitle] = useState();
 
   const user = useUser();
 
@@ -30,6 +35,10 @@ export default function ManageMain() {
     }
   }, [user]); // eslint-disable-line
 
+  const handleClick = async () => {
+    await addCourse(id, courseTitle);
+    location.reload();
+  };
   return (
     <div className={styles.header}>
       <Head>
@@ -93,8 +102,22 @@ export default function ManageMain() {
         <LoginStatus />
       </div>
 
-      <main>
+      <main className={styles.main}>
         {prof && id !== undefined && <CourseTiles prof={prof} id={id} />}
+        {prof && id !== undefined && (
+          <div className={manage.newcourse}>
+            <Collapsible trigger="Add a new course +">
+              <input
+                placeholder="Enter new course name"
+                onChange={(event) => {
+                  setCourseTitle(event.target.value);
+                }}
+                className={inputStyle.input}
+              />
+              <button onClick={() => handleClick()}> Create New Course </button>
+            </Collapsible>
+          </div>
+        )}
       </main>
       <footer> A 312 project </footer>
     </div>

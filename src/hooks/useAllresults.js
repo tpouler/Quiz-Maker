@@ -12,23 +12,38 @@ function useAllresults(course) {
   const [results, setResults] = useState([]);
   const db = getFirestore();
 
+  const students = [];
+  const resultsFetched = [];
   useEffect(() => {
-    let resultsFetched = [];
+    // let resultsFetched = [];
     onSnapshot(collection(db, "courses", course, "results"), (studentsList) => {
       studentsList.docs.forEach((doc) => {
-        const student = doc.data().email;
+        //const student = doc.data().email;
+        students.push(doc.data().email);
+        // onSnapshot(
+        //   collection(db, "courses", course, "results", student, "quizResults"),
+        //   (resultsList) => {
+        //     resultsList.docs.forEach((res) => {
+        //       resultsFetched.push({ ...res.data(), id: res.id });
+        //     });
+        //     resultsFetched = results.concat(resultsFetched);
+        //     setResults(resultsFetched);
+        //   }
+        // );
+      });
+      students.forEach((t) => {
         onSnapshot(
-          collection(db, "courses", course, "results", student, "quizResults"),
+          collection(db, "courses", course, "results", t, "quizResults"),
           (resultsList) => {
             resultsList.docs.forEach((res) => {
               resultsFetched.push({ ...res.data(), id: res.id });
             });
-            resultsFetched = results.concat(resultsFetched);
-            setResults(resultsFetched);
           }
         );
       });
     });
+    setResults(resultsFetched);
+    console.log(results);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return results;
