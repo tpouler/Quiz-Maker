@@ -79,6 +79,7 @@ export default function Quiz({
 }) {
   const [reset, resetQuestion] = useState(false);
   const questions = useQuestions(course, topics);
+  setQuestions(questions);
 
   const questionMap = questions.map((question) => (
     <div key={question.question}>
