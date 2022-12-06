@@ -4,28 +4,38 @@
  * @returns array of sections
  */
 
-import { getFirestore, collection, onSnapshot } from "firebase/firestore";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-function useQuestions(currCourse, topicsList) {
+
+async function getQuestions(currCourse, topic, sectionsFetched, callback) {
+  const db = getFirestore();
+  const questions = collection(
+    db,
+    "courses",
+    currCourse,
+    "topics",
+    topic,
+    "questions"
+  );
+  const collectionSnapshot = await getDocs(questions);
+  collectionSnapshot.forEach((doc) => {
+    sectionsFetched.push(doc.data());
+  });
+  callback(sectionsFetched);
+}
+function useQuestions(currCourse, topicsList, setLoading) {
   const [sections, setSections] = useState([]);
 
   useEffect(() => {
+    setLoading(true);
     const sectionsFetched = [];
-    const db = getFirestore();
     topicsList.forEach((t) => {
-      onSnapshot(
-        collection(db, "courses", currCourse, "topics", t, "questions"),
-        (sectionList) => {
-          sectionList.docs.forEach((doc) => {
-            sectionsFetched.push(doc.data());
-          });
-          setSections(sectionsFetched);
-        }
-      );
+      getQuestions(currCourse, t, sectionsFetched, setSections);
     });
+    setLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [currCourse, topicsList]);
 
   return sections;
 }

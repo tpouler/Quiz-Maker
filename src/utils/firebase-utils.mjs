@@ -13,6 +13,8 @@ import {
   getDocs,
   updateDoc,
   arrayUnion,
+  query,
+  where,
   arrayRemove
 } from "firebase/firestore";
 import { getAuth, connectAuthEmulator} from "firebase/auth";
@@ -83,6 +85,51 @@ export async function addQuestion(question){
     uid: question.uid
   }
 
+}
+export async function updateQuestion(question, updates){
+  const db = getFirestore();
+  let q = question.question;
+  if(updates.question){
+    q = updates.question;
+  }
+  let a = question.answer;
+  if(updates.answer){
+    a = updates.answer;
+  }
+  const questionsRef = collection(db, "courses", question.course, "topics", question.topic, "questions");
+  const Q = query(questionsRef, where("question", "==", question.question));
+  const querySnapshot = await getDocs(Q);
+
+  const docRef = doc(db, "courses", question.course, "topics", question.topic, "questions", querySnapshot.docs[0].id);
+
+  await updateDoc(docRef, {
+    question: q,
+    answer: a
+  });
+
+  return {answer: a,
+    course: question.course,
+    question: q,
+    topic: question.topic,
+    uid: question.id};
+}
+
+export async function removeQuestion(question){
+  const db = getFirestore();
+
+  const questionsRef = collection(db, "courses", question.course, "topics", question.topic, "questions");
+  const Q = query(questionsRef, where("question", "==", question.question));
+  const querySnapshot = await getDocs(Q);
+
+  const collectionSnapshot = await getDocs(questionsRef);
+  const topic = question.topic;
+
+  const docRef = doc(db, "courses", question.course, "topics", question.topic, "questions", querySnapshot.docs[0].id);
+
+  await deleteDoc(docRef);
+  if(collectionSnapshot.size <= 1){
+    await deleteDoc(doc(db, "courses", question.course, "topics",topic));
+  }
 }
 
 export async function addStudent(course, email) {

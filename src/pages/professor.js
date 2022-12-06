@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "../styles/index.module.css";
 import { Icon } from "@iconify/react";
 import AddQuestion from "../components/Professor/addQuestions";
+import QuestionsList from "../components/Professor/questionsList";
 import SubmittedQuestions from "../components/Professor/submittedQuestions";
 import { useState } from "react";
 import homeAlt1 from "@iconify/icons-akar-icons/home-alt1";
@@ -14,6 +15,8 @@ import Link from "next/link";
 import { useEffect } from "react";
 import SelectCourse from "../components/selectCourse";
 import { useUser } from "../contexts/UserContext";
+import "react-awesome-button/dist/styles.css";
+import { AwesomeButton } from "react-awesome-button";
 
 // import {loadData, clearDatabase} from "../utils/firebase-utils.mjs";
 // import data from "../../data/seed.json";
@@ -30,6 +33,8 @@ export default function ProfessorMain() {
   const [submitted, setSubmitted] = useState();
   const [currCourse, setCurrCourse] = useState();
   const [courseChosen, setCourseChosen] = useState(false);
+  const [addEdit, setAE] = useState(false);
+  const [edit, setEdit] = useState(false);
   const [prof, setProf] = useState();
   const [id, setID] = useState();
 
@@ -48,6 +53,10 @@ export default function ProfessorMain() {
       }
     }
   }, [user]); // eslint-disable-line
+
+  if (courseChosen === false && addEdit !== false) {
+    setAE(false);
+  }
 
   return (
     <div className={styles.header}>
@@ -112,10 +121,16 @@ export default function ProfessorMain() {
         <LoginStatus />
       </div>
 
-      <main className={styles.main}>
-        {!courseChosen && <h1 className="title">Add Questions</h1>}
-        {courseChosen && (
-          <h1 className="title"> Add Questions for {currCourse}</h1>
+      <main>
+        {!courseChosen && <h1 className="title">Add/Edit Questions</h1>}
+        {courseChosen && !addEdit && (
+          <h1 className="title"> Add/Edit Questions for {currCourse}</h1>
+        )}
+        {courseChosen && addEdit && !edit && (
+          <h1 className="title">Add Questions for {currCourse}</h1>
+        )}
+        {courseChosen && addEdit && edit && (
+          <h1 className="title">Edit Questions for {currCourse}</h1>
         )}
         {prof !== undefined && id !== undefined && !courseChosen && (
           <SelectCourse
@@ -126,18 +141,46 @@ export default function ProfessorMain() {
             setCourseChosen={setCourseChosen}
           />
         )}
-        {courseChosen && !submitted && (
+        {courseChosen && !submitted && !addEdit && (
+          <div>
+            <AwesomeButton
+              type="primary"
+              onReleased={() => {
+                setAE(true);
+                setEdit(false);
+              }}
+            >
+              Add
+            </AwesomeButton>
+            <div className={styles.divider} />
+
+            <AwesomeButton
+              type="secondary"
+              onReleased={() => {
+                setAE(true);
+                setEdit(true);
+              }}
+            >
+              Edit
+            </AwesomeButton>
+          </div>
+        )}
+        {courseChosen && !submitted && addEdit && !edit && (
           <AddQuestion
             currCourse={currCourse}
             setSubmitted={setSubmitted}
             setCourseChosen={setCourseChosen}
           />
         )}
-        {courseChosen && submitted && (
-          <SubmittedQuestions
+        {courseChosen && !submitted && addEdit && edit && (
+          <QuestionsList
+            currCourse={currCourse}
             setSubmitted={setSubmitted}
-            submitted={submitted}
+            setCourseChosen={setCourseChosen}
           />
+        )}
+        {courseChosen && submitted && (
+          <SubmittedQuestions setSubmitted={setSubmitted} edit={edit} />
         )}
       </main>
 
