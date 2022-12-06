@@ -60,7 +60,6 @@ function AnswerInfo({ question, submitted, reset, resetQuestion }) {
           Your Answer: {answer}
         </p>
       )}
-      <br />
     </div>
   );
 }

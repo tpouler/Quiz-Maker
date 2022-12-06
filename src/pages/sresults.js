@@ -84,7 +84,7 @@ export default function SresultsMain() {
           <LoginStatus />
         </div>
 
-        <main>
+        <main className={styles.main}>
           {prof !== undefined && id !== undefined && !prof && !courseChosen && (
             <SelectCourse
               prof={prof}

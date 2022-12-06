@@ -2,6 +2,8 @@
   width: 400px;
   color: black;
   position: relative;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .multiselect:hover {
