@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import quizIcon from "@iconify/icons-material-symbols/quiz";
 import { useUser } from "../contexts/UserContext";
 import SelectCourse from "../components/selectCourse";
+import PResultsTable from "../components/Professor/pResultsTable";
 
 export default function PresultsMain() {
   const [prof, setProf] = useState();
@@ -106,7 +107,13 @@ export default function PresultsMain() {
             />
           )}
 
-          {prof && courseChosen && <div> placeholder text for {course}</div>}
+          {prof && courseChosen && (
+            <div>
+              {" "}
+              placeholder text for {course}
+              <PResultsTable course={course} />
+            </div>
+          )}
         </main>
         <footer>A 312 project</footer>
       </div>
