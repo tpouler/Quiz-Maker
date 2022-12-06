@@ -65,8 +65,6 @@ export default function QuizMain() {
     setSubmitted(true);
     return questionList;
   }
-  console.log("this is the id:");
-  console.log(id);
 
   return (
     <div className={styles.header}>
