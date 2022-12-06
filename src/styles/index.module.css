@@ -26,7 +26,7 @@
 }
 
 .main {
-  height: auto;
+  min-height: 75vh;
 }
 
 .bar {
