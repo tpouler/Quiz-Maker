@@ -23,7 +23,6 @@ import questionFill from "@iconify/icons-akar-icons/question-fill";
 import quizIcon from "@iconify/icons-material-symbols/quiz";
 
 export default function Main() {
-  //console.log(`boolean of answer submitted is: ${submitted}`);
   const [prof, setProf] = useState(false);
   const user = useUser();
 
