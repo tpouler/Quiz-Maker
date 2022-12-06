@@ -40,7 +40,7 @@ export default function Topics({ course, setTopics, setTopicsChosen }) {
   };
 
   return (
-    <div className={styles.multiselect}>
+    <div className={styles.multiselect1}>
       <Select
         options={topicsOptions}
         placeholder="Select at least one topic"
