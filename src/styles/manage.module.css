@@ -1,17 +1,18 @@
 .coursetile {
   border: 2px solid black;
   width: 100%;
-  background-color: powderblue;
+  background-color: #333;
   margin: auto;
   padding: 20px;
   text-align: center;
-  color: black;
+  color: white;
+  border-radius: 15px;
 }
 
 .li {
   list-style-type: none;
   text-align: left;
-  font-size: 15px;
+  font-size: 18px;
 }
 
 .newcourse {
@@ -21,4 +22,8 @@
   margin: auto;
   padding: 20px;
   color: black;
+}
+
+.remove {
+  float: right;
 }
