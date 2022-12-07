@@ -106,8 +106,8 @@ export default function Main() {
         <div className={styles.info}>
           <Icon
             icon={questionFill}
-            width="45"
-            height="40"
+            width="55"
+            height="50"
             inline
             className={styles.disappear}
           />
