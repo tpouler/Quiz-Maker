@@ -8,34 +8,35 @@ import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-async function getQuestions(currCourse, topic, sectionsFetched, callback) {
+async function getQuestions(currCourse, topicsList, callback) {
   const db = getFirestore();
-  const questions = collection(
-    db,
-    "courses",
-    currCourse,
-    "topics",
-    topic,
-    "questions"
-  );
-  const collectionSnapshot = await getDocs(questions);
-  collectionSnapshot.forEach((doc) => {
-    sectionsFetched.push(doc.data());
-  });
-  callback(sectionsFetched);
+  const questionsFetched = [];
+  for (let t = 0; t < topicsList.length; t++) {
+    const topic = topicsList[t];
+    const questions = collection(
+      db,
+      "courses",
+      currCourse,
+      "topics",
+      topic,
+      "questions"
+    );
+    const collectionSnapshot = await getDocs(questions);
+    collectionSnapshot.forEach((doc) => {
+      questionsFetched.push(doc.data());
+    });
+  }
+  callback(questionsFetched);
 }
 function useQuestions(currCourse, topicsList) {
-  const [sections, setSections] = useState([]);
+  const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
-    const sectionsFetched = [];
-    topicsList.forEach((t) => {
-      getQuestions(currCourse, t, sectionsFetched, setSections);
-    });
+    getQuestions(currCourse, topicsList, setQuestions);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currCourse, topicsList]);
 
-  return sections;
+  return questions;
 }
 
 useQuestions.propTypes = {

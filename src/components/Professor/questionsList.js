@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import useTopics from "../../hooks/useTopics.js";
-import useQuestionsLoading from "../../hooks/useQuestions.js";
+import useQuestions from "../../hooks/useQuestions.js";
 import EditQuestion from "./editQuestions.js";
 import { useState } from "react";
 import "react-awesome-button/dist/styles.css";
@@ -16,10 +16,9 @@ export default function QuestionsList({
   // eslint-disable-line
   const [currQuestion, setCurrQuestion] = useState();
   const [editing, setEditing] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   const topics = useTopics(currCourse);
-  const questions = useQuestionsLoading(currCourse, topics, setLoading);
+  const questions = useQuestions(currCourse, topics);
 
   const listItems = questions.map((Q) => (
     <li
@@ -39,59 +38,57 @@ export default function QuestionsList({
     setEditing(false);
   }
 
-  if (!loading) {
-    return (
-      <div>
-        {!currQuestion && (
-          <div>
-            <AwesomeButton
-              type="secondary"
-              onReleased={() => {
-                setCourseChosen(false);
-              }}
-            >
-              Change Course
-            </AwesomeButton>
-            <p> </p>
-            <ul className={styles.ul_questions}>{listItems.sort()}</ul>
-          </div>
-        )}
-        {currQuestion && !editing && (
-          <div>
-            <p>{currQuestion.question}</p>
-            <AwesomeButton
-              onReleased={() => {
-                setEditing(true);
-              }}
-              type="primary"
-            >
-              Edit
-            </AwesomeButton>
-            <div className={styles.divider} />
-            <AwesomeButton
-              type="danger"
-              onReleased={() => {
-                setCurrQuestion();
-              }}
-            >
-              Back
-            </AwesomeButton>
-          </div>
-        )}
-        {currQuestion && editing && (
-          <div>
-            <EditQuestion
-              complete={complete}
-              remove={remove}
-              currQuestion={currQuestion}
-              setCurrQuestion={setCurrQuestion}
-              setSubmitted={setSubmitted}
-            />
-          </div>
-        )}
-      </div>
-    );
-  }
+  return (
+    <div>
+      {!currQuestion && (
+        <div>
+          <AwesomeButton
+            type="secondary"
+            onReleased={() => {
+              setCourseChosen(false);
+            }}
+          >
+            Change Course
+          </AwesomeButton>
+          <p> </p>
+          <ul className={styles.ul_questions}>{listItems.sort()}</ul>
+        </div>
+      )}
+      {currQuestion && !editing && (
+        <div>
+          <p>{currQuestion.question}</p>
+          <AwesomeButton
+            onReleased={() => {
+              setEditing(true);
+            }}
+            type="primary"
+          >
+            Edit
+          </AwesomeButton>
+          <div className={styles.divider} />
+          <AwesomeButton
+            type="danger"
+            onReleased={() => {
+              setCurrQuestion();
+            }}
+          >
+            Back
+          </AwesomeButton>
+        </div>
+      )}
+      {currQuestion && editing && (
+        <div>
+          <EditQuestion
+            complete={complete}
+            remove={remove}
+            currQuestion={currQuestion}
+            setCurrQuestion={setCurrQuestion}
+            setSubmitted={setSubmitted}
+          />
+        </div>
+      )}
+    </div>
+  );
 }
 
 QuestionsList.propTypes = {
