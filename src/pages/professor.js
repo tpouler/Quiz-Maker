@@ -121,7 +121,7 @@ export default function ProfessorMain() {
         <LoginStatus />
       </div>
 
-      <main>
+      <main className={styles.main}>
         {!courseChosen && <h1 className="title">Add/Edit Questions</h1>}
         {courseChosen && !addEdit && (
           <h1 className="title"> Add/Edit Questions for {currCourse}</h1>
