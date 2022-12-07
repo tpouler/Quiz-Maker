@@ -117,13 +117,21 @@ export default function Main() {
               <span>
                 <div>Manage -- This is where you can practice your skills</div>
                 <br />
+                <div>
+                  Professor -- This is where you can add questions to your quiz
+                </div>
+                <br />
               </span>
             )}
-            <div>
-              Professor -- This is where you can add questions to your quiz
-            </div>
-            <br />
             <div>Quiz -- This is where you can practice your skills</div>
+            {!prof && (
+              <span>
+                <br />
+                <div>
+                  Results -- This is where you can add questions to your quiz
+                </div>
+              </span>
+            )}
           </span>
         </div>
       </main>
