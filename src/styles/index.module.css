@@ -18,6 +18,59 @@
   font-size: 30px;
 }
 
+.h1 {
+  font-size: 70px;
+  font-weight: 600;
+  /* background-image: linear-gradient(to top, #000000, #37538c);
+  color: transparent; */
+  color: #333;
+  background-color: white;
+  border-radius: 25px;
+  padding: 20px;
+  font-family: Acme;
+  /* background-clip: text;
+  -webkit-background-clip: text; */
+}
+
+.extra_info {
+  display: none;
+  line-height: 30px;
+  font-size: 12px;
+  color: black;
+  position: relative;
+  top: 0;
+}
+
+.info:hover .disappear {
+  display: none;
+}
+
+.info:hover .extra_info {
+  display: block;
+}
+
+.info {
+  font-size: 20px;
+  padding-left: 5px;
+  width: 20px;
+  border-radius: 15px;
+}
+
+.info:hover {
+  background-color: white;
+  padding: 0 0 0 5px;
+  width: 600px;
+  text-align: left;
+}
+
+.mainHome {
+  min-height: 90vh;
+  background-image: url("../images/ffw-top-level-2.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 .body {
   text-align: center;
   background: #37538c;
