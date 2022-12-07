@@ -186,14 +186,16 @@
 }
 
 .list_questions {
-  list-style-type: "- ";
-  margin: 10px;
+  margin-bottom: 10px;
   cursor: pointer;
+  text-align: left;
 }
 .list_questions:hover {
-  border-bottom: 3px solid white;
+  opacity: 0.65;
 }
 
 .ul_questions {
   padding-left: 0px;
+  margin-left: 0px;
+  padding: 0px;
 }
