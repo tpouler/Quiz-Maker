@@ -69,6 +69,12 @@ export default function Login() {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      handleLogin();
+    }
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -100,6 +106,7 @@ export default function Login() {
             placeholder="password"
             onChange={(event) => setPassword(event.target.value)}
             className={styles.input}
+            onKeyUp={handleKeyDown}
           />
         </div>
 
