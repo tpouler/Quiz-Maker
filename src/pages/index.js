@@ -99,10 +99,10 @@ export default function Main() {
       <main className={styles.mainHome}>
         <h1 className={styles.h1}>Welcome to our quiz page!</h1>
 
-        <p>
+        {/* <p>
           This is a page where you can practice your skills and continue to
           progress over time.
-        </p>
+        </p> */}
         <div className={styles.info}>
           <Icon
             icon={questionFill}
@@ -113,13 +113,17 @@ export default function Main() {
           />
 
           <span className={styles.extra_info}>
-            <div>Please click one of the options from the nav bar above.</div>
+            {prof && (
+              <span>
+                <div>Manage -- This is where you can practice your skills</div>
+                <br />
+              </span>
+            )}
+            <div>
+              Professor -- This is where you can add questions to your quiz
+            </div>
             <br />
-            <div>Professor</div>
-            <div>This is where you can add questions to your quiz</div>
-            <br />
-            <div>Quiz</div>
-            <div>This is where you can practice your skills</div>
+            <div>Quiz -- This is where you can practice your skills</div>
           </span>
         </div>
       </main>
