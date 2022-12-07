@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import useTopics from "../../hooks/useTopics.js";
-import useQuestions from "../../hooks/useQuestions.js";
+import useQuestionsLoading from "../../hooks/useQuestions.js";
 import EditQuestion from "./editQuestions.js";
 import { useState } from "react";
 import "react-awesome-button/dist/styles.css";
@@ -19,12 +19,7 @@ export default function QuestionsList({
   const [loading, setLoading] = useState(true);
 
   const topics = useTopics(currCourse);
-  const questions = useQuestions(currCourse, topics, setLoading);
-
-  // console.log("topics")
-  // console.log(topics);
-  // console.log("questions")
-  // console.log(questions);
+  const questions = useQuestionsLoading(currCourse, topics, setLoading);
 
   const listItems = questions.map((Q) => (
     <li

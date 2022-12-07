@@ -24,14 +24,15 @@ async function getQuestions(currCourse, topic, sectionsFetched, callback) {
   });
   callback(sectionsFetched);
 }
-function useQuestions(currCourse, topicsList) {
+function useQuestions(currCourse, topicsList, setLoading) {
   const [sections, setSections] = useState([]);
-
   useEffect(() => {
+    setLoading(true);
     const sectionsFetched = [];
     topicsList.forEach((t) => {
       getQuestions(currCourse, t, sectionsFetched, setSections);
     });
+    setLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currCourse, topicsList]);
 
@@ -41,6 +42,7 @@ function useQuestions(currCourse, topicsList) {
 useQuestions.propTypes = {
   currCourse: PropTypes.object,
   topicsList: PropTypes.arrayOf(PropTypes.object),
+  setLoading: PropTypes.func,
 };
 
 export default useQuestions;
