@@ -111,7 +111,6 @@ export default function Main() {
             inline
             className={styles.disappear}
           />
-          {/* <button className={styles.disappear}>text</button> */}
 
           <span className={styles.extra_info}>
             <div>Please click one of the options from the nav bar above.</div>
