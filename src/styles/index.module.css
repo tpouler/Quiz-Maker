@@ -223,17 +223,17 @@
   width: 17%;
 }
 
-/* Change the color of links on hover */
+/* Change the links on hover */
 .topnav span:hover {
-  background-color: #ddd;
-  color: black;
+  font-weight: bold;
+  color: white;
   cursor: pointer;
 }
 
-/* Add a color to the active/current link */
+/* Add boldness to the active/current link */
 .topnav span.active {
-  background-color: #727480;
   color: white;
+  font-weight: bold;
 }
 
 .login {
@@ -242,6 +242,13 @@
   flex-direction: column;
   justify-content: top;
   align-items: center;
+  min-height: 90vh;
+  background-image: url("../images/picture.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  width: 100%;
+  height: 100%;
 }
 
 .loginstatus {
