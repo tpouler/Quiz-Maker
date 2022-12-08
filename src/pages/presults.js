@@ -13,6 +13,7 @@ import quizIcon from "@iconify/icons-material-symbols/quiz";
 import { useUser } from "../contexts/UserContext";
 import SelectCourse from "../components/selectCourse";
 import PResultsTable from "../components/Professor/pResultsTable";
+import { AwesomeButton } from "react-awesome-button";
 
 export default function PresultsMain() {
   const [prof, setProf] = useState();
@@ -109,8 +110,16 @@ export default function PresultsMain() {
 
           {prof && courseChosen && (
             <div>
-              {" "}
-              placeholder text for {course}
+              <p>
+                <AwesomeButton
+                  type="secondary"
+                  onReleased={() => {
+                    setCourseChosen(false);
+                  }}
+                >
+                  Change Course
+                </AwesomeButton>
+              </p>
               <PResultsTable course={course} />
             </div>
           )}

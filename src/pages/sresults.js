@@ -4,6 +4,7 @@ import LoginStatus from "../components/LoginStatus";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useUser } from "../contexts/UserContext";
+import { AwesomeButton } from "react-awesome-button";
 
 // All icons were taken from the following link
 // https://icon-sets.iconify.design/
@@ -94,7 +95,19 @@ export default function SresultsMain() {
             />
           )}
           {!prof && id !== undefined && courseChosen && (
-            <ResultsTable userID={id} course={currCourse} />
+            <div>
+              <p>
+                <AwesomeButton
+                  type="secondary"
+                  onReleased={() => {
+                    setCourseChosen(false);
+                  }}
+                >
+                  Change Course
+                </AwesomeButton>
+              </p>
+              <ResultsTable userID={id} course={currCourse} />
+            </div>
           )}
         </main>
         <footer>A 312 project</footer>
