@@ -16,6 +16,7 @@ import { addCourse } from "../utils/firebase-utils.mjs";
 import manage from "../styles/manage.module.css";
 import "react-awesome-button/dist/styles.css";
 import { AwesomeButton } from "react-awesome-button";
+import { useRouter } from "next/router";
 
 export default function ManageMain() {
   const [prof, setProf] = useState(true);
@@ -35,10 +36,11 @@ export default function ManageMain() {
       }
     }
   }, [user]); // eslint-disable-line
+  const router = useRouter();
 
   const handleClick = async () => {
     await addCourse(id, courseTitle);
-    location.reload();
+    router.push("/");
   };
   return (
     <div className={styles.header}>
