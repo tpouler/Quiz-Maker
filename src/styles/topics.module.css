@@ -1,9 +1,6 @@
 .multiselect {
   width: 400px;
   color: black;
-  position: relative;
-  top: 40%;
-  position: absolute;
 }
 
 .multiselect1 {
