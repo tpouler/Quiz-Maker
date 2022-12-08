@@ -96,23 +96,45 @@ export default function Main() {
         )}
         <LoginStatus />
       </div>
-      <main className={styles.main}>
-        <h1>Welcome to our quiz page!</h1>
-        <p>
+      <main className={styles.mainHome}>
+        <h1 className={styles.h1}>Welcome to our quiz page!</h1>
+
+        {/* <p>
           This is a page where you can practice your skills and continue to
           progress over time.
-        </p>
-        <div>Please click one of the options from the nav bar above.</div>
-        <br />
-        <div>Professor</div>
-        <div>This is where you can add questions to your quiz</div>
-        <br />
-        <div>Quiz</div>
-        <div>This is where you can practice your skills</div>
-        <br />
-        <div> </div>
+        </p> */}
+        <div className={styles.info}>
+          <Icon
+            icon={questionFill}
+            width="55"
+            height="50"
+            inline
+            className={styles.disappear}
+          />
+
+          <span className={styles.extra_info}>
+            {prof && (
+              <span>
+                <div>Manage -- This is where you can practice your skills</div>
+                <br />
+                <div>
+                  Professor -- This is where you can add questions to your quiz
+                </div>
+                <br />
+              </span>
+            )}
+            <div>Quiz -- This is where you can practice your skills</div>
+            {!prof && (
+              <span>
+                <br />
+                <div>
+                  Results -- This is where you can add questions to your quiz
+                </div>
+              </span>
+            )}
+          </span>
+        </div>
       </main>
-      <footer>A 312 project</footer>
     </div>
   );
 }
