@@ -109,8 +109,6 @@ export default function PresultsMain() {
 
           {prof && courseChosen && (
             <div>
-              {" "}
-              placeholder text for {course}
               <PResultsTable course={course} />
             </div>
           )}
