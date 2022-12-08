@@ -18,6 +18,7 @@ import Link from "next/link";
 
 import ChooseTopic from "../components/chooseTopic";
 import SelectCourse from "../components/selectCourse";
+import { AwesomeButton } from "react-awesome-button";
 
 // All icons were taken from the following link
 // https://icon-sets.iconify.design/
@@ -140,11 +141,23 @@ export default function QuizMain() {
           />
         )}
         {courseChosen && !topicsChosen && !submitted && (
-          <ChooseTopic
-            course={currCourse}
-            setTopics={setTopics}
-            setTopicsChosen={setTopicsChosen}
-          />
+          <div>
+            <p>
+              <AwesomeButton
+                type="secondary"
+                onReleased={() => {
+                  setCourseChosen(false);
+                }}
+              >
+                Change Course
+              </AwesomeButton>
+            </p>
+            <ChooseTopic
+              course={currCourse}
+              setTopics={setTopics}
+              setTopicsChosen={setTopicsChosen}
+            />
+          </div>
         )}
         {prof !== undefined &&
           id !== undefined &&
