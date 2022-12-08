@@ -50,8 +50,8 @@ export default function ResultsTable({ userID, course }) {
       </div>
       <p> </p>
       {selected && (
-        <div className={tableStyles.table}>
-          <table>
+        <div>
+          <table className={tableStyles.table}>
             <tr>
               <th> Date </th>
               <th> {selected} </th>
