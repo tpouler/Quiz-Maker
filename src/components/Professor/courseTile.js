@@ -8,6 +8,10 @@ import { addStudent, removeStudent } from "../../utils/firebase-utils.mjs";
 import { useState } from "react";
 import "react-awesome-button/dist/styles.css";
 import { AwesomeButton } from "react-awesome-button";
+// eslint-disable-next-line quotes
+import { Icon } from "@iconify/react";
+// eslint-disable-next-line quotes
+import cancelIcon from "@iconify/icons-material-symbols/cancel";
 
 export default function CourseTile({ course }) {
   const [email, setEmail] = useState();
@@ -16,10 +20,14 @@ export default function CourseTile({ course }) {
   const studentList = students.map((s) => (
     <li className={style.li} key={s}>
       {s} {"    "}
-      <button className={style.right} onClick={() => removeStudent(course, s)}>
-        {" "}
-        remove{" "}
-      </button>
+      <Icon
+        icon={cancelIcon}
+        width="25"
+        height="20"
+        color="red"
+        onClick={() => removeStudent(course, s)}
+        inline
+      />
     </li>
   ));
 
@@ -28,6 +36,7 @@ export default function CourseTile({ course }) {
       <Collapsible trigger={`${course} Roster`}>
         <ul>
           {studentList}
+
           <li className={style.li} key="add">
             <input
               type="text"
