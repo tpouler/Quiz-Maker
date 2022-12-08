@@ -95,7 +95,7 @@ export default function SresultsMain() {
             />
           )}
           {!prof && id !== undefined && courseChosen && (
-            <div>
+            <div className={styles.center}>
               <p>
                 <AwesomeButton
                   type="secondary"
