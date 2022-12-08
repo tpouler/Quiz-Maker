@@ -180,6 +180,21 @@
   text-align: left;
 }
 
+.inputCourse {
+  font-size: 18px;
+  border-radius: 6px;
+  line-height: 1.5;
+  padding: 5px 10px;
+  transition: box-shadow 100ms ease-in, border 100ms ease-in,
+    background-color 100ms ease-in;
+  border: 2px solid #dee1e2;
+  color: rgb(14, 14, 16);
+  background: #dee1e2;
+  height: 46px;
+  width: 250px;
+  text-align: left;
+}
+
 .input:hover {
   border-color: #ccc;
 }
@@ -212,6 +227,7 @@
 .topnav span:hover {
   background-color: #ddd;
   color: black;
+  cursor: pointer;
 }
 
 /* Add a color to the active/current link */

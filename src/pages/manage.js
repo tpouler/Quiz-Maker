@@ -13,8 +13,9 @@ import { useUser } from "../contexts/UserContext";
 import CourseTiles from "../components/Professor/courseTiles";
 import Collapsible from "react-collapsible";
 import { addCourse } from "../utils/firebase-utils.mjs";
-import inputStyle from "../styles/inputBox.module.css";
 import manage from "../styles/manage.module.css";
+import "react-awesome-button/dist/styles.css";
+import { AwesomeButton } from "react-awesome-button";
 
 export default function ManageMain() {
   const [prof, setProf] = useState(true);
@@ -107,14 +108,18 @@ export default function ManageMain() {
         {prof && id !== undefined && (
           <div className={manage.newcourse}>
             <Collapsible trigger="Add a new course +">
+              <br />
               <input
                 placeholder="Enter new course name"
                 onChange={(event) => {
                   setCourseTitle(event.target.value);
                 }}
-                className={inputStyle.input}
+                className={styles.inputCourse}
               />
-              <button onClick={() => handleClick()}> Create New Course </button>
+              <div className={styles.divider} />
+              <AwesomeButton type="primary" onReleased={() => handleClick()}>
+                Create
+              </AwesomeButton>
             </Collapsible>
           </div>
         )}
