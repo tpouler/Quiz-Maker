@@ -26,7 +26,7 @@ export default function QuestionsList({
       key={Q.question}
       onClick={() => setCurrQuestion(Q)}
     >
-      {Q.question}
+      {`${Q.topic}: ${Q.question}`}
     </li>
   ));
   async function complete(quest) {
