@@ -124,7 +124,19 @@ export default function ProfessorMain() {
       <main className={styles.main}>
         {!courseChosen && <h1 className="title">Add/Edit Questions</h1>}
         {courseChosen && !addEdit && (
-          <h1 className="title"> Add/Edit Questions for {currCourse}</h1>
+          <div>
+            <h1 className="title"> Add/Edit Questions for {currCourse}</h1>
+            <p>
+              <AwesomeButton
+                type="secondary"
+                onReleased={() => {
+                  setCourseChosen(false);
+                }}
+              >
+                Change Course
+              </AwesomeButton>
+            </p>
+          </div>
         )}
         {courseChosen && addEdit && !edit && (
           <h1 className="title">Add Questions for {currCourse}</h1>
