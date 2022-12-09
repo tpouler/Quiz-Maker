@@ -56,7 +56,6 @@ export default function Topics({ course, setTopics, setTopicsChosen }) {
         type="secondary"
         disabled={selected === null}
         onReleased={() => {
-          console.log("release");
           submitTopics();
         }}
       >
