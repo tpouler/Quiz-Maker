@@ -8,7 +8,46 @@ import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-async function getQuestions(currCourse, topicsList, callback) {
+async function chooseQuestions(quests, tops, callback) {
+  if (quests.length < 10) {
+    callback(quests);
+  } else {
+    const finalArr = [];
+    const qPerTopics = Math.floor(10 / tops.length);
+    const topicsObj = {};
+
+    for (let t = 0; t < tops.length; t++) {
+      const topic = tops[t];
+      topicsObj[topic] = { full: false, count: 0 };
+    }
+
+    let sorted = [];
+    for (let q = 0; q < quests.length; q++) {
+      const quest = quests[q];
+      sorted.push({ ...quest, sort: Math.random() });
+    }
+
+    sorted = sorted.sort((q1, q2) => {
+      return q1.sort - q2.sort;
+    });
+
+    for (let s = 0; s < sorted.length; s++) {
+      const q = sorted[s];
+      const currTopic = q.topic;
+      if (topicsObj[currTopic].full === false) {
+        finalArr.push({ ...q });
+        topicsObj[currTopic].count += 1;
+        if (topicsObj[currTopic].count === qPerTopics) {
+          topicsObj[currTopic].full = true;
+        }
+      }
+    }
+
+    await callback(finalArr);
+  }
+}
+
+async function getQuestions(currCourse, topicsList, callback, quizBool) {
   const db = getFirestore();
   const questionsFetched = [];
   for (let t = 0; t < topicsList.length; t++) {
@@ -26,13 +65,17 @@ async function getQuestions(currCourse, topicsList, callback) {
       questionsFetched.push(doc.data());
     });
   }
-  callback(questionsFetched);
+  if (quizBool) {
+    await chooseQuestions(questionsFetched, topicsList, callback, quizBool);
+  } else {
+    callback(questionsFetched);
+  }
 }
-function useQuestions(currCourse, topicsList) {
+function useQuestions(currCourse, topicsList, quizBool) {
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
-    getQuestions(currCourse, topicsList, setQuestions);
+    getQuestions(currCourse, topicsList, setQuestions, quizBool);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currCourse, topicsList]);
 
