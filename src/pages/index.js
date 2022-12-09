@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Head from "next/head";
 
 import styles from "../styles/index.module.css";
@@ -22,6 +23,8 @@ import questionFill from "@iconify/icons-akar-icons/question-fill";
 // eslint-disable-next-line quotes
 import quizIcon from "@iconify/icons-material-symbols/quiz";
 
+import Layout from "../components/Layout";
+
 export default function Main() {
   const [prof, setProf] = useState(false);
   const user = useUser();
@@ -35,106 +38,44 @@ export default function Main() {
   }, [user]); // eslint-disable-line
 
   return (
-    <div className={styles.header}>
-      <Head>
-        <title>Potoo project</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Layout prof={prof}>
+      <h1 className={styles.h1}>Welcome to our quiz page!</h1>
 
-      <div className={styles.topnav}>
-        <Link href="/">
-          <span className={styles.active}>
-            <Icon icon={homeAlt1} width="25" height="25" inline /> Home
-          </span>
-        </Link>
-        {prof && (
-          <Link href="/manage">
-            <span>
-              <Icon icon="ion:person" width="25" height="25" inline />
-              Manage
-            </span>
-          </Link>
-        )}
-        {prof && (
-          <Link href="/professor">
-            <span>
-              <Icon icon={questionFill} width="25" height="20" inline />
-              Professor
-            </span>
-          </Link>
-        )}
-        <Link href="/quiz">
-          <span>
-            <Icon icon={quizIcon} width="25" height="20" inline /> Quiz
-          </span>
-        </Link>
-        {!prof && (
-          <Link href="/sresults">
-            <span>
-              <Icon
-                icon="fluent-mdl2:feedback-response-solid"
-                width="25"
-                height="20"
-                inline
-              />{" "}
-              Results
-            </span>
-          </Link>
-        )}
-        {prof && (
-          <Link href="/presults">
-            <span>
-              <Icon
-                icon="fluent-mdl2:feedback-response-solid"
-                width="25"
-                height="20"
-                inline
-              />
-              Results
-            </span>
-          </Link>
-        )}
-        <LoginStatus />
-      </div>
-      <main className={styles.mainHome}>
-        <h1 className={styles.h1}>Welcome to our quiz page!</h1>
-
-        {/* <p>
+      {/* <p>
           This is a page where you can practice your skills and continue to
           progress over time.
         </p> */}
-        <div className={styles.info}>
-          <Icon
-            icon={questionFill}
-            width="55"
-            height="50"
-            inline
-            className={styles.disappear}
-          />
+      <div className={styles.info}>
+        <Icon
+          icon={questionFill}
+          width="55"
+          height="50"
+          inline
+          className={styles.disappear}
+        />
 
-          <span className={styles.extra_info}>
-            {prof && (
-              <span>
-                <div>Manage -- This is where you can practice your skills</div>
-                <br />
-                <div>
-                  Professor -- This is where you can add questions to your quiz
-                </div>
-                <br />
-              </span>
-            )}
-            <div>Quiz -- This is where you can practice your skills</div>
-            {!prof && (
-              <span>
-                <br />
-                <div>
-                  Results -- This is where you can add questions to your quiz
-                </div>
-              </span>
-            )}
-          </span>
-        </div>
-      </main>
-    </div>
+        <span className={styles.extra_info}>
+          {prof && (
+            <span>
+              <div>Manage -- This is where you can practice your skills</div>
+              <br />
+              <div>
+                Professor -- This is where you can add questions to your quiz
+              </div>
+              <br />
+            </span>
+          )}
+          <div>Quiz -- This is where you can practice your skills</div>
+          {!prof && (
+            <span>
+              <br />
+              <div>
+                Results -- This is where you can add questions to your quiz
+              </div>
+            </span>
+          )}
+        </span>
+      </div>
+    </Layout>
   );
 }
