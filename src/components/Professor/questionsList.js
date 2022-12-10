@@ -18,7 +18,7 @@ export default function QuestionsList({
   const [editing, setEditing] = useState(false);
 
   const topics = useTopics(currCourse);
-  const questions = useQuestions(currCourse, topics);
+  const questions = useQuestions(currCourse, topics, false);
 
   const listItems = questions.map((Q) => (
     <li

@@ -11,7 +11,7 @@ import { AwesomeButton } from "react-awesome-button";
 import PropTypes from "prop-types";
 
 export default function Topics({ course, setTopics, setTopicsChosen }) {
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState([]);
 
   const topicsList = useTopics(course);
 
@@ -43,7 +43,7 @@ export default function Topics({ course, setTopics, setTopicsChosen }) {
     <div className={styles.multiselect1}>
       <Select
         options={topicsOptions}
-        placeholder="Select at least one topic"
+        placeholder="Select 1-5 topics"
         value={selected}
         onChange={handleSelect}
         isSearchable
@@ -54,7 +54,7 @@ export default function Topics({ course, setTopics, setTopicsChosen }) {
       <br />
       <AwesomeButton
         type="secondary"
-        disabled={selected === null}
+        disabled={selected.length < 1 || selected.length > 5}
         onReleased={() => {
           submitTopics();
         }}

@@ -78,12 +78,11 @@ export default function Quiz({
   setQuestions,
 }) {
   const [reset, resetQuestion] = useState(false);
-  const questions = useQuestions(course, topics);
+  const questions = useQuestions(course, topics, true);
   setQuestions(questions);
 
   const questionMap = questions.map((question) => (
     <div key={question.question}>
-
       {question.question}
       <br />
       <AnswerInfo
