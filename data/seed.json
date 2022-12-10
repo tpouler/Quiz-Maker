@@ -84,8 +84,36 @@
     "course": "CS312"
   },
   {
+    "question": "32/4 = _",
+    "answer": "8",
+    "uid": "1",
+    "topic": "Division",
+    "course": "CS312"
+  },
+  {
     "question": "If x + 8 = 32, What is x?",
     "answer": "24",
+    "uid": "1",
+    "topic": "Algebra",
+    "course": "CS312"
+  },
+  {
+    "question": "If 7x + 3 = 45, What is x?",
+    "answer": "6",
+    "uid": "1",
+    "topic": "Algebra",
+    "course": "CS312"
+  },
+  {
+    "question": "If 4x + 10 = 3, What is x?",
+    "answer": "5",
+    "uid": "1",
+    "topic": "Algebra",
+    "course": "CS312"
+  },
+  {
+    "question": "If 2x + 1 = 15, What is x?",
+    "answer": "2",
     "uid": "1",
     "topic": "Algebra",
     "course": "CS312"
